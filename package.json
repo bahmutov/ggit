@@ -1,0 +1,34 @@
+{
+  "name": "ggit",
+  "version": "0.0.1",
+  "description": "Local git command wrappers",
+  "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bahmutov/ggit.git"
+  },
+  "keywords": [
+    "git", "repo", "wrapper",
+    "js", "javascript",
+    "nodejs"
+  ],
+  "dependencies": {
+    "optimist": "*",
+    "check-types": "*",
+    "cli-table": "*",
+    "colors": "*",
+    "glob": "latest",
+    "lodash": "latest",
+    "moment": "latest"
+  },
+  "devDependencies": {
+      "gt": "*"
+  },
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "license": "MIT",
+  "preferGlobal": "true",
+  "main": "./ggit.js",
+  "bin": "./ggit.js"
+}
