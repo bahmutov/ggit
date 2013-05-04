@@ -2,7 +2,9 @@ var spawn = require('child_process').spawn;
 var path = require('path');
 var fs = require('fs');
 var moment = require('moment');
-var metrics = require('./metrics');
+
+// todo: get back to working state
+// var metrics = require('./metrics');
 var optimist = require('optimist');
 var Table = require('cli-table');
 
