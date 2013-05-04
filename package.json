@@ -1,6 +1,6 @@
 {
   "name": "ggit",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Local git command wrappers",
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
   "repository": {
@@ -13,6 +13,7 @@
     "nodejs"
   ],
   "dependencies": {
+    "commander": "*",
     "optimist": "*",
     "check-types": "*",
     "cli-table": "*",
@@ -29,6 +30,9 @@
   },
   "license": "MIT",
   "preferGlobal": "true",
-  "main": "./ggit.js",
-  "bin": "./ggit.js"
+  "main": "./index.js",
+  "bin": "./index.js",
+  "scripts": {
+    "test": "gt ./src/test/*.js"
+  }
 }
