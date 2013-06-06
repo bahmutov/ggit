@@ -26,7 +26,10 @@
     "moment": "~2.0.0"
   },
   "devDependencies": {
-    "gt": "~0.8.5"
+    "gt": "~0.8.5",
+    "grunt-bump": "0.0.2",
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.6.0"
   },
   "engines": {
     "node": ">= 0.8.0"
