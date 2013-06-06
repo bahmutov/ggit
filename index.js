@@ -27,10 +27,10 @@ function parseCommit(data) {
 	// console.log(dateLine);
 
 	lines.splice(0, 3);
-	lines = lines.filter(function(str) {
+	lines = lines.filter(function (str) {
 		return str;
 	});
-	lines = lines.map(function(str) {
+	lines = lines.map(function (str) {
 		str = str.trim();
 		return str;
 	});
@@ -85,7 +85,7 @@ function getFileRevision(commit, filename, cb) {
 
 	git.stderr.setEncoding('utf-8');
 	git.stderr.on('data', function (data) {
-		throw new Error('Could not get file\n' + filename + 
+		throw new Error('Could not get file\n' + filename +
 			'\n' + data);
 	});
 
@@ -98,7 +98,7 @@ function getGitLog(filename, cb) {
 	console.assert(typeof cb === 'function', 'expect callback function, not', cb);
 	filename = path.resolve(filename);
 	console.log('fetching history for', filename);
-	
+
 	getGitRootFolder(function (rootFolder) {
 		console.assert(rootFolder, 'could not find git root folder');
 		rootFolder = rootFolder.trim();
@@ -124,8 +124,8 @@ function getGitLog(filename, cb) {
 		git.stdout.on('data', function (data) {
 			data.trim();
 			var separatedData = data.split('commit');
-			separatedData = separatedData.filter(function(str) {
-				str.trim();			
+			separatedData = separatedData.filter(function (str) {
+				str.trim();
 				return str && str !== '\n';
 			});
 			var info = separatedData.map(parseCommit);
@@ -134,7 +134,7 @@ function getGitLog(filename, cb) {
 
 		git.stderr.setEncoding('utf-8');
 		git.stderr.on('data', function (data) {
-			throw new Error('Could not get git log for\n' + filename + 
+			throw new Error('Could not get git log for\n' + filename +
 				'\n' + data);
 		});
 
@@ -166,14 +166,14 @@ function writeComplexityHistory(filename, commits) {
 			console.assert(report, 'missing report for', filename, 'commit', revision.commit);
 			//console.log(revision.date, 'LOC', report.aggregate.complexity.cyclomatic,
 			//	'Halstead', report.aggregate.complexity.halstead.difficulty.toFixed(0));
-			rows.push([revision.date, 
+			rows.push([revision.date,
 				report.aggregate.complexity.sloc.logical,
-				report.aggregate.complexity.cyclomatic, 
+				report.aggregate.complexity.cyclomatic,
 				+report.aggregate.complexity.halstead.difficulty.toFixed(0),
 				revision.author,
 				revision.description]);
 			if (rows.length === commits.length) {
-				var comparison = function(a, b) {
+				var comparison = function (a, b) {
 					var first = a[0];
 					var second = b[0];
 					if (first < second) {
@@ -186,19 +186,19 @@ function writeComplexityHistory(filename, commits) {
 				};
 				rows.sort(comparison);
 				rows = rows.map(function (row) {
-					row[0] = row[0].format("YYYY/MM/DD HH:mm:ss");
+					row[0] = row[0].format('YYYY/MM/DD HH:mm:ss');
 					return row;
 				});
 
 				var table = new Table({
 					head: titles
 				});
-				rows.forEach(function(row) {
+				rows.forEach(function (row) {
 					table.push(row.slice(0, 5));
 				});
 				console.log(table.toString());
 
-				var report = rows.map(function (row) {
+				var reportArray = rows.map(function (row) {
 					return {
 						date: row[0],
 						loc: row[1],
@@ -210,17 +210,17 @@ function writeComplexityHistory(filename, commits) {
 				});
 				var fileReport = {
 					filename: filename,
-					complexityHistory: report
+					complexityHistory: reportArray
 				};
-				fs.writeFileSync(config.report, JSON.stringify(fileReport, null, 2), "utf-8");
-				console.log("Saved report text", config.report);
+				fs.writeFileSync(config.report, JSON.stringify(fileReport, null, 2), 'utf-8');
+				console.log('Saved report text', config.report);
 			}
 		});
 	});
 }
 
 if (!module.parent) {
-	var args = optimist.usage('Report file source complexity through history.\n' + 
+	var args = optimist.usage('Report file source complexity through history.\n' +
 		'Usage: $0 <source filename>')
 		.default({
 			help: false,
