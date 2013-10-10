@@ -19,9 +19,14 @@ function parsePrettyLog(data) {
 // returns a promise
 function getLog(opts) {
   opts = opts || {};
-  opts.n = opts.n || 10;
 
-  var cmd = 'git log --pretty=oneline -n ' + opts.n;
+  var cmd = 'git log --pretty=oneline';
+  if (opts.n > 0) {
+    cmd += ' -n ' + opts.n;
+  }
+  if (opts.remote && opts.branch) {
+    cmd += ' ' + opts.remote + '/' + opts.branch + '..' + opts.branch;
+  }
   return exec(cmd).then(parsePrettyLog);
 }
 
