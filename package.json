@@ -33,15 +33,18 @@
     "gt": "~0.8.12",
     "qunit-promises": "0.0.11",
     "grunt-node-qunit": "~2.0.2",
-    "matchdep": "~0.3.0"
+    "matchdep": "~0.3.0",
+    "grunt-nice-package": "~0.1.3"
   },
   "engines": {
     "node": ">= 0.8.0"
   },
   "license": "MIT",
-  "preferGlobal": "true",
+  "preferGlobal": true,
   "main": "./index.js",
-  "bin": "./index.js",
+  "bin": {
+    "ggit": "./index.js"
+  },
   "scripts": {
     "test": "node ./node_modules/gt ./src/test/*.js"
   }
