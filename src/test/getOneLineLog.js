@@ -21,3 +21,14 @@ QUnit.test('4 commits number', function (assert) {
       assert.equal(commits.length, 4, '4 commits');
     }));
 });
+
+QUnit.test('unpushed commits (if any)', function (assert) {
+  assert.will(getLog({
+    remote: 'origin',
+    branch: 'master'
+  })
+  .then(function (commits) {
+    assert.ok(Array.isArray(commits), 'returns array');
+    assert.ok(commits.length >= 0, 'might have commits');
+  }));
+});
