@@ -23,13 +23,17 @@
     "colors": "~0.6.0-1",
     "glob": "~3.2.1",
     "lodash": "~2.2.1",
-    "moment": "~2.3.1"
+    "moment": "~2.3.1",
+    "q": "~0.9.7"
   },
   "devDependencies": {
     "grunt-bump": "0.0.11",
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.6.4",
-    "gt": "~0.8.12"
+    "gt": "~0.8.12",
+    "qunit-promises": "0.0.11",
+    "grunt-node-qunit": "~2.0.2",
+    "matchdep": "~0.3.0"
   },
   "engines": {
     "node": ">= 0.8.0"
