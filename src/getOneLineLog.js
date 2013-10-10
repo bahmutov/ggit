@@ -1,16 +1,4 @@
-var Q = require('q');
-var exec = require('child_process').exec;
-
-function execPromise(cmd) {
-  var deferred = Q.defer();
-  exec(cmd, function (err, stdout, stderr) {
-    if (err) {
-      return deferred.reject(stderr);
-    }
-    deferred.resolve(stdout);
-  });
-  return deferred.promise;
-}
+var exec = require('./exec');
 
 function parsePrettyLog(data) {
   var lines = data.split('\n');
@@ -34,7 +22,7 @@ function getLog(opts) {
   opts.n = opts.n || 10;
 
   var cmd = 'git log --pretty=oneline -n ' + opts.n;
-  return execPromise(cmd).then(parsePrettyLog);
+  return exec(cmd).then(parsePrettyLog);
 }
 
 module.exports = getLog;
