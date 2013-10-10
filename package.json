@@ -46,6 +46,6 @@
     "ggit": "./index.js"
   },
   "scripts": {
-    "test": "node ./node_modules/gt ./src/test/*.js"
+    "test": "grunt"
   }
 }
