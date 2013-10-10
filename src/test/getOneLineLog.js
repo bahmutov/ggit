@@ -17,7 +17,7 @@ QUnit.test('all commits', function (assert) {
 QUnit.test('4 commits number', function (assert) {
   assert.will(getLog({n: 4})
     .then(function (commits) {
-      return Array.isArray(commits) &&
-        commits.length === 4
-    }), 'returns array with 4 commits');
+      assert.ok(Array.isArray(commits), 'returns array');
+      assert.equal(commits.length, 4, '4 commits');
+    }));
 });
