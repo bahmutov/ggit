@@ -13,11 +13,19 @@ module.exports = function (grunt) {
         },
         'nice-package': {
             all: {}
+        },
+
+        'node-qunit': {
+            all: {
+                deps: './node_modules/qunit-promises/qunit-promises.js',
+                code: './src/getOneLineLog.js',
+                tests: './src/test/getOneLineLog.js'
+            }
         }
     });
 
     var plugins = module.require('matchdep').filterDev('grunt-*');
     plugins.forEach(grunt.loadNpmTasks);
 
-    grunt.registerTask('default', ['nice-package', 'jshint']);
+    grunt.registerTask('default', ['nice-package', 'jshint', 'node-qunit']);
 };
