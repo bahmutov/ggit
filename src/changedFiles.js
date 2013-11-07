@@ -5,8 +5,8 @@ var check = require('check-types');
 exports.changedFiles = changedFiles;
 
 function changedFiles(repoTopFolder, cb) {
-	check.verifyString(repoTopFolder, 'expected git top folder');
-	check.verifyFunction(cb, 'expect callback function, not', cb);
+	check.verify.string(repoTopFolder, 'expected git top folder');
+	check.verify.fn(cb, 'expect callback function, not', cb);
 	repoTopFolder = repoTopFolder.trim();
 
 	var diff = spawn('git', ['diff', '--name-only']);

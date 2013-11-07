@@ -18,7 +18,7 @@
   "dependencies": {
     "commander": "~2.0.0",
     "optimist": "~0.6.0",
-    "check-types": "~0.6.5",
+    "check-types": "~1.1.0",
     "cli-table": "~0.2.0",
     "colors": "~0.6.2",
     "glob": "~3.2.6",

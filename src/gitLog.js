@@ -9,17 +9,17 @@ function gitLog(filename, commits, cb, err, rootFolder) {
 	if (err) {
 		throw err;
 	}
-	check.verifyString(filename, 'missing filename');
-	check.verifyPositiveNumber(commits, 'invalid number of commits', commits);
-	check.verifyFunction(cb, 'callback should be a function');
+	check.verify.string(filename, 'missing filename');
+	check.verify.positiveNumber(commits, 'invalid number of commits', commits);
+	check.verify.fn(cb, 'callback should be a function');
 
 	// use -n <number> to limit history
 	// oe --since <date>
 	// var args = ['log', '--no-decorate', '-n ' + commits];
 	var args = ['log', '--name-status', '-n ' + commits];
-	
+
 	if (filename) {
-		check.verifyString(rootFolder, 'could not find git root folder');
+		check.verify.string(rootFolder, 'could not find git root folder');
 		rootFolder = rootFolder.trim();
 		rootFolder = rootFolder.replace(/\//g, '\\');
 
@@ -30,9 +30,9 @@ function gitLog(filename, commits, cb, err, rootFolder) {
 
 		var relativePath = path.relative(workingFolder, filename);
 		var repoPath = path.relative(rootFolder, filename);
-		args.push(relativePath);		
+		args.push(relativePath);
 	}
-	
+
 	console.log('git log command', args);
 	var git = spawn('git', args);
 
@@ -41,10 +41,10 @@ function gitLog(filename, commits, cb, err, rootFolder) {
 	git.stdout.on('data', function (data) {
 		data.trim();
 		// console.log('git data\n', data);
-		
+
 		var separatedData = data.split('\ncommit ');
 		separatedData = separatedData.filter(function(str) {
-			str.trim();			
+			str.trim();
 			return str && str !== '\n';
 		});
 		var info = separatedData.map(parseCommit);
@@ -53,7 +53,7 @@ function gitLog(filename, commits, cb, err, rootFolder) {
 
 	git.stderr.setEncoding('utf-8');
 	git.stderr.on('data', function (data) {
-		throw new Error('Could not get git log for\n' + filename + 
+		throw new Error('Could not get git log for\n' + filename +
 			'\n' + data);
 	});
 
@@ -64,7 +64,7 @@ function gitLog(filename, commits, cb, err, rootFolder) {
 }
 
 function parseCommit(data) {
-	check.verifyString(data, 'null commit data');
+	check.verify.string(data, 'null commit data');
 	data = data.trim();
 	// console.log('parsing commit\n', data);
 	var lines = data.split('\n');
@@ -74,7 +74,7 @@ function parseCommit(data) {
 	if (commitLine.indexOf('commit ') === 0) {
 		commitLine = commitLine.substr('commit '.length);
 	}
-	
+
 	var authorLine = lines[1].split(':')[1].trim();
 	var dateLine = lines[2];
 	dateLine = dateLine.substr(dateLine.indexOf(':') + 1);
@@ -89,7 +89,7 @@ function parseCommit(data) {
 		str = str.trim();
 		return str;
 	});
-	
+
 	var files = [];
 	lines = lines.filter(function(str) {
 		// console.log('checking line', str);
@@ -105,7 +105,7 @@ function parseCommit(data) {
 			return true;
 		}
 	});
-	
+
 	var description = lines.join('\n');
 	return {
 		commit: '' + commitLine.trim(),
@@ -118,14 +118,14 @@ function parseCommit(data) {
 
 function getGitLog(filename, commits, cb) {
 	if (filename) {
-		check.verifyString(filename, 'expected filename');
+		check.verify.string(filename, 'expected filename');
 		filename = path.resolve(filename);
 		console.log('fetching', commits, 'history for', filename);
 	}
 	commits = commits || 30;
-	check.verifyPositiveNumber(commits, 'invalid max number of commits', commits);
-	check.verifyFunction(cb, 'expect callback function, not', cb);
-	
+	check.verify.positiveNumber(commits, 'invalid max number of commits', commits);
+	check.verify.fn(cb, 'expect callback function, not', cb);
+
 	getGitRootFolder(gitLog.bind(null, filename, commits, cb));
 }
 

@@ -2,7 +2,7 @@ var spawn = require('child_process').spawn;
 var check = require('check-types');
 
 module.exports.getGitRootFolder = function(cb) {
-	check.verifyFunction(cb, 'expect callback function, not', cb);
+	check.verify.fn(cb, 'expect callback function, not', cb);
 	var git = spawn('git', ['rev-parse', '--show-toplevel']);
 	var topLevelFolder = null;
 	var err = undefined;
