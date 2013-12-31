@@ -16,26 +16,26 @@
     "nodejs"
   ],
   "dependencies": {
-    "commander": "~2.0.0",
+    "commander": "~2.1.0",
     "optimist": "~0.6.0",
-    "check-types": "~1.1.0",
+    "check-types": "~1.1.1",
     "cli-table": "~0.2.0",
     "colors": "~0.6.2",
-    "glob": "~3.2.6",
-    "lodash": "~2.2.1",
-    "moment": "~2.4.0",
+    "glob": "~3.2.7",
+    "lodash": "~2.4.1",
+    "moment": "~2.5.0",
     "q": "~0.9.7"
   },
   "devDependencies": {
-    "grunt-bump": "0.0.11",
-    "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "~0.7.1",
-    "gt": "~0.8.16",
-    "qunit-promises": "0.0.11",
+    "grunt-bump": "0.0.13",
+    "grunt": "~0.4.2",
+    "grunt-contrib-jshint": "~0.8.0",
+    "gt": "~0.8.21",
+    "qunit-promises": "0.0.15",
     "grunt-node-qunit": "~2.0.2",
     "matchdep": "~0.3.0",
     "grunt-nice-package": "~0.1.5",
-    "pre-git": "0.0.13"
+    "pre-git": "0.0.14"
   },
   "engines": {
     "node": ">= 0.8.0"
