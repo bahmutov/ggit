@@ -37,7 +37,9 @@
     "grunt-nice-package": "~0.1.5",
     "pre-git": "0.0.14",
     "time-grunt": "~0.2.7",
-    "jshint-stylish": "~0.1.5"
+    "jshint-stylish": "~0.1.5",
+    "grunt-deps-ok": "~0.1.7",
+    "grunt-readme": "~0.4.5"
   },
   "engines": {
     "node": ">= 0.8.0"
