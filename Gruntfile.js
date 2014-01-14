@@ -6,9 +6,10 @@ module.exports = function (grunt) {
     jshint: {
       options: {
         jshintrc: '.jshintrc',
+        reporter: require('jshint-stylish')
       },
       'default': {
-        src: [ 'index.js' ]
+        src: ['index.js', 'Gruntfile.js', 'src/*.js', '!src/**/test/cover']
       }
     },
     'nice-package': {

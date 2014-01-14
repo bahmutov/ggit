@@ -1,11 +1,11 @@
 var spawn = require('child_process').spawn;
 var check = require('check-types');
 
-module.exports.getGitRootFolder = function(cb) {
+module.exports.getGitRootFolder = function (cb) {
 	check.verify.fn(cb, 'expect callback function, not', cb);
 	var git = spawn('git', ['rev-parse', '--show-toplevel']);
 	var topLevelFolder = null;
-	var err = undefined;
+	var err;
 
 	git.stdout.setEncoding('utf-8');
 	git.stdout.on('data', function (data) {
@@ -23,7 +23,7 @@ module.exports.getGitRootFolder = function(cb) {
 		return;
 	});
 
-	git.on('exit', function (code) {
+	git.on('exit', function () {
 		cb(err, topLevelFolder);
 	});
 };

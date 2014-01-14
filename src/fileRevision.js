@@ -33,10 +33,10 @@ function getFileRevision(commit, filename, cb) {
 			'\n' + data);
 	});
 
-	git.on('exit', function (code) {
+	git.on('exit', function () {
 		cb(contents);
 	});
-};
+}
 
 function getRepoRevision(filename, cb) {
 	getFileRevision('master', filename, cb);

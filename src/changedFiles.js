@@ -29,7 +29,7 @@ function changedFiles(repoTopFolder, cb) {
 		console.log('git diff error: ' + data);
 	});
 
-	diff.on('exit', function (code) {
+	diff.on('exit', function () {
 		cb(files);
 	});
 }

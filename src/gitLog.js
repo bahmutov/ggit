@@ -29,21 +29,21 @@ function gitLog(filename, commits, cb, err, rootFolder) {
 		console.log('working folder', workingFolder);
 
 		var relativePath = path.relative(workingFolder, filename);
-		var repoPath = path.relative(rootFolder, filename);
+		// var repoPath = path.relative(rootFolder, filename);
 		args.push(relativePath);
 	}
 
 	console.log('git log command', args);
 	var git = spawn('git', args);
 
-	var commits = [];
+	commits = [];
 	git.stdout.setEncoding('utf-8');
 	git.stdout.on('data', function (data) {
 		data.trim();
 		// console.log('git data\n', data);
 
 		var separatedData = data.split('\ncommit ');
-		separatedData = separatedData.filter(function(str) {
+		separatedData = separatedData.filter(function (str) {
 			str.trim();
 			return str && str !== '\n';
 		});
@@ -57,7 +57,7 @@ function gitLog(filename, commits, cb, err, rootFolder) {
 			'\n' + data);
 	});
 
-	git.on('exit', function (code) {
+	git.on('exit', function () {
 		console.log('returning', commits.length, 'commits');
 		cb(commits);
 	});
@@ -82,16 +82,16 @@ function parseCommit(data) {
 	// console.log(dateLine);
 
 	lines.splice(0, 3);
-	lines = lines.filter(function(str) {
+	lines = lines.filter(function (str) {
 		return str;
 	});
-	lines = lines.map(function(str) {
+	lines = lines.map(function (str) {
 		str = str.trim();
 		return str;
 	});
 
 	var files = [];
-	lines = lines.filter(function(str) {
+	lines = lines.filter(function (str) {
 		// console.log('checking line', str);
 		if (str.indexOf('M') === 0 ||
 			str.indexOf('A') === 0 ||
