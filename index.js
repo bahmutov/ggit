@@ -2,7 +2,8 @@ var getOneLineLog = require('./src/getOneLineLog');
 
 module.exports = {
 	getOneLineLog: getOneLineLog,
-	cloneRepo: require('./src/cloneRepo')
+	cloneRepo: require('./src/cloneRepo'),
+	exec: require('./src/exec')
 };
 
 if (!module.parent) {

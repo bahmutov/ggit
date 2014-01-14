@@ -55,7 +55,6 @@ module.exports = function (grunt) {
   grunt.registerTask('pre-check', ['deps-ok', 'jsonlint',
     'jshint', 'nice-package', 'complexity']);
   grunt.registerTask('release', ['bump-only:patch', 'readme', 'bump-commit']);
-  grunt.registerTask('test', 'node-qunit');
 
-  grunt.registerTask('default', 'pre-check', 'test', 'readme');
+  grunt.registerTask('default', 'pre-check', 'readme');
 };
