@@ -35,7 +35,8 @@
     "grunt-node-qunit": "~2.0.2",
     "matchdep": "~0.3.0",
     "grunt-nice-package": "~0.1.5",
-    "pre-git": "0.0.14"
+    "pre-git": "0.0.14",
+    "time-grunt": "~0.2.7"
   },
   "engines": {
     "node": ">= 0.8.0"
