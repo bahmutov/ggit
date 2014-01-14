@@ -52,6 +52,7 @@
     "ggit": "./index.js"
   },
   "scripts": {
-    "test": "grunt"
+    "test": "grunt",
+    "e2e": "node node_modules/gt test/*.js --output"
   }
 }
