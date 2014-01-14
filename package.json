@@ -21,16 +21,16 @@
     "check-types": "~1.1.1",
     "cli-table": "~0.2.0",
     "colors": "~0.6.2",
-    "glob": "~3.2.7",
+    "glob": "~3.2.8",
     "lodash": "~2.4.1",
     "moment": "~2.5.0",
-    "q": "~0.9.7"
+    "q": "~1.0.0"
   },
   "devDependencies": {
     "grunt-bump": "0.0.13",
     "grunt": "~0.4.2",
     "grunt-contrib-jshint": "~0.8.0",
-    "gt": "~0.8.21",
+    "gt": "~0.8.22",
     "qunit-promises": "0.0.15",
     "grunt-node-qunit": "~2.0.2",
     "matchdep": "~0.3.0",
