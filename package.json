@@ -1,6 +1,6 @@
 {
   "name": "ggit",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Local git command wrappers",
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
   "repository": {

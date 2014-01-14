@@ -1,4 +1,4 @@
-# ggit v0.0.7
+# ggit v0.0.8
 
 > Local git command wrappers
 
@@ -29,7 +29,6 @@ new version commands:
 
 ```sh
 npm test
-npm run e2e
 grunt release
 npm publish
 ```
