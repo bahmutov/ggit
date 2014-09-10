@@ -12,14 +12,16 @@ module.exports = function (grunt) {
         src: ['index.js', 'Gruntfile.js', 'src/*.js', '!src/**/test/cover']
       }
     },
-    'nice-package': {
-      all: {}
-    },
     'node-qunit': {
       all: {
         deps: './node_modules/qunit-promises/qunit-promises.js',
         code: './src/getOneLineLog.js',
         tests: './src/test/getOneLineLog.js'
+      }
+    },
+    jsonlint: {
+      all: {
+        src: ['*.json']
       }
     },
     complexity: {
@@ -56,5 +58,5 @@ module.exports = function (grunt) {
     'jshint', 'nice-package', 'complexity']);
   grunt.registerTask('release', ['bump-only:patch', 'readme', 'bump-commit']);
 
-  grunt.registerTask('default', 'pre-check', 'readme');
+  grunt.registerTask('default', ['pre-check', 'readme']);
 };

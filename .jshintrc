@@ -69,5 +69,7 @@
     "passfail"      : false,
     "white"         : true,
 
-    "predef"        : [ ]
+    "globals": {
+        "la": true
+    }
 }

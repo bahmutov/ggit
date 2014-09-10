@@ -45,6 +45,6 @@ function blame(filename, lineNumber) {
   // http://git-scm.com/docs/git-blame
   var cmd = 'git blame --porcelain -L ' + lineNumber + ',' + lineNumber + ' ' + fullFilename;
   return exec(cmd).then(toBlameInfo);
-};
+}
 
 module.exports = blame;
