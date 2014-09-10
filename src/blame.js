@@ -44,7 +44,7 @@ function blame(filename, lineNumber) {
   console.log('who to blame for', fullFilename, lineNumber);
   // http://git-scm.com/docs/git-blame
   var cmd = 'git blame --porcelain -L ' + lineNumber + ',' + lineNumber + ' ' + fullFilename;
-  return exec(cmd).spread(toBlameInfo);
+  return exec(cmd).then(toBlameInfo);
 };
 
 module.exports = blame;

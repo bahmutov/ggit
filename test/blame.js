@@ -10,9 +10,12 @@ gt.async('blame for this file', function () {
     'returns a promise', p);
   p.then(function (info) {
     la(check.object(info), 'got blame', info);
+    console.log(info);
+    la(check.unemptyString(info.author), 'has author');
+    la(check.unemptyString(info.line), 'has line');
   }, function onError(err) {
     console.error(err);
-    la(check.unemptyString(err), 'error is a message');
+    la(check.unemptyString(err) || check.unemptyString(err.message), 'error is a message');
     gt.ok(false, err);
   }).finally(function () {
     gt.start();
