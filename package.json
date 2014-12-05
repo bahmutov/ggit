@@ -1,7 +1,7 @@
 {
   "name": "ggit",
   "description": "Local git command wrappers",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
   "bin": {
     "ggit": "./index.js"

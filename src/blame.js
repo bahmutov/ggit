@@ -8,14 +8,21 @@ function linesToBlameInfo(lines) {
   la(check.array(lines), 'expected lines', lines);
   la(lines.length > 3, 'few lines in output', lines);
   la(/^author/.test(lines[1]), 'cannot find author line in', lines);
-  return {
+
+  var info = {
     commit: lines[0].split(' ')[0],
     author: lines[1].replace('author ', ''),
     committer: lines[5].replace('committer ', ''),
-    summary: lines[9].replace('summary ', ''),
-    filename: lines[10].replace('filename ', ''), // wrt repo root
-    line: lines[11].trim()
+    summary: lines[9].replace('summary ', '')
   };
+
+  var filename = lines[lines.length - 2];
+  la(/^filename/.test(filename), 'could not find filename line from', lines);
+  info.filename = filename.replace('filename ', ''); // wrt repo root
+
+  var line = lines[lines.length - 1];
+  info.line = line;
+  return info;
 }
 
 // from git blame --porcelain single line string output to object
@@ -50,6 +57,17 @@ function hasPreviousCommitId(lines) {
   return /^previous/.test(lines[10]);
 }
 
+function hasBoundaryLine(lines) {
+  la(check.array(lines), 'expected string lines', lines);
+  return /^boundary/.test(lines[10]);
+}
+
+function linesPerCommit(lines) {
+  return isUncommittedLine(lines[0]) ||
+    hasPreviousCommitId(lines) ||
+    hasBoundaryLine(lines) ? 13 : 12;
+}
+
 function toBlameInfoFile(blamePorcelainOutput) {
   la(check.unemptyString(blamePorcelainOutput),
     'expected string output', blamePorcelainOutput);
@@ -74,7 +92,8 @@ function toBlameInfoFile(blamePorcelainOutput) {
 
   var perLineInfo = [], lineInfo;
   while (lines.length > 0) {
-    var linesPerSourceLine = isUncommittedLine(lines[0]) || hasPreviousCommitId(lines) ? 13 : 12;
+    var linesPerSourceLine = linesPerCommit(lines);
+    la(check.positiveNumber(linesPerSourceLine));
     lineInfo = lines.splice(0, linesPerSourceLine);
     // console.log(lineInfo);
     perLineInfo.push(linesToBlameInfo(lineInfo));
