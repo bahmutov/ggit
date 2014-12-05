@@ -1,4 +1,4 @@
-# ggit v0.1.1
+# ggit v0.1.2
 
 > Local git command wrappers
 
