@@ -1,7 +1,7 @@
 {
   "name": "ggit",
   "description": "Local git command wrappers",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
   "bin": {
     "ggit": "./index.js"
@@ -53,7 +53,10 @@
   ],
   "license": "MIT",
   "main": "./index.js",
-  "pre-commit": "grunt",
+  "pre-commit": [
+    "grunt",
+    "npm test"
+  ],
   "preferGlobal": true,
   "repository": {
     "type": "git",

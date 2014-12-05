@@ -34,7 +34,7 @@ function toBlameInfo(blamePorcelainOutput) {
   };
 }
 
-function blame(filename, lineNumber) {
+function blameOneLine(filename, lineNumber) {
   la(check.unemptyString(filename), 'missing filename');
   la(check.positiveNumber(lineNumber),
     'file', filename, 'missing line number (starting with 1)', lineNumber);
@@ -44,6 +44,22 @@ function blame(filename, lineNumber) {
   console.log('who to blame for', fullFilename, lineNumber);
   // http://git-scm.com/docs/git-blame
   var cmd = 'git blame --porcelain -L ' + lineNumber + ',' + lineNumber + ' ' + fullFilename;
+  return exec(cmd).then(toBlameInfo);
+}
+
+function blame(filename, lineNumber) {
+  la(check.unemptyString(filename), 'missing filename');
+
+  if (lineNumber) {
+    return blameOneLine(filename, lineNumber);
+  }
+
+  var fullFilename = path.resolve(filename);
+  la(fs.existsSync(filename), 'file', fullFilename, 'not found, based on', filename);
+
+  console.log('who to blame for', fullFilename);
+  // http://git-scm.com/docs/git-blame
+  var cmd = 'git blame --porcelain ' + fullFilename;
   return exec(cmd).then(toBlameInfo);
 }
 
