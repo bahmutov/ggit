@@ -4,6 +4,12 @@ var exec = require('./exec');
 var path = require('path');
 var fs = require('fs');
 var quote = require('quote');
+var R = require('ramda');
+
+function isFileNameLine(line) {
+  return /^filename/.test(line);
+}
+var findFilenameLine = R.find(isFileNameLine);
 
 function linesToBlameInfo(lines) {
   la(check.array(lines), 'expected lines', lines);
@@ -17,9 +23,9 @@ function linesToBlameInfo(lines) {
     summary: lines[9].replace('summary ', '')
   };
 
-  var filename = lines[lines.length - 2];
+  var filename = findFilenameLine(lines);
   la(/^filename/.test(filename), 'could not find filename line from', quote(filename),
-    'from', lines.length, 'lines\n---\n' + lines.join('\n'), '---');
+    'from', lines.length, 'lines\n---\n' + lines.join('\n') + '\n---');
   info.filename = filename.replace('filename ', ''); // wrt repo root
 
   var line = lines[lines.length - 1];

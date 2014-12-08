@@ -1,7 +1,7 @@
 {
   "name": "ggit",
   "description": "Local git command wrappers",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
   "bin": {
     "ggit": "./index.js"
@@ -22,7 +22,9 @@
     "lodash": "2.4.1",
     "moment": "2.8.4",
     "optimist": "0.6.1",
-    "q": "2.0.2"
+    "q": "2.0.2",
+    "quote": "0.2.2",
+    "ramda": "0.8.0"
   },
   "devDependencies": {
     "grunt": "0.4.5",
