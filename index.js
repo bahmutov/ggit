@@ -4,7 +4,8 @@ module.exports = {
 	getOneLineLog: getOneLineLog,
 	cloneRepo: require('./src/cloneRepo'),
 	exec: require('./src/exec'),
-	blame: require('./src/blame')
+	blame: require('./src/blame'),
+	isTracked: require('./src/is-file-tracked')
 };
 
 if (!module.parent) {
