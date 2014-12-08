@@ -3,6 +3,7 @@ var check = require('check-types');
 var exec = require('./exec');
 var path = require('path');
 var fs = require('fs');
+var quote = require('quote');
 
 function linesToBlameInfo(lines) {
   la(check.array(lines), 'expected lines', lines);
@@ -17,7 +18,8 @@ function linesToBlameInfo(lines) {
   };
 
   var filename = lines[lines.length - 2];
-  la(/^filename/.test(filename), 'could not find filename line from', lines);
+  la(/^filename/.test(filename), 'could not find filename line from', quote(filename),
+    'from', lines.length, 'lines\n---\n' + lines.join('\n'), '---');
   info.filename = filename.replace('filename ', ''); // wrt repo root
 
   var line = lines[lines.length - 1];
