@@ -6,12 +6,17 @@ function execPromise(cmd, verbose) {
   verify.unemptyString(cmd, 'missing command to execute');
   var deferred = Q.defer();
   exec(cmd, function (err, stdout, stderr) {
-    if (err) {
-      return deferred.reject(stderr);
-    }
     if (verbose) {
+      console.log('exec result');
+      console.log('working folder:', process.cwd());
+      console.log('cmd:', cmd);
+      console.log('err:', err);
       console.log('stdout:', stdout);
       console.log('stderr:', stderr);
+    }
+
+    if (err) {
+      return deferred.reject(stderr);
     }
     deferred.resolve(stdout);
   });
