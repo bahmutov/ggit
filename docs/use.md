@@ -9,3 +9,5 @@
 {%= _.doc("./docs/is-tracked.md") %}
 
 {%= _.doc("./docs/has-changes.md") %}
+
+{%= _.doc("./docs/commit.md") %}

@@ -1,4 +1,4 @@
-# ggit v0.4.1
+# ggit v0.5.0
 
 > Local promise-returning git command wrappers
 
@@ -96,6 +96,19 @@ Returns `true` if there are local uncommitted stages
 var changed = require('ggit').hasChanges;
 changed().then(function (result) {
     // result is true or false
+});
+```
+
+
+
+### commit
+
+Commit any changes with given message
+
+```javascript
+var commit = require('ggit').commit;
+commit('added foo').then(function () {
+    // after commit
 });
 ```
 
