@@ -1,4 +1,4 @@
-# ggit v0.5.1
+# ggit v0.6.0
 
 > Local promise-returning git command wrappers
 
@@ -109,6 +109,19 @@ Commit any changes with given message
 var commit = require('ggit').commit;
 commit('added foo').then(function () {
     // after commit
+});
+```
+
+
+
+### push
+
+Push commits to the remote
+
+```javascript
+var psuh = require('ggit').psuh;
+psuh().then(function () {
+    // after the push
 });
 ```
 

@@ -11,3 +11,5 @@
 {%= _.doc("./docs/has-changes.md") %}
 
 {%= _.doc("./docs/commit.md") %}
+
+{%= _.doc("./docs/push.md") %}

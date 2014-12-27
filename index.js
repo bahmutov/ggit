@@ -7,7 +7,8 @@ module.exports = {
 	blame: require('./src/blame'),
 	isTracked: require('./src/is-file-tracked'),
 	hasChanges: require('./src/has-changes'),
-	commit: require('./src/commit')
+	commit: require('./src/commit'),
+	push: require('./src/push')
 };
 
 if (!module.parent) {
