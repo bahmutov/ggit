@@ -1,6 +1,6 @@
-# ggit v0.3.2
+# ggit v0.4.0
 
-> Local git command wrappers
+> Local promise-returning git command wrappers
 
 [![NPM][ggit-icon] ][ggit-url]
 
@@ -82,6 +82,19 @@ Returns `true` if given path is tracked in the repo.
 ```javascript
 var isTracked = require('ggit').isTracked;
 isTracked(filename).then(function (result) {
+    // result is true or false
+});
+```
+
+
+
+### hasChanges
+
+Returns `true` if there are local uncommitted stages
+
+```javascript
+var changed = require('ggit').hasChanges;
+changed().then(function (result) {
     // result is true or false
 });
 ```

@@ -7,3 +7,5 @@
 {%= _.doc("./docs/blame.md") %}
 
 {%= _.doc("./docs/is-tracked.md") %}
+
+{%= _.doc("./docs/has-changes.md") %}

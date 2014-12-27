@@ -5,7 +5,8 @@ module.exports = {
 	cloneRepo: require('./src/cloneRepo'),
 	exec: require('./src/exec'),
 	blame: require('./src/blame'),
-	isTracked: require('./src/is-file-tracked')
+	isTracked: require('./src/is-file-tracked'),
+	hasChanges: require('./src/has-changes')
 };
 
 if (!module.parent) {
