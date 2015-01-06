@@ -1,8 +1,8 @@
-var getOneLineLog = require('./src/getOneLineLog');
+var getOneLineLog = require('./src/get-one-line-log');
 
 module.exports = {
 	getOneLineLog: getOneLineLog,
-	cloneRepo: require('./src/cloneRepo'),
+	cloneRepo: require('./src/clone-repo'),
 	exec: require('./src/exec'),
 	blame: require('./src/blame'),
 	isTracked: require('./src/is-file-tracked'),

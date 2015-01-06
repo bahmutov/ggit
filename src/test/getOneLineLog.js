@@ -1,5 +1,5 @@
 require('qunit-promises');
-var getLog = require('../getOneLineLog');
+var getLog = require('../get-one-line-log');
 
 QUnit.module('getOneLineLog');
 

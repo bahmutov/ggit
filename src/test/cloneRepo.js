@@ -1,4 +1,4 @@
-var clone = require('../cloneRepo');
+var clone = require('../clone-repo');
 var testRepoUrl = 'https://github.com/bahmutov/test-next-updater.git';
 var path = require('path');
 var fs = require('fs');

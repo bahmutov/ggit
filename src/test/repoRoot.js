@@ -1,4 +1,4 @@
-var root = require('../repoRoot').getGitRootFolder;
+var root = require('../repo-root').getGitRootFolder;
 
 gt.module('repo root');
 

@@ -1,5 +1,5 @@
-var parseCommit = require('../gitLog').parseCommit;
-var getGitLog = require('../gitLog').getGitLog;
+var parseCommit = require('../git-log').parseCommit;
+var getGitLog = require('../git-log').getGitLog;
 
 gt.module('parse commit');
 
@@ -21,11 +21,11 @@ gt.test(function compareIds() {
 
 gt.test(function basic() {
 	gt.func(parseCommit, 'is a function');
-	var data = 
+	var data =
 	'commit 4ec3c78ffd07a526a0e1bcf5aca8ba383cfab348\n' +
 	'Author: Gleb Bahmutov <gleb.bahmutov@gmail.com>\n' +
 	'Date:   Tue Feb 12 23:09:26 2013 -0500\n\n' +
-  '  simpler history module structure\n\n' + 
+  '  simpler history module structure\n\n' +
 	'M       index.js\n' +
 	'M       src/fileHistory.js\n';
 	var info = parseCommit(data);
@@ -55,7 +55,7 @@ gt.test(function basicWithSpaces() {
 	'commit 4ec3c78ffd07a526a0e1bcf5aca8ba383cfab348\n' +
 	'Author: Gleb Bahmutov <gleb.bahmutov@gmail.com>\n' +
 	'Date:   Tue Feb 12 23:09:26 2013 -0500\n\n' +
-  '  simpler history module structure\n\n' + 
+  '  simpler history module structure\n\n' +
 	'M       index.js\n' +
 	'M       src/fileHistory.js\n';
 	var info = parseCommit(data);
@@ -66,11 +66,11 @@ gt.test(function basicWithSpaces() {
 
 gt.test(function basicWithoutCommitKeyword() {
 	gt.func(parseCommit, 'is a function');
-	var data = 
+	var data =
 	'4ec3c78ffd07a526a0e1bcf5aca8ba383cfab348\n' +
 	'Author: Gleb Bahmutov <gleb.bahmutov@gmail.com>\n' +
 	'Date:   Tue Feb 12 23:09:26 2013 -0500\n\n' +
-  '  simpler history module structure\n\n' + 
+  '  simpler history module structure\n\n' +
 	'M       index.js\n' +
 	'A       src/fileHistory.js\n';
 	var info = parseCommit(data);
