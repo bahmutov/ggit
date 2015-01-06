@@ -1,7 +1,7 @@
 {
   "name": "ggit",
   "description": "Local promise-returning git command wrappers",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
   "bin": {
     "ggit": "./index.js"
@@ -60,7 +60,8 @@
   "main": "./index.js",
   "pre-commit": [
     "grunt",
-    "npm test"
+    "npm test",
+    "npm version"
   ],
   "preferGlobal": true,
   "repository": {
