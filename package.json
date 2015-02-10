@@ -11,6 +11,7 @@
   },
   "contributors": [],
   "dependencies": {
+    "chdir-promise": "0.2.1",
     "check-more-types": "1.1.1",
     "check-types": "1.4.0",
     "cli-table": "0.3.1",

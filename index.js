@@ -8,7 +8,8 @@ module.exports = {
 	isTracked: require('./src/is-file-tracked'),
 	hasChanges: require('./src/has-changes'),
 	commit: require('./src/commit'),
-	push: require('./src/push')
+	push: require('./src/push'),
+	commits: require('./src/commits')
 };
 
 if (!module.parent) {

@@ -13,3 +13,5 @@
 {%= _.doc("./docs/commit.md") %}
 
 {%= _.doc("./docs/push.md") %}
+
+{%= _.doc("./docs/commits.md") %}
