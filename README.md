@@ -1,4 +1,4 @@
-# ggit v0.7.0
+# ggit v0.8.0
 
 > Local promise-returning git command wrappers
 
@@ -146,6 +146,23 @@ commits.all(gitRepoFolder)
     .then(R.take(2))
     .then(commits.byId)
     .then(console.log)
+    .done();
+```
+
+
+
+### trackedFiles
+
+Returns all tracked source files in the given folder matching pattern.
+Both folder and pattern are optional.
+
+```js
+require('ggit')
+    .trackedFiles(__dirname, '*.js')
+    .then(function (list) {
+        console.log('javascript tracked in the current folder are');
+        console.log(list);
+    })
     .done();
 ```
 

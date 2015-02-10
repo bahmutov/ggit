@@ -9,7 +9,8 @@ module.exports = {
 	hasChanges: require('./src/has-changes'),
 	commit: require('./src/commit'),
 	push: require('./src/push'),
-	commits: require('./src/commits')
+	commits: require('./src/commits'),
+	trackedFiles: require('./src/tracked-source-files')
 };
 
 if (!module.parent) {

@@ -15,3 +15,5 @@
 {%= _.doc("./docs/push.md") %}
 
 {%= _.doc("./docs/commits.md") %}
+
+{%= _.doc("./docs/tracked-files.md") %}
