@@ -10,3 +10,4 @@
 {%= _.doc("./docs/commits.md") %}
 {%= _.doc("./docs/tracked-files.md") %}
 {%= _.doc("./docs/commit-per-line.md") %}
+{%= _.doc("./docs/numstat.md") %}
