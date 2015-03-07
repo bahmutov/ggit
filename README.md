@@ -163,7 +163,7 @@ require('ggit')
 
 Returns an object where for each key (filename) there is a list of commits for each line.
 
-* path
+* list of filenames
 
 ```js
 var perLine = require('ggit').commitPerLine;
