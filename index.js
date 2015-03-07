@@ -10,7 +10,8 @@ module.exports = {
 	commit: require('./src/commit'),
 	push: require('./src/push'),
 	commits: require('./src/commits'),
-	trackedFiles: require('./src/tracked-source-files')
+	trackedFiles: require('./src/tracked-source-files'),
+	commitPerLine: require('./src/commit-per-line')
 };
 
 if (!module.parent) {
