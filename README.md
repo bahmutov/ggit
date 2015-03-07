@@ -1,4 +1,4 @@
-# ggit v0.8.1
+# ggit v0.9.0
 
 > Local promise-returning git command wrappers
 
@@ -33,7 +33,6 @@ clone({
 });
 ```
 
-
 ### exec
 
 ```javascript
@@ -44,7 +43,6 @@ exec(cmd, verbose).then(function () {
     console.log('removed folder');
 });
 ```
-
 
 ### blame
 
@@ -72,7 +70,6 @@ Equivalent to porcelain git output: see [git-blame](http://git-scm.com/docs/git-
 
 
 
-
 ### isTracked
 
 Returns `true` if given path is tracked in the repo.
@@ -87,7 +84,6 @@ isTracked(filename).then(function (result) {
 ```
 
 
-
 ### hasChanges
 
 Returns `true` if there are local uncommitted stages
@@ -98,7 +94,6 @@ changed().then(function (result) {
     // result is true or false
 });
 ```
-
 
 
 ### commit
@@ -114,7 +109,6 @@ commit('added foo', 'long text').then(function () {
 ```
 
 
-
 ### push
 
 Push commits to the remote
@@ -125,7 +119,6 @@ psuh().then(function () {
     // after the push
 });
 ```
-
 
 
 ### commits
@@ -150,7 +143,6 @@ commits.all(gitRepoFolder)
 ```
 
 
-
 ### trackedFiles
 
 Returns all tracked source files in the given folder matching pattern.
@@ -164,6 +156,34 @@ require('ggit')
         console.log(list);
     })
     .done();
+```
+
+
+### commitPerLine
+
+Returns an object where for each key (filename) there is a list of commits for each line.
+
+* path
+
+```js
+var perLine = require('ggit').commitPerLine;
+perLine(['foo.js', 'bar.js']).then(function (result) {
+    /*
+    {
+        'foo.js': [{
+            commit: '3c6b01eb3c96db1cbdf277904545107ef97cbb56',
+            author: 'Gleb Bahmutov',
+            committer: 'Gleb Bahmutov',
+            summary: 'cool commit',
+            filename: 'foo.js',
+            line: '// actual source line' 
+        },
+            ...
+        }],
+        'bar.js': [...]
+    }
+    */
+});
 ```
 
 
@@ -182,27 +202,19 @@ npm publish
 ```
 
 
-## MIT License
+### Small print
 
-Copyright 2013 Gleb Bahmutov <gleb.bahmutov@gmail.com>
-https://github.com/bahmutov/ggit.git
+Author: Gleb Bahmutov &copy; 2015
 
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
+* [@bahmutov](https://twitter.com/bahmutov)
+* [glebbahmutov.com](http://glebbahmutov.com)
+* [blog](http://glebbahmutov.com/blog/)
 
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
+License: [MIT](MIT-License.txt) - do anything with the code, but don't blame uTest if it does not work.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+Spread the word: tweet, star on github, etc.
+
+Support: if you find any problems with this module, email / tweet / open
+[issue on Github](https://github.com/bahmutov/ggit/issues)
+
 

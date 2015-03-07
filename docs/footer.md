@@ -1,10 +1,10 @@
 ## Small print
 
-Author: Gleb Bahmutov Copyright &copy; 2013 [uTest](http://www.utest.com/)
+Author: Gleb Bahmutov &copy; 2015
 
-* [@utest](https://twitter.com/utest)
-* [utest.com](http://utest.com)
-* [engineering blog](http://eng.utest.com/)
+* [@bahmutov](https://twitter.com/bahmutov)
+* [glebbahmutov.com](http://glebbahmutov.com)
+* [blog](http://glebbahmutov.com/blog/)
 
 License: [MIT](MIT-License.txt) - do anything with the code, but don't blame uTest if it does not work.
 

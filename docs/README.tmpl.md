@@ -8,6 +8,4 @@
 
 {%= _.doc("./docs/dev.md") %}
 
-## MIT License
-
-{%= _.doc("./MIT-License.txt") %}
+{%= _.doc("./docs/footer.md") %}
