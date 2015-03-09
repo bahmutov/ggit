@@ -35,6 +35,11 @@ Date:   Mon Jan 13 19:04:06 2014 -0500
 9       0       complexity.json
 2       1       package.json
 */
+function isValidLine(line) {
+  var rex = /^\s+\d+\s+\d+[\w]+$/;
+  return line && rex.test(line);
+}
+
 function parseNumstat(stdout) {
   la(check.unemptyString(stdout), 'missing numstat output', stdout);
   var lines = stdout.split('\n');
@@ -45,7 +50,7 @@ function parseNumstat(stdout) {
   var k = 6;
   var fileChanges = {};
   for (; k < lines.length; k += 1) {
-    if (lines[k]) {
+    if (isValidLine(lines[k])) {
       var parts = lines[k].split('\t');
       var added = Number(parts[0].trim());
       var deleted = Number(parts[1].trim());
