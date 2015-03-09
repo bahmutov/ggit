@@ -36,9 +36,11 @@ Date:   Mon Jan 13 19:04:06 2014 -0500
 2       1       package.json
 */
 function isValidLine(line) {
-  var rex = /^\s+\d+\s+\d+[\w]+$/;
+  var rex = /^\s*\d+\s+\d+[\w\W]+$/;
   return line && rex.test(line);
 }
+la(isValidLine('1  1 time-method-call.js'));
+la(isValidLine(' 1  0 README.md'));
 
 function parseNumstat(stdout) {
   la(check.unemptyString(stdout), 'missing numstat output', stdout);
