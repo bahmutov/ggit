@@ -1,4 +1,4 @@
-# ggit v0.10.2
+# ggit v0.11.0
 
 > Local promise-returning git command wrappers
 
@@ -212,6 +212,20 @@ require('ggit')
                 }
             }
         */
+    })
+    .done();
+```
+
+
+### lastCommitId
+
+Returns last commit id
+
+```js
+require('ggit')
+    .lastCommitId()
+    .then(function (str) {
+        // str is full SHA id string
     })
     .done();
 ```
