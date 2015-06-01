@@ -1,10 +1,11 @@
 {
   "name": "ggit",
   "description": "Local promise-returning git command wrappers",
-  "version": "0.12.1",
+  "version": "0.12.2",
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
   "bin": {
-    "ggit": "./bin/ggit.js"
+    "ggit": "./bin/ggit.js",
+    "ggit-last": "./bin/ggit-last"
   },
   "bugs": {
     "url": "https://github.com/bahmutov/ggit/issues"
