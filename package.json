@@ -1,7 +1,7 @@
 {
   "name": "ggit",
   "description": "Local promise-returning git command wrappers",
-  "version": "0.12.2",
+  "version": "0.13.0",
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
   "bin": {
     "ggit": "./bin/ggit.js",

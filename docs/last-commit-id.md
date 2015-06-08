@@ -10,3 +10,7 @@ require('ggit')
     })
     .done();
 ```
+
+You can pass options object as in `lastCommitId(options)` where
+
+* **file** - save id into the JSON file with the given `file` name.

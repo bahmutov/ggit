@@ -9,14 +9,5 @@ program
   .option('-f, --file <filename>', 'output JSON filename')
   .parse(process.argv);
 
-ggit.lastCommitId()
-  .then(function (id) {
-    if (check.unemptyString(program.file)) {
-      var write = require('fs').writeFileSync;
-      var contents = JSON.stringify({ id: id }, null, 2);
-      write(program.file, contents, 'utf8');
-      console.log('saved last commit %s in file %s', id, program.file);
-    }
-    console.log('last commit:', id);
-  })
+ggit.lastCommitId({ file: program.file })
   .done();

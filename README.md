@@ -1,4 +1,4 @@
-# ggit v0.12.2
+# ggit v0.13.0
 
 > Local promise-returning git command wrappers
 
@@ -238,6 +238,10 @@ require('ggit')
     })
     .done();
 ```
+
+You can pass options object as in `lastCommitId(options)` where
+
+* **file** - save id into the JSON file with the given `file` name.
 
 
 
