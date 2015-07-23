@@ -13,7 +13,8 @@ var actions = {
 	trackedFiles: require('./src/tracked-source-files'),
 	commitPerLine: require('./src/commit-per-line'),
 	numstat: require('./src/commit-numstat'),
-	lastCommitId: require('./src/last-commit-id')
+	lastCommitId: require('./src/last-commit-id'),
+	branchName: require('./src/branch-name')
 };
 
 module.exports = actions;

@@ -1,4 +1,4 @@
-# ggit v0.13.0
+# ggit v0.14.0
 
 > Local promise-returning git command wrappers
 
@@ -242,6 +242,18 @@ require('ggit')
 You can pass options object as in `lastCommitId(options)` where
 
 * **file** - save id into the JSON file with the given `file` name.
+
+
+### branchName
+
+Resolves with the current branch name
+
+```js
+require('ggit').branchName()
+    .then(function (name) {
+        // name = "master" or whatever
+    });
+```
 
 
 
