@@ -1,7 +1,7 @@
 require('lazy-ass');
 var check = require('check-types');
 
-var root = require('../repo-root').getGitRootFolder;
+var root = require('../repo-root');
 
 gt.module('repo root');
 
