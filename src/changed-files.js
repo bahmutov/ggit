@@ -1,6 +1,7 @@
 var exec = require('./exec');
 var log = require('debug')('ggit');
 var _ = require('lodash');
+var R = require('ramda');
 
 function parseLine(line) {
 	var parts = line.split('\t');
@@ -40,14 +41,14 @@ function changedFiles() {
 		log(grouped);
 	}
 
+	var stdoutToGrouped = R.pipe(
+		parseOutput,
+		R.tap(logFoundFiles),
+		groupByModification,
+		R.tap(logGroupedFiles)
+	);
 	return exec(cmd)
-		.then(function (data) {
-			var files = parseOutput(data);
-			logFoundFiles(files);
-			var grouped = groupByModification(files);
-			logGroupedFiles(grouped);
-			return grouped;
-		});
+		.then(stdoutToGrouped);
 }
 
 exports.changedFiles = changedFiles;
