@@ -18,10 +18,16 @@ gt.async(function thisRoot() {
 });
 
 gt.async(function outOfGitRoot() {
+	var cwd = process.cwd();
 	process.chdir('../../../..');
 	root(function (err, pathname) {
 		console.log('this root', pathname);
 		la(err, 'there was an error!');
 		la(!pathname, 'there is no repo root path', pathname);
-	}).finally(gt.start);
+	})
+	.finally(function () {
+		process.chdir(cwd);
+	})
+	.finally(gt.start);
 });
+
