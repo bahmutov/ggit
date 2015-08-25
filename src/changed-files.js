@@ -1,13 +1,11 @@
 var spawn = require('child_process').spawn;
-var path = require('path');
 var check = require('check-types');
+var log = require('debug')('ggit');
 
 exports.changedFiles = changedFiles;
 
-function changedFiles(repoTopFolder, cb) {
-	check.verify.string(repoTopFolder, 'expected git top folder');
+function changedFiles(cb) {
 	check.verify.fn(cb, 'expect callback function, not', cb);
-	repoTopFolder = repoTopFolder.trim();
 
 	var diff = spawn('git', ['diff', '--name-only']);
 	var files = [];
@@ -19,17 +17,23 @@ function changedFiles(repoTopFolder, cb) {
 		files = files.filter(function (filename) {
 			return filename.length;
 		});
-		files = files.map(function (filename) {
-			return path.join(repoTopFolder, filename);
-		});
+		log('found changed files');
+		log(files);
 	});
 
 	diff.stderr.setEncoding('utf-8');
 	diff.stderr.on('data', function (data) {
-		console.log('git diff error: ' + data);
+		console.error('git diff error: ' + data);
 	});
 
 	diff.on('exit', function () {
 		cb(files);
+	});
+}
+
+if (!module.parent) {
+	changedFiles(function (files) {
+		console.log('changed files in the current repo');
+		console.log(files);
 	});
 }

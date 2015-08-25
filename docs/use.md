@@ -22,3 +22,4 @@ You can install and run this tool as a stand alone CLI application.
 {%= _.doc("./docs/numstat.md") %}
 {%= _.doc("./docs/last-commit-id.md") %}
 {%= _.doc("./docs/branch-name.md") %}
+{%= _.doc("./docs/changed-files.md") %}

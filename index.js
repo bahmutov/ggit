@@ -14,7 +14,8 @@ var actions = {
 	commitPerLine: require('./src/commit-per-line'),
 	numstat: require('./src/commit-numstat'),
 	lastCommitId: require('./src/last-commit-id'),
-	branchName: require('./src/branch-name')
+	branchName: require('./src/branch-name'),
+	changedFiles: require('./src/changed-files')
 };
 
 module.exports = actions;

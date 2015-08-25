@@ -19,6 +19,7 @@
     "colors": "1.0.3",
     "commander": "2.6.0",
     "d3-helpers": "0.3.0",
+    "debug": "2.2.0",
     "glob": "4.3.5",
     "lazy-ass": "0.5.3",
     "lodash": "3.1.0",
