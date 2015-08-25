@@ -3,7 +3,9 @@ var numstat = require('../commit-numstat');
 QUnit.module('commit numstat');
 
 QUnit.test('a commit info', function (assert) {
-  var id = '46350c2';
+  // should use pretty recent commit id or HEAD - Travis and
+  // other build servers usually check out shallow history
+  var id = 'HEAD';
 
   assert.will(numstat(id)
     .then(function (stats) {
