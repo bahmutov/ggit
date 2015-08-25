@@ -12,6 +12,10 @@ function parseLine(line) {
 	};
 }
 
+function groupByModification(parsedLines) {
+	return _.groupBy(parsedLines, 'diff');
+}
+
 function changedFiles() {
 	var gitCommand = _.template('git diff --name-status --diff-filter=<%= filter %>');
 	log('filter letters Added (A), Copied (C), Deleted (D), Modified (M)');
@@ -29,7 +33,12 @@ function changedFiles() {
 
 			log('found changed files');
 			log(files);
-			return files;
+
+			var grouped = groupByModification(files);
+			log('grouped by modification');
+			log(grouped);
+
+			return grouped;
 		});
 }
 
