@@ -42,6 +42,7 @@ function groupByModification(parsedLines) {
 function changedFiles(needContents) {
 	var gitCommand = _.template('git diff --name-status --diff-filter=<%= filter %>');
 	log('filter letters Added (A), Copied (C), Deleted (D), Modified (M)');
+
 	var filter = R.keys(modifications).join('');
 	var cmd = gitCommand({ filter: filter });
 	log('changed files command', cmd);
@@ -67,9 +68,12 @@ function changedFiles(needContents) {
 		}).then(function (repoPath) {
 			var promise = Q.when(grouped);
 
+			// TODO move full filename setting here
+
 			_.each(grouped, function (list, modification) {
 				console.log('fetching contents for modification', modification);
 				la(modifications[modification], 'unknown modification', modification);
+
 				if (modification === 'M') {
 					// need both repo and local copy
 					list.forEach(function (info) {
@@ -82,9 +86,28 @@ function changedFiles(needContents) {
 							info.before = contents;
 							return grouped;
 						});
-
+					});
+				} else if (modification === 'A') {
+					// for added files, only grab file contents
+					list.forEach(function (info) {
+						la(check.unemptyString(info.name), 'missing file name', info);
+						info.filename = join(repoPath, info.name);
+						info.after = read(info.filename, 'utf8');
+					});
+				} else if (modification === 'D') {
+					list.forEach(function (info) {
+						la(check.unemptyString(info.name), 'missing file name', info);
+						info.filename = join(repoPath, info.name);
+						promise = promise.then(function () {
+							return fileContentsInRepo(info.name);
+						}).then(function (contents) {
+							info.before = contents;
+							return grouped;
+						});
 					});
 				}
+
+
 			});
 
 			return promise;
