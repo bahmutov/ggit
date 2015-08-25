@@ -68,7 +68,14 @@ function changedFiles(needContents) {
 		}).then(function (repoPath) {
 			var promise = Q.when(grouped);
 
-			// TODO move full filename setting here
+			_.each(grouped, function (list) {
+				la(check.array(list), 'expected list of modifications', list,
+					'in', grouped);
+				list.forEach(function (info) {
+					la(check.unemptyString(info.name), 'missing file name', info);
+					info.filename = join(repoPath, info.name);
+				});
+			});
 
 			_.each(grouped, function (list, modification) {
 				console.log('fetching contents for modification', modification);
@@ -77,8 +84,6 @@ function changedFiles(needContents) {
 				if (modification === 'M') {
 					// need both repo and local copy
 					list.forEach(function (info) {
-						la(check.unemptyString(info.name), 'missing file name', info);
-						info.filename = join(repoPath, info.name);
 						info.after = read(info.filename, 'utf8');
 						promise = promise.then(function () {
 							return fileContentsInRepo(info.name);
@@ -90,14 +95,10 @@ function changedFiles(needContents) {
 				} else if (modification === 'A') {
 					// for added files, only grab file contents
 					list.forEach(function (info) {
-						la(check.unemptyString(info.name), 'missing file name', info);
-						info.filename = join(repoPath, info.name);
 						info.after = read(info.filename, 'utf8');
 					});
 				} else if (modification === 'D') {
 					list.forEach(function (info) {
-						la(check.unemptyString(info.name), 'missing file name', info);
-						info.filename = join(repoPath, info.name);
 						promise = promise.then(function () {
 							return fileContentsInRepo(info.name);
 						}).then(function (contents) {
