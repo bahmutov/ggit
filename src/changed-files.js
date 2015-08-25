@@ -2,14 +2,21 @@ var exec = require('./exec');
 var log = require('debug')('ggit');
 var _ = require('lodash');
 
-exports.changedFiles = changedFiles;
-
 function parseLine(line) {
 	var parts = line.split('\t');
 	return {
 		diff: parts[0],
 		name: parts[1]
 	};
+}
+
+function parseOutput(data) {
+	data = data.trim();
+	var files = data.split('\n');
+	files = files.filter(function (filename) {
+		return filename.length;
+	}).map(parseLine);
+	return files;
 }
 
 function groupByModification(parsedLines) {
@@ -23,23 +30,27 @@ function changedFiles() {
 	var cmd = gitCommand({ filter: filter });
 	log('changed files command', cmd);
 
+	function logFoundFiles(files) {
+		log('found changed files');
+		log(files);
+	}
+
+	function logGroupedFiles(grouped) {
+		log('grouped by modification');
+		log(grouped);
+	}
+
 	return exec(cmd)
 		.then(function (data) {
-			data = data.trim();
-			var files = data.split('\n');
-			files = files.filter(function (filename) {
-				return filename.length;
-			}).map(parseLine);
-
-			log('found changed files');
-			log(files);
-
+			var files = parseOutput(data);
+			logFoundFiles(files);
 			var grouped = groupByModification(files);
-			log('grouped by modification');
-			log(grouped);
+			logGroupedFiles(grouped);
 			return grouped;
 		});
 }
+
+exports.changedFiles = changedFiles;
 
 if (!module.parent) {
 	changedFiles().then(function (files) {
