@@ -19,7 +19,7 @@ function fileContents(filename, at) {
     });
 }
 
-exports.fileContents = fileContents;
+module.exports = fileContents;
 
 if (!module.parent) {
   fileContents('src/file-contents.js').then(function (text) {

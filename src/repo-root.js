@@ -1,11 +1,20 @@
 var exec = require('./exec');
 
-module.exports.getGitRootFolder = function (cb) {
+function getGitRootFolder(cb) {
 	return exec('git rev-parse --show-toplevel')
 		.then(function (path) {
-			cb(null, path.trim());
+			path = path.trim();
+			if (cb) {
+				cb(null, path);
+			}
 			return path;
 		}, function (err) {
-			cb(err);
+			if (cb) {
+				cb(err);
+			} else {
+				throw err;
+			}
 		});
-};
+}
+
+module.exports = getGitRootFolder;
