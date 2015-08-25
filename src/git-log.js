@@ -110,7 +110,7 @@ function parseCommit(data) {
 	return {
 		commit: '' + commitLine.trim(),
 		author: authorLine.trim(),
-		date: moment(dateLine),
+		date: moment(new Date(dateLine)),
 		description: description.trim(),
 		files: files
 	};
