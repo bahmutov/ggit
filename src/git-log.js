@@ -2,7 +2,7 @@ var check = require('check-types');
 var moment = require('moment');
 var spawn = require('child_process').spawn;
 var path = require('path');
-var getGitRootFolder = require('./repo-root').getGitRootFolder;
+var getGitRootFolder = require('./repo-root');
 
 // returns commits in reverse chronological order
 function gitLog(filename, commits, cb, err, rootFolder) {
