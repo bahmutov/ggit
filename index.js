@@ -15,7 +15,8 @@ var actions = {
 	numstat: require('./src/commit-numstat'),
 	lastCommitId: require('./src/last-commit-id'),
 	branchName: require('./src/branch-name'),
-	changedFiles: require('./src/changed-files')
+	changedFiles: require('./src/changed-files'),
+	fileContents: require('./src/file-contents')
 };
 
 module.exports = actions;

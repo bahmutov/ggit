@@ -25,7 +25,7 @@ function changedFiles() {
 
 	return exec(cmd)
 		.then(function (data) {
-			data.trim();
+			data = data.trim();
 			var files = data.split('\n');
 			files = files.filter(function (filename) {
 				return filename.length;
@@ -37,7 +37,6 @@ function changedFiles() {
 			var grouped = groupByModification(files);
 			log('grouped by modification');
 			log(grouped);
-
 			return grouped;
 		});
 }
