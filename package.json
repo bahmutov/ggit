@@ -53,11 +53,11 @@
   "homepage": "https://github.com/bahmutov/ggit",
   "keywords": [
     "git",
-    "repo",
-    "wrapper",
-    "js",
     "javascript",
-    "nodejs"
+    "js",
+    "nodejs",
+    "repo",
+    "wrapper"
   ],
   "license": "MIT",
   "main": "./index.js",
@@ -72,8 +72,8 @@
     "url": "https://github.com/bahmutov/ggit.git"
   },
   "scripts": {
-    "test": "grunt && npm run gt",
-    "gt": "node node_modules/gt src/test/*.js --output",
-    "e2e": "node node_modules/gt test/*.js --output"
+    "e2e": "gt test/*.js --output",
+    "gt": "gt src/test/*.js --output",
+    "test": "grunt && npm run gt"
   }
 }
