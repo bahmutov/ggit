@@ -39,6 +39,23 @@ function groupByModification(parsedLines) {
 	return _.groupBy(parsedLines, 'diff');
 }
 
+function logFoundFiles(files) {
+	log('found changed files');
+	log(files);
+}
+
+function logGroupedFiles(grouped) {
+	log('grouped by modification');
+	log(grouped);
+}
+
+var stdoutToGrouped = R.pipe(
+	parseOutput,
+	R.tap(logFoundFiles),
+	groupByModification,
+	R.tap(logGroupedFiles)
+);
+
 function changedFiles(needContents) {
 	var gitCommand = _.template('git diff --name-status --diff-filter=<%= filter %>');
 	log('filter letters Added (A), Copied (C), Deleted (D), Modified (M)');
@@ -46,16 +63,6 @@ function changedFiles(needContents) {
 	var filter = R.keys(modifications).join('');
 	var cmd = gitCommand({ filter: filter });
 	log('changed files command', cmd);
-
-	function logFoundFiles(files) {
-		log('found changed files');
-		log(files);
-	}
-
-	function logGroupedFiles(grouped) {
-		log('grouped by modification');
-		log(grouped);
-	}
 
 	function addContents(grouped) {
 		if (!needContents) {
@@ -107,20 +114,12 @@ function changedFiles(needContents) {
 						});
 					});
 				}
-
-
 			});
 
 			return promise;
 		});
 	}
 
-	var stdoutToGrouped = R.pipe(
-		parseOutput,
-		R.tap(logFoundFiles),
-		groupByModification,
-		R.tap(logGroupedFiles)
-	);
 	return exec(cmd)
 		.then(stdoutToGrouped)
 		.then(addContents);

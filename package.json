@@ -30,7 +30,7 @@
     "ramda": "0.9.1"
   },
   "devDependencies": {
-    "describe-function": "1.1.1",
+    "describe-function": "1.2.0",
     "grunt": "0.4.5",
     "grunt-bump": "0.3.2",
     "grunt-complexity": "0.3.0",
