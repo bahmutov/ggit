@@ -30,6 +30,7 @@
     "ramda": "0.9.1"
   },
   "devDependencies": {
+    "describe-function": "1.1.1",
     "grunt": "0.4.5",
     "grunt-bump": "0.3.2",
     "grunt-complexity": "0.3.0",
@@ -43,6 +44,7 @@
     "gt": "0.8.48",
     "jshint-stylish": "2.0.1",
     "matchdep": "0.3.0",
+    "mocha": "2.2.5",
     "pre-git": "0.6.2",
     "qunit-promises": "0.1.4",
     "time-grunt": "1.2.1"
@@ -74,6 +76,7 @@
   "scripts": {
     "e2e": "gt test/*.js --output",
     "gt": "gt src/test/*.js --output",
-    "test": "grunt && npm run gt"
+    "mocha": "mocha spec/*-spec.js",
+    "test": "grunt && npm run gt && npm run mocha"
   }
 }
