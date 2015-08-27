@@ -30,9 +30,10 @@
     "ramda": "0.9.1"
   },
   "devDependencies": {
-    "describe-function": "1.2.0",
+    "describe-it": "1.3.0",
     "grunt": "0.4.5",
     "grunt-bump": "0.3.2",
+    "grunt-cli": "0.1.13",
     "grunt-complexity": "0.3.0",
     "grunt-contrib-jshint": "0.11.2",
     "grunt-deps-ok": "0.8.0",
@@ -64,7 +65,7 @@
   "license": "MIT",
   "main": "./index.js",
   "pre-commit": [
-    "grunt",
+    "npm run grunt",
     "npm test",
     "npm version"
   ],
@@ -75,8 +76,9 @@
   },
   "scripts": {
     "e2e": "gt test/*.js --output",
+    "grunt": "grunt",
     "gt": "gt src/test/*.js --output",
     "mocha": "mocha spec/*-spec.js",
-    "test": "grunt && npm run gt && npm run mocha"
+    "test": "npm run grunt && npm run gt && npm run mocha"
   }
 }
