@@ -15,21 +15,22 @@ describeIt(filename, 'parseLine(line)', function (getParseLine) {
 });
 
 describeIt(filename, 'var stdoutToGrouped', function (getTransform) {
-  it('correctly parses output', function () {
-    var gitOutput = 'M\tfoo.js';
-    var result = getTransform()(gitOutput);
+  function verifySingleModified(result) {
     la(check.object(result) && check.array(result.M),
       'has modified file list', result);
     la(result.M.length === 1, 'single modified file');
     la(result.M[0].name === 'foo.js');
+  }
+
+  it('correctly parses output', function () {
+    var gitOutput = 'M\tfoo.js';
+    var result = getTransform()(gitOutput);
+    verifySingleModified(result);
   });
 
   it('ignores new lines', function () {
     var gitOutput = '\n\nM\tfoo.js\n\n';
     var result = getTransform()(gitOutput);
-    la(check.object(result) && check.array(result.M),
-      'has modified file list', result);
-    la(result.M.length === 1, 'single modified file');
-    la(result.M[0].name === 'foo.js');
+    verifySingleModified(result);
   });
 });
