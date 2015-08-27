@@ -65,7 +65,6 @@
   "license": "MIT",
   "main": "./index.js",
   "pre-commit": [
-    "npm run grunt",
     "npm test",
     "npm version"
   ],
