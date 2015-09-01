@@ -85,7 +85,7 @@ function changedFiles(needContents) {
 			});
 
 			_.each(grouped, function (list, modification) {
-				console.log('fetching contents for modification', modification);
+				log('fetching contents for modification', modification);
 				la(modifications[modification], 'unknown modification', modification);
 
 				if (modification === 'M') {
@@ -93,7 +93,12 @@ function changedFiles(needContents) {
 					list.forEach(function (info) {
 						info.after = read(info.filename, 'utf8');
 						promise = promise.then(function () {
-							return fileContentsInRepo(info.name);
+							return fileContentsInRepo(info.name)
+								.catch(function fileNotFound() {
+									// maybe the file was just added and then modified
+									// GIT thinks it is M, but there is no repo content yet
+									return '';
+								});
 						}).then(function (contents) {
 							info.before = contents;
 							return grouped;
