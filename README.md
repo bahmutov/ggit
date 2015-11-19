@@ -1,4 +1,4 @@
-# ggit v1.2.0
+# ggit v1.2.1
 
 > Local promise-returning git command wrappers
 
