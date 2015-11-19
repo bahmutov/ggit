@@ -1,7 +1,7 @@
 {
   "name": "ggit",
   "description": "Local promise-returning git command wrappers",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
   "bin": {
     "ggit": "./bin/ggit.js",
@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "describe-it": "1.4.0",
+    "git-issues": "1.2.0",
     "grunt": "0.4.5",
     "grunt-bump": "0.5.0",
     "grunt-cli": "0.1.13",
@@ -74,7 +75,9 @@
     "url": "https://github.com/bahmutov/ggit.git"
   },
   "scripts": {
+    "issues": "git-issues",
     "e2e": "gt test/*.js --output",
+    "build": "grunt && npm test",
     "grunt": "grunt",
     "gt": "gt src/test/*.js --output",
     "mocha": "mocha spec/*-spec.js",
