@@ -1,8 +1,8 @@
 {
   "name": "ggit",
   "description": "Local promise-returning git command wrappers",
-  "version": "1.2.1",
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
+  "version": "0.0.0-semantic-release",
   "bin": {
     "ggit": "./bin/ggit.js",
     "ggit-last": "./bin/ggit-last"
@@ -49,7 +49,8 @@
     "mocha": "2.3.0",
     "pre-git": "0.6.2",
     "qunit-promises": "0.1.4",
-    "time-grunt": "1.2.1"
+    "time-grunt": "1.2.1",
+    "semantic-release": "^4.3.5"
   },
   "engines": {
     "node": ">= 0.8.0"
@@ -81,6 +82,7 @@
     "grunt": "grunt",
     "gt": "gt src/test/*.js --output",
     "mocha": "mocha spec/*-spec.js",
-    "test": "npm run grunt && npm run gt && npm run mocha"
+    "test": "npm run grunt && npm run gt && npm run mocha",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   }
 }
