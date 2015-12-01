@@ -23,13 +23,14 @@ module.exports = function (grunt) {
         src: sourceFiles
       }
     },
+    /*
     'node-qunit': {
       all: {
         deps: './node_modules/qunit-promises/qunit-promises.js',
         code: './src/getOneLineLog.js',
         tests: './src/test/getOneLineLog.js'
       }
-    },
+    },*/
     jsonlint: {
       all: {
         src: ['*.json']

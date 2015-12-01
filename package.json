@@ -2,7 +2,7 @@
   "name": "ggit",
   "description": "Local promise-returning git command wrappers",
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
-  "version": "0.0.0-semantic-release",
+  "version": "0.0.0",
   "bin": {
     "ggit": "./bin/ggit.js",
     "ggit-last": "./bin/ggit-last"
@@ -40,8 +40,8 @@
     "grunt-deps-ok": "0.8.0",
     "grunt-filenames": "0.4.0",
     "grunt-jsonlint": "1.0.4",
-    "grunt-nice-package": "0.9.3",
     "grunt-node-qunit": "2.0.2",
+    "grunt-nice-package": "0.9.3",
     "grunt-readme": "0.4.5",
     "gt": "0.8.48",
     "jshint-stylish": "2.0.1",
@@ -50,7 +50,7 @@
     "pre-git": "0.6.2",
     "qunit-promises": "0.1.4",
     "time-grunt": "1.2.1",
-    "semantic-release": "^4.3.5"
+    "semantic-release": "4.3.5"
   },
   "engines": {
     "node": ">= 0.8.0"
