@@ -342,7 +342,7 @@ Author: Gleb Bahmutov &copy; 2015
 * [glebbahmutov.com](http://glebbahmutov.com)
 * [blog](http://glebbahmutov.com/blog/)
 
-License: [MIT](MIT-License.txt) - do anything with the code, but don't blame uTest if it does not work.
+License: [MIT](LICENSE) - do anything with the code, but don't blame uTest if it does not work.
 
 Spread the word: tweet, star on github, etc.
 

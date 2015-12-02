@@ -17,7 +17,8 @@
         "npm test"
       ],
       "pre-push": [
-        "npm run file-status"
+        "npm run file-status",
+        "npm run size"
       ],
       "post-commit": [],
       "post-merge": []
@@ -66,6 +67,10 @@
   "engines": {
     "node": ">= 0.8.0"
   },
+  "files": [
+    "bin",
+    "src"
+  ],
   "homepage": "https://github.com/bahmutov/ggit",
   "keywords": [
     "git",
@@ -92,6 +97,7 @@
     "issues": "git-issues",
     "mocha": "mocha spec/*-spec.js src/**/*-spec.js",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "size": "t=\"$(npm pack .)\"; wc -c \"${t}\"; tar tvf \"${t}\"; rm \"${t}\";",
     "test": "npm run grunt && npm run gt && npm run mocha"
   }
 }
