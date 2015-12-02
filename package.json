@@ -40,7 +40,6 @@
     "grunt-deps-ok": "0.8.0",
     "grunt-filenames": "0.4.0",
     "grunt-jsonlint": "1.0.4",
-    "grunt-node-qunit": "2.0.2",
     "grunt-nice-package": "0.9.3",
     "grunt-readme": "0.4.5",
     "gt": "0.8.48",
@@ -81,7 +80,7 @@
     "build": "grunt && npm test",
     "grunt": "grunt",
     "gt": "gt src/test/*.js --output",
-    "mocha": "mocha spec/*-spec.js",
+    "mocha": "mocha spec/*-spec.js src/**/*-spec.js",
     "test": "npm run grunt && npm run gt && npm run mocha",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   }
