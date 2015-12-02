@@ -1,4 +1,3 @@
-require('lazy-ass');
 var exec = require('./exec');
 
 function push(verbose) {

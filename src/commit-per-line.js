@@ -1,4 +1,4 @@
-require('lazy-ass');
+var la = require('lazy-ass');
 var gitBlame = require('./blame');
 var check = require('check-more-types');
 var q = require('q');

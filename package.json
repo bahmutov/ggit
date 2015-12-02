@@ -13,8 +13,12 @@
   "config": {
     "pre-git": {
       "commit-msg": "validate-commit-msg",
-      "pre-commit": [],
-      "pre-push": [],
+      "pre-commit": [
+        "npm test"
+      ],
+      "pre-push": [
+        "npm run file-status"
+      ],
       "post-commit": [],
       "post-merge": []
     }
@@ -73,10 +77,6 @@
   ],
   "license": "MIT",
   "main": "./index.js",
-  "pre-commit": [
-    "npm test",
-    "npm version"
-  ],
   "preferGlobal": true,
   "repository": {
     "type": "git",
@@ -84,8 +84,9 @@
   },
   "scripts": {
     "build": "grunt && npm test",
-    "commit": "commit-wizard",
+    "commit": "git-issues && commit-wizard",
     "e2e": "gt test/*.js --output",
+    "file-status": "node src/file-status.js",
     "grunt": "grunt",
     "gt": "gt src/test/*.js --output",
     "issues": "git-issues",

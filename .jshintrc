@@ -69,7 +69,5 @@
     "passfail"      : false,
     "white"         : true,
 
-    "globals": {
-        "la": true
-    }
+    "globals": {}
 }

@@ -1,4 +1,4 @@
-require('lazy-ass');
+var la = require('lazy-ass');
 var exec = require('./exec');
 var quote = require('quote');
 var check = require('check-more-types');

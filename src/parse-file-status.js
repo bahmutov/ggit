@@ -1,4 +1,4 @@
-require('lazy-ass');
+var la = require('lazy-ass');
 var check = require('check-more-types');
 var log = require('debug')('ggit');
 var _ = require('lodash');

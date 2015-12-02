@@ -1,4 +1,3 @@
-require('lazy-ass');
 var exec = require('./exec');
 var d3h = require('d3-helpers');
 

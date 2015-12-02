@@ -1,4 +1,4 @@
-require('lazy-ass');
+var la = require('lazy-ass');
 var check = require('check-more-types');
 var getOneLineLog = require('./get-one-line-log');
 la(check.fn(getOneLineLog), 'missing one line log function');
