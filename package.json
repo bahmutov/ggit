@@ -10,6 +10,15 @@
   "bugs": {
     "url": "https://github.com/bahmutov/ggit/issues"
   },
+  "config": {
+    "pre-git": {
+      "commit-msg": "validate-commit-msg",
+      "pre-commit": [],
+      "pre-push": [],
+      "post-commit": [],
+      "post-merge": []
+    }
+  },
   "contributors": [],
   "dependencies": {
     "chdir-promise": "0.2.1",
@@ -20,7 +29,7 @@
     "d3-helpers": "0.3.0",
     "debug": "2.2.0",
     "glob": "6.0.1",
-    "lazy-ass": "0.6.0",
+    "lazy-ass": "1.1.0",
     "lodash": "3.10.1",
     "moment": "2.10.6",
     "optimist": "0.6.1",
@@ -43,9 +52,9 @@
     "grunt-readme": "0.4.5",
     "gt": "0.8.48",
     "jshint-stylish": "2.1.0",
-    "matchdep": "0.3.0",
-    "mocha": "2.3.0",
-    "pre-git": "0.6.2",
+    "matchdep": "1.0.0",
+    "mocha": "2.3.4",
+    "pre-git": "1.4.0",
     "qunit-promises": "0.1.4",
     "semantic-release": "4.3.5",
     "time-grunt": "1.2.1"
@@ -75,6 +84,7 @@
   },
   "scripts": {
     "build": "grunt && npm test",
+    "commit": "commit-wizard",
     "e2e": "gt test/*.js --output",
     "grunt": "grunt",
     "gt": "gt src/test/*.js --output",
