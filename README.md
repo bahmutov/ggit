@@ -324,14 +324,16 @@ Same as `git show <at>:<name>`
 
 ## Development
 
-Edit source, run unit tests, run end to end tests and release
-new version commands:
+Edit source, run unit tests, run end to end tests and push the code
+back to Github. The NPM publishing happens automatically using
+[semantic release](https://github.com/semantic-release/semantic-release)
 
 ```sh
 npm test
-grunt release
-npm publish
+npm run commit
+git push
 ```
+
 
 
 ### Small print
