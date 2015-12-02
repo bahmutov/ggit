@@ -55,9 +55,9 @@
     "matchdep": "1.0.0",
     "mocha": "2.3.4",
     "pre-git": "1.4.0",
-    "qunit-promises": "0.1.4",
-    "semantic-release": "4.3.5",
-    "time-grunt": "1.2.1"
+    "qunit-promises": "0.1.5",
+    "semantic-release": "6.0.3",
+    "time-grunt": "1.2.2"
   },
   "engines": {
     "node": ">= 0.8.0"
