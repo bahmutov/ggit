@@ -1,9 +1,11 @@
+require('lazy-ass');
+var check = require('check-more-types');
 var log = require('debug')('ggit');
 var _ = require('lodash');
 var R = require('ramda');
 
 function parseLine(line) {
-  var parts = line.split(/\s+/);
+  var parts = line.trim().split(/\s+/);
   var diff = parts[0];
   if (diff === 'AM') {
     diff = 'A';
@@ -16,11 +18,18 @@ function parseLine(line) {
 
 function parseOutput(data) {
   data = data.trim();
-  var files = data.split('\n');
-  files = files.filter(function (filename) {
+
+  var lines = data.split('\n');
+  var modifications = lines.filter(function (filename) {
     return filename.length;
   }).map(parseLine);
-  return files;
+
+  return modifications;
+}
+
+function ensureUniq(list) {
+  la(check.array(list), 'expected list', list);
+  return _.uniq(list, 'name');
 }
 
 function groupByModification(parsedLines) {
@@ -39,6 +48,7 @@ function logGroupedFiles(grouped) {
 
 var stdoutToGrouped = R.pipe(
   parseOutput,
+  ensureUniq,
   R.tap(logFoundFiles),
   groupByModification,
   R.tap(logGroupedFiles)

@@ -12,8 +12,8 @@ describe('parse file status', function () {
   function verifySingleModified(result) {
     la(check.object(result) && check.array(result.M),
       'has modified file list', result);
-    la(result.M.length === 1, 'single modified file');
-    la(result.M[0].name === 'foo.js');
+    la(result.M.length === 1, 'single modified file', result);
+    la(result.M[0].name === 'foo.js', result);
   }
 
   it('correctly parses output', function () {
@@ -24,6 +24,12 @@ describe('parse file status', function () {
 
   it('ignores new lines', function () {
     var gitOutput = '\n\nM\tfoo.js\n\n';
+    var result = parse(gitOutput);
+    verifySingleModified(result);
+  });
+
+  it('does not add duplicate files', function () {
+    var gitOutput = 'M foo.js\nM foo.js';
     var result = parse(gitOutput);
     verifySingleModified(result);
   });
@@ -42,14 +48,20 @@ describeIt(filename, 'parseLine(line)', function (getParseLine) {
     la(check.fn(parse));
 
     var result = parse('M\tfoo.js');
-    la(result.diff === 'M');
-    la(result.name === 'foo.js');
+    la(result.diff === 'M', result);
+    la(result.name === 'foo.js', result);
+  });
+
+  it('handles leading white space', function () {
+    var result = parse(' A foo.js');
+    la(result.diff === 'A', result);
+    la(result.name === 'foo.js', result);
   });
 
   it('parses A line', function () {
     var result = parse('A foo.js');
-    la(result.diff === 'A');
-    la(result.name === 'foo.js');
+    la(result.diff === 'A', result);
+    la(result.name === 'foo.js', result);
   });
 
   it('parses AM line', function () {

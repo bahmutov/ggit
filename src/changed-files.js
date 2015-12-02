@@ -89,8 +89,19 @@ function changedFiles(needContents) {
 		});
 	}
 
-	return exec(cmd)
+	// another command that gives status especially for added files
+	var secondCommand = 'git status --porcelain';
+
+	return Q.all([exec(cmd), exec(secondCommand)])
+		.spread(function (firstOutput, secondOutput) {
+			log('first output');
+			log(firstOutput);
+			log('second output');
+			log(secondOutput);
+			return firstOutput + '\n' + secondOutput;
+		})
 		.then(stdoutToGrouped)
+		.then(R.tap(log))
 		.then(addContents);
 }
 

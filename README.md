@@ -297,7 +297,8 @@ The object `files` groups filenames by modification property
 }
 ```
 
-This is a wrapper around command `git diff --name-status --diff-filter=ACMD`.
+This is a wrapper around two commands `git diff --name-status --diff-filter=ACMD`
+and `git status --porcelain`
 
 
 
