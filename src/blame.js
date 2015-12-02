@@ -1,5 +1,5 @@
 require('lazy-ass');
-var check = require('check-types');
+var check = require('check-more-types');
 var exec = require('./exec');
 var path = require('path');
 var fs = require('fs');

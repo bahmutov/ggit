@@ -1,5 +1,5 @@
 var exec = require('./exec');
-var verify = require('check-types').verify;
+var verify = require('check-more-types').verify;
 var fs = require('fs');
 
 function cloneRepo(opts) {

@@ -1,5 +1,5 @@
 var spawn = require('child_process').spawn;
-var check = require('check-types');
+var check = require('check-more-types');
 
 module.exports = {
 	getFileRevision: getFileRevision,

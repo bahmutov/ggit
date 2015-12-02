@@ -12,6 +12,9 @@ QUnit.test('this file is tracked', function (assert) {
     commitPerLine(sourceFiles)
       .then(function (blames) {
         assert.object(blames, 'returns an object');
+      }, function (err) {
+        console.error(err);
+        return err;
       })
   );
 });

@@ -1,4 +1,4 @@
-var check = require('check-types');
+var check = require('check-more-types');
 var moment = require('moment');
 var spawn = require('child_process').spawn;
 var path = require('path');

@@ -1,6 +1,6 @@
 var Q = require('q');
 var exec = require('child_process').exec;
-var verify = require('check-types').verify;
+var verify = require('check-more-types').verify;
 
 function execPromise(cmd, verbose) {
   verify.unemptyString(cmd, 'missing command to execute');
