@@ -326,7 +326,12 @@ usually for validation before the commit.
 
 ```js
 require('ggit').commitMessage()
-    .then(function (text) {});
+    .then(function (text) {
+      // do something with the message
+    },
+    function () {
+      // file not found
+    });
 ```
 
 
