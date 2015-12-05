@@ -17,20 +17,12 @@ module.exports = function (grunt) {
     jshint: {
       options: {
         jshintrc: '.jshintrc',
-        reporter: require('jshint-stylish')
+        reporter: require('jshint-summary')
       },
       'default': {
         src: sourceFiles
       }
     },
-    /*
-    'node-qunit': {
-      all: {
-        deps: './node_modules/qunit-promises/qunit-promises.js',
-        code: './src/getOneLineLog.js',
-        tests: './src/test/getOneLineLog.js'
-      }
-    },*/
     jsonlint: {
       all: {
         src: ['*.json']

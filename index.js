@@ -16,7 +16,8 @@ var actions = {
 	lastCommitId: require('./src/last-commit-id'),
 	branchName: require('./src/branch-name'),
 	changedFiles: require('./src/changed-files'),
-	fileContents: require('./src/file-contents')
+	fileContents: require('./src/file-contents'),
+	commitMessage: require('./src/commit-message')
 };
 
 module.exports = actions;

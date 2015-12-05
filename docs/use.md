@@ -24,3 +24,4 @@ You can install and run this tool as a stand alone CLI application.
 {%= _.doc("./docs/branch-name.md") %}
 {%= _.doc("./docs/changed-files.md") %}
 {%= _.doc("./docs/file-contents.md") %}
+{%= _.doc("./docs/commit-message.md") %}
