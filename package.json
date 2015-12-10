@@ -71,7 +71,10 @@
   },
   "files": [
     "bin",
-    "src"
+    "index.js",
+    "src/**/*.js",
+    "!src/**/*-spec.js",
+    "!src/test"
   ],
   "homepage": "https://github.com/bahmutov/ggit",
   "keywords": [
