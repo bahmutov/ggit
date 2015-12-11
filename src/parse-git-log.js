@@ -2,7 +2,7 @@ var la = require('lazy-ass');
 var is = require('check-more-types');
 
 function parseOneLineLog(data) {
-  la(is.unemptyString(data), 'expected string data', data);
+  la(is.string(data), 'expected string data', data);
 
   var lines = data.split('\n');
   lines = lines.filter(function (line) {
@@ -19,6 +19,52 @@ function parseOneLineLog(data) {
   return splitLines;
 }
 
+/*
+  parses single commit message (several lines), like this one
+
+  7fbeb0ada137bc93493731df60bada794d95b13b
+  Author: Gleb Bahmutov <gleb.bahmutov@gmail.com>
+  Commit: Gleb Bahmutov <gleb.bahmutov@gmail.com>
+
+    chore(main): Main file with parsing of the message
+
+    This is the main logic
+
+*/
+function parseCommit(oneCommit) {
+  la(is.unemptyString(oneCommit), 'expected commit', oneCommit);
+  var lines = oneCommit.split('\n');
+  return {
+    id: lines[0],
+    message: lines[4],
+    body: lines.slice(6)
+  };
+}
+
+function trim(parsedInfo) {
+  parsedInfo.message = parsedInfo.message.trim();
+  la(is.array(parsedInfo.body),
+    'expected list of lines in the body', parsedInfo);
+  parsedInfo.body = parsedInfo.body.map(function (line) {
+    return line.trim();
+  }).join('\n');
+  return parsedInfo;
+}
+
+/*
+  parses git log generated using
+    git log --pretty=full
+*/
+function parseCommitLog(data) {
+  la(is.string(data), 'expected string data', data);
+  var commits = data.split('commit ');
+  return commits
+    .filter(is.unemptyString)
+    .map(parseCommit)
+    .map(trim);
+}
+
 module.exports = {
-  parseOneLineLog: parseOneLineLog
+  parseOneLineLog: parseOneLineLog,
+  parseCommitLog: parseCommitLog
 };
