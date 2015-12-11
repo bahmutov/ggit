@@ -1,20 +1,6 @@
 var exec = require('./exec');
 
-function parsePrettyLog(data) {
-  var lines = data.split('\n');
-  lines = lines.filter(function (line) {
-    return !!line;
-  });
-  var splitLines = lines.map(function (line) {
-    // should be id space log message
-    var firstSpace = line.indexOf(' ');
-    return {
-      id: line.substr(0, firstSpace),
-      message: line.substr(firstSpace).trim()
-    };
-  });
-  return splitLines;
-}
+var parsers = require('./parse-git-log');
 
 // returns a promise
 function getLog(opts) {
@@ -27,7 +13,8 @@ function getLog(opts) {
   if (opts.remote && opts.branch) {
     cmd += ' ' + opts.remote + '/' + opts.branch + '..' + opts.branch;
   }
-  return exec(cmd).then(parsePrettyLog);
+  return exec(cmd)
+    .then(parsers.parseOneLineLog);
 }
 
 module.exports = getLog;
