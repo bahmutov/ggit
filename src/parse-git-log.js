@@ -22,7 +22,7 @@ function parseOneLineLog(data) {
 /*
   parses single commit message (several lines), like this one
 
-  7fbeb0ada137bc93493731df60bada794d95b13b
+  commit 7fbeb0ada137bc93493731df60bada794d95b13b
   Author: Gleb Bahmutov <gleb.bahmutov@gmail.com>
   Commit: Gleb Bahmutov <gleb.bahmutov@gmail.com>
 
@@ -35,19 +35,28 @@ function parseCommit(oneCommit) {
   la(is.unemptyString(oneCommit), 'expected commit', oneCommit);
   var lines = oneCommit.split('\n');
   return {
-    id: lines[0],
+    id: lines[0].substr(7).trim(),
     message: lines[4],
     body: lines.slice(6)
   };
 }
 
+var commitMessageSchema = {
+  id: is.unemptyString,
+  message: is.unemptyString,
+  body: is.maybe.array
+};
+var isCommitMessage = is.schema.bind(null, commitMessageSchema);
+
 function trim(parsedInfo) {
+  la(isCommitMessage(parsedInfo), 'invalid commit info', parsedInfo);
+
   parsedInfo.message = parsedInfo.message.trim();
   la(is.array(parsedInfo.body),
     'expected list of lines in the body', parsedInfo);
   parsedInfo.body = parsedInfo.body.map(function (line) {
     return line.trim();
-  }).join('\n');
+  }).join('\n').trim();
   return parsedInfo;
 }
 
@@ -57,7 +66,9 @@ function trim(parsedInfo) {
 */
 function parseCommitLog(data) {
   la(is.string(data), 'expected string data', data);
-  var commits = data.split('commit ');
+  // commit [SHA]
+  var commits = data.split(/(?=commit [0-9a-f]{40})\n?/g);
+
   return commits
     .filter(is.unemptyString)
     .map(parseCommit)
