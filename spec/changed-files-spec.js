@@ -1,7 +1,7 @@
 var la = require('lazy-ass');
 var is = require('check-more-types');
 
-describe('changd files', function () {
+describe('changed files', function () {
 
   var changedFiles = require('..').changedFiles;
 

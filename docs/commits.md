@@ -18,3 +18,5 @@ commits.all(gitRepoFolder)
     .then(console.log)
     .done();
 ```
+
+Each object has at least 'id', 'message' and (maybe empty) 'body' properties.

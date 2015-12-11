@@ -162,6 +162,8 @@ commits.all(gitRepoFolder)
     .done();
 ```
 
+Each object has at least 'id', 'message' and (maybe empty) 'body' properties.
+
 
 ### trackedFiles
 

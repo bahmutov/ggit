@@ -6,6 +6,10 @@ var fs = require('fs');
 var folders = require('chdir-promise');
 var R = require('ramda');
 
+function getLog() {
+  return getOneLineLog({ full: true });
+}
+
 /*
   // returns commits from given repo folder
   // latest commits first
@@ -21,7 +25,7 @@ function commits(gitRepoRootFolder) {
   la(fs.existsSync(gitRepoRootFolder), 'cannot find folder', gitRepoRootFolder);
 
   return folders.to(gitRepoRootFolder)
-    .then(getOneLineLog)
+    .then(getLog)
     .tap(folders.back);
 }
 
