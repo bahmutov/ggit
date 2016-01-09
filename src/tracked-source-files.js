@@ -14,9 +14,9 @@ function is3rdParty(filename) {
     /bower\_components/.test(filename);
 }
 
-function findFiles(pattern) {
+function findFiles(pattern, options) {
   pattern = pattern || '**/*.js';
-  var jsFiles = glob.sync(pattern);
+  var jsFiles = glob.sync(pattern, options);
   var appFiles = jsFiles.filter(R.not(is3rdParty));
   console.log('found files\n' + appFiles.join('\n'));
   return q(appFiles);
@@ -30,17 +30,24 @@ function leaveTracked(filenames) {
     .then(R.keys);
 }
 
-function sourceFiles(folderName, pattern) {
+function sourceFiles(folderName, pattern, options) {
   if (folderName) {
     return folder.to(folderName)
-      .then(findFiles.bind(null, pattern))
+      .then(findFiles.bind(null, pattern, options))
       .then(leaveTracked)
       .tap(folder.back);
   }
-  return findFiles(pattern)
+  return findFiles(pattern, options)
     .then(leaveTracked);
 }
 
 module.exports = check.defend(sourceFiles,
   check.maybe.unemptyString, 'expected folder name',
-  check.maybe.unemptyString, 'expected glob pattern');
+  check.maybe.unemptyString, 'expected glob pattern',
+  check.maybe.object, 'expected glob options');
+
+if (!module.parent) {
+  sourceFiles('.', '**', { dot: true })
+    .then(console.log.bind(console))
+    .catch(console.error.bind(console));
+}
