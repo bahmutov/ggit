@@ -363,6 +363,9 @@ npm run commit
 git push
 ```
 
+To debug problems, run the command with `DEBUG=ggit` environment variable enabled
+to see verbose logging.
+
 
 
 ### Small print

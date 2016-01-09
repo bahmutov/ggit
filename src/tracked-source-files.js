@@ -1,3 +1,4 @@
+var log = require('debug')('ggit');
 var la = require('lazy-ass');
 var check = require('check-more-types');
 var glob = require('glob');
@@ -14,11 +15,18 @@ function is3rdParty(filename) {
     /bower\_components/.test(filename);
 }
 
+function isGitFile(filename) {
+  return filename === '.git' ||
+    /^\.git\//.test(filename);
+}
+
 function findFiles(pattern, options) {
   pattern = pattern || '**/*.js';
-  var jsFiles = glob.sync(pattern, options);
-  var appFiles = jsFiles.filter(R.not(is3rdParty));
-  console.log('found files\n' + appFiles.join('\n'));
+  var allFiles = glob.sync(pattern, options);
+  var appFiles = allFiles
+    .filter(R.not(isGitFile))
+    .filter(R.not(is3rdParty));
+  log('found files\n' + appFiles.join('\n'));
   return q(appFiles);
 }
 
