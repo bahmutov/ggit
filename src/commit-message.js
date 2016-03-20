@@ -7,7 +7,7 @@ var filename = './.git/COMMIT_EDITMSG';
 function commitMessage() {
   var commitMsgFile = filename;
   if(!fileInfo('./.git').isDirectory()) {
-    var unparsedText = "" + read('./.git');
+    var unparsedText = '' + read('./.git');
     commitMsgFile = unparsedText.substring('gitdir: '.length).trim() + '/COMMIT_EDITMSG';
   }
 
