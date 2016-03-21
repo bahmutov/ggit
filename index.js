@@ -17,7 +17,8 @@ var actions = {
 	branchName: require('./src/branch-name'),
 	changedFiles: require('./src/changed-files'),
 	fileContents: require('./src/file-contents'),
-	commitMessage: require('./src/commit-message')
+	commitMessage: require('./src/commit-message'),
+	getGitFolder: require('./src/git-folder')
 };
 
 module.exports = actions;
