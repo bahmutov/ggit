@@ -1,7 +1,10 @@
+'use strict';
+
 var exists = require('fs').existsSync;
 var fileInfo = require('fs').lstatSync;
 var read = require('fs').readFileSync;
-var filename = './.git';
+var path = require('path');
+var filename = path.join(process.cwd(), '.git');
 
 function getGitFolder() {
     var gitDirLocation = filename;
