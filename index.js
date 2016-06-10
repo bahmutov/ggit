@@ -11,6 +11,7 @@ var actions = {
 	push: require('./src/push'),
 	commits: require('./src/commits'),
 	trackedFiles: require('./src/tracked-source-files'),
+	untrackedFiles: require('./src/untracked-files'),
 	commitPerLine: require('./src/commit-per-line'),
 	numstat: require('./src/commit-numstat'),
 	lastCommitId: require('./src/last-commit-id'),

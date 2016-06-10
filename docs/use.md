@@ -18,6 +18,7 @@ You can install and run this tool as a stand alone CLI application.
 {%= _.doc("./docs/push.md") %}
 {%= _.doc("./docs/commits.md") %}
 {%= _.doc("./docs/tracked-files.md") %}
+{%= _.doc("./docs/untracked-files.md") %}
 {%= _.doc("./docs/commit-per-line.md") %}
 {%= _.doc("./docs/numstat.md") %}
 {%= _.doc("./docs/last-commit-id.md") %}
