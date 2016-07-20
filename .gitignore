@@ -1,3 +1,4 @@
 cover/
 node_modules/
 src/.DS_Store
+build.json
