@@ -10,13 +10,13 @@
 [![semantic-release][semantic-image] ][semantic-url]
 [![manpm](https://img.shields.io/badge/manpm-%E2%9C%93-3399ff.svg)](https://github.com/bahmutov/manpm)
 
-[ggit-icon]: https://nodei.co/npm/ggit.svg?downloads=true
+[ggit-icon]: https://nodei.co/npm/ggit.png?downloads=true
 [ggit-url]: https://npmjs.org/package/ggit
-[ggit-ci-image]: https://travis-ci.org/bahmutov/ggit.svg?branch=master
+[ggit-ci-image]: https://travis-ci.org/bahmutov/ggit.png?branch=master
 [ggit-ci-url]: https://travis-ci.org/bahmutov/ggit
-[ggit-dependencies-image]: https://david-dm.org/bahmutov/ggit.svg
+[ggit-dependencies-image]: https://david-dm.org/bahmutov/ggit.png
 [ggit-dependencies-url]: https://david-dm.org/bahmutov/ggit
-[ggit-devdependencies-image]: https://david-dm.org/bahmutov/ggit/dev-status.svg
+[ggit-devdependencies-image]: https://david-dm.org/bahmutov/ggit/dev-status.png
 [ggit-devdependencies-url]: https://david-dm.org/bahmutov/ggit#info=devDependencies
 [semantic-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
 [semantic-url]: https://github.com/semantic-release/semantic-release
@@ -180,7 +180,7 @@ require('ggit')
     .done();
 ```
 
-The `options` argument is optional, and is passed directly to the
+The `options` argument is optional, and is passed directly to the 
 [glob](https://www.npmjs.com/package/glob) package that does file discovery.
 The only important option to use is `{ dot: true }` - if you want to find the
 filenames that start with `.`. For example to find ALL files in the repo call
@@ -225,7 +225,7 @@ perLine(['foo.js', 'bar.js']).then(function (result) {
             committer: 'Gleb Bahmutov',
             summary: 'cool commit',
             filename: 'foo.js',
-            line: '// actual source line'
+            line: '// actual source line' 
         },
             ...
         }],
@@ -238,7 +238,7 @@ perLine(['foo.js', 'bar.js']).then(function (result) {
 
 ### numstat
 
-Returns info for a specific commit - number of lines changed, deleted.
+Returns info for a specific commit - number of lines changed, deleted. 
 Same as `$ git show --numstat <id>`.
 
 ```js
@@ -390,6 +390,11 @@ git push
 
 To debug problems, run the command with `DEBUG=ggit` environment variable enabled
 to see verbose logging.
+
+### Related projects
+
+* [npm-utils](https://github.com/bahmutov/npm-utils) - small utils for working
+with NPM commands.
 
 
 
