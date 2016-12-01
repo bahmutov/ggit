@@ -21,6 +21,9 @@ function getLog() {
     .done();
 */
 function commits(gitRepoRootFolder) {
+  if (!gitRepoRootFolder) {
+    gitRepoRootFolder = process.cwd();
+  }
   la(check.unemptyString(gitRepoRootFolder), 'missing git repo folder');
   la(fs.existsSync(gitRepoRootFolder), 'cannot find folder', gitRepoRootFolder);
 
