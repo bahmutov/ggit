@@ -1,4 +1,4 @@
-sudo: false
+sudo: true
 language: node_js
 cache:
   directories:
@@ -12,6 +12,7 @@ before_install:
 before_script:
   - npm prune
 script:
+  - sudo apt-get install git-all
   - git --version
   - echo sorted tags using "sort command"
   - git for-each-ref --format='%(*committerdate:raw)%(committerdate:raw) %(refname)' refs/tags | sort -n
