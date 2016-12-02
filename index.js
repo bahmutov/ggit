@@ -19,7 +19,8 @@ var actions = {
 	changedFiles: require('./src/changed-files'),
 	fileContents: require('./src/file-contents'),
 	commitMessage: require('./src/commit-message'),
-	getGitFolder: require('./src/git-folder')
+	getGitFolder: require('./src/git-folder'),
+	tags: require('./src/tags')
 };
 
 module.exports = actions;
