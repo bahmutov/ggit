@@ -13,6 +13,10 @@ before_script:
   - npm prune
 script:
   - git --version
+  - echo sorted tags using "sort command"
+  - git for-each-ref --format='%(*committerdate:raw)%(committerdate:raw) %(refname)' refs/tags | sort -n
+  - echo sorted tags using "--sort argument"
+  - git tag --sort version:refname
   - npm test
 after_success:
   - npm run semantic-release
