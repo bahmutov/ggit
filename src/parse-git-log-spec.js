@@ -35,6 +35,30 @@ describe('parse git log', function () {
       la(/main logic/.test(first.body), 'body', first);
     });
 
+    it('handles merge commit', function () {
+      var log = [
+        'commit 7fbeb0ada137bc93493731df60bada794d95b13b',
+        'Merge: 9829091 0c8ef85',
+        'Author: Gleb Bahmutov <gleb.bahmutov@gmail.com>',
+        'Commit: Gleb Bahmutov <gleb.bahmutov@gmail.com>',
+        '',
+        '   commit fake word',
+        '',
+        '   This is the main logic',
+        ''
+      ].join('\n');
+      var parsed = parse(log);
+      la(is.array(parsed), 'returns list of commits', parsed);
+      la(parsed.length === 1, 'finds 1 commit', parsed.length);
+
+      var first = parsed[0];
+      la(is.object(first), 'creates object', first);
+
+      la(first.id === '7fbeb0ada137bc93493731df60bada794d95b13b', 'id');
+      la(/^commit fake word/.test(first.message), 'message', first);
+      la(/main logic/.test(first.body), 'body', first);
+    });
+
     it('parses list of commits', function () {
       var log = [
         'commit 7fbeb0ada137bc93493731df60bada794d95b13b',

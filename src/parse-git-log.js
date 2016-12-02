@@ -19,6 +19,10 @@ function parseOneLineLog(data) {
   return splitLines;
 }
 
+function isNotMergeLine(s) {
+  return !/^Merge:\ /.test(s);
+}
+
 /*
   parses single commit message (several lines), like this one
 
@@ -30,10 +34,13 @@ function parseOneLineLog(data) {
 
     This is the main logic
 
+If this is a merge commit, merge line is removed
 */
 function parseCommit(oneCommit) {
   la(is.unemptyString(oneCommit), 'expected commit', oneCommit);
   var lines = oneCommit.split('\n');
+  lines = lines.filter(isNotMergeLine);
+
   return {
     id: lines[0].substr(7).trim(),
     message: lines[4],

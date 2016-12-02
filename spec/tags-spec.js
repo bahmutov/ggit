@@ -2,7 +2,6 @@
 
 const la = require('lazy-ass')
 const is = require('check-more-types')
-const tags = require('../index').tags
 
 function isGoodTag(o) {
   la(is.commitId(o.commit), 'missing commit', o)
@@ -10,6 +9,7 @@ function isGoodTag(o) {
 }
 
 describe('tags', () => {
+  const tags = require('../index').tags
   it('has type', () => {
     la(is.fn(tags), 'has tags function')
   })
@@ -25,3 +25,14 @@ describe('tags', () => {
   })
 })
 
+describe.only('commits after last tag', () => {
+  const afterLastTag = require('../index').commits.afterLastTag;
+
+  it('fetches commits after latest tag', () => {
+    return afterLastTag()
+      .then(function (list) {
+        la(is.array(list), 'has array of tags')
+        console.log('commits after last tag', list)
+      })
+  })
+})
