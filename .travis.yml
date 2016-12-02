@@ -12,6 +12,7 @@ before_install:
 before_script:
   - npm prune
 script:
+  - sudo apt-get update
   - sudo apt-get install git
   - git --version
   - echo sorted tags using "sort command"
