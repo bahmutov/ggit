@@ -1,5 +1,11 @@
 'use strict'
 
+// Travis has very old git version without sorted tags
+// https://github.com/travis-ci/travis-ci/issues/6328
+if (process.env.TRAVIS) {
+  return
+}
+
 const la = require('lazy-ass')
 const is = require('check-more-types')
 
