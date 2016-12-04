@@ -20,7 +20,8 @@ var actions = {
 	fileContents: require('./src/file-contents'),
 	commitMessage: require('./src/commit-message'),
 	getGitFolder: require('./src/git-folder'),
-	tags: require('./src/tags')
+	tags: require('./src/tags'),
+	fetchTags: require('./src/fetch-tags')
 };
 
 module.exports = actions;

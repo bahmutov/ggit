@@ -28,3 +28,4 @@ You can install and run this tool as a stand alone CLI application.
 {%= _.doc("./docs/commit-message.md") %}
 {%= _.doc("./docs/git-folder.md") %}
 {%= _.doc("./docs/tags.md") %}
+{%= _.doc("./docs/fetch-tags.md") %}
