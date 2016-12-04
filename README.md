@@ -422,6 +422,13 @@ fetchTags().then(function () {
 })
 ```
 
+You can pass the branch name, by default will fetch
+from master
+
+```js
+fetchTags('development')
+```
+
 
 
 

@@ -3,9 +3,10 @@
 var debug = require('debug')('ggit');
 var exec = require('./exec');
 
-function fetchTags () {
-  debug('fetching remote tags');
-  var cmd = 'git pull origin --tags';
+function fetchTags (branch) {
+  branch = branch || 'master';
+  debug('fetching remote tags for branch', branch);
+  var cmd = 'git pull origin ' + branch + ' --tags';
   return exec(cmd);
 }
 

@@ -9,3 +9,10 @@ fetchTags().then(function () {
   // git pull origin --tags
 })
 ```
+
+You can pass the branch name, by default will fetch
+from master
+
+```js
+fetchTags('development')
+```
