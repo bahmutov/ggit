@@ -1,9 +1,12 @@
 var Q = require('q');
 var exec = require('child_process').exec;
 var verify = require('check-more-types').verify;
+var debug = require('debug')('ggit');
 
 function execPromise(cmd, verbose) {
   verify.unemptyString(cmd, 'missing command to execute');
+  debug(cmd);
+
   var deferred = Q.defer();
   exec(cmd, function (err, stdout, stderr) {
     if (verbose) {
