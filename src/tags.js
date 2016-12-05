@@ -4,6 +4,7 @@ var la = require('lazy-ass');
 var is = require('check-more-types');
 var exec = require('./exec');
 var Q = require('q');
+var debug = require('debug')('ggit');
 
 function toLines(text) {
   return text.split('\n');
@@ -23,7 +24,10 @@ function hasV(line) {
 // returns commit SHA for the given tag
 function getTagCommit(tag) {
   la(is.unemptyString(tag), 'wrong tag', tag);
-  var cmd = 'git rev-parse ' + tag;
+  var cmd = 'git rev-list -n 1 ' + tag;
+  debug('getting commit for tag "%s"', tag);
+  debug('using command "%s"', cmd);
+
   return exec(cmd)
     .then(function (commit) {
       return {
