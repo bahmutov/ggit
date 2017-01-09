@@ -70,11 +70,13 @@ function trim(parsedInfo) {
 /*
   parses git log generated using
     git log --pretty=full
+
+  only looks at lines starting with "commit <SHA>" to separate the commits
 */
 function parseCommitLog(data) {
   la(is.string(data), 'expected string data', data);
   // commit [SHA]
-  var commits = data.split(/(?=commit [0-9a-f]{40})\n?/g);
+  var commits = data.split(/\n(?=commit [0-9a-f]{40})\n?/g);
 
   return commits
     .filter(is.unemptyString)

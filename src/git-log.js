@@ -3,13 +3,16 @@ var moment = require('moment');
 var spawn = require('child_process').spawn;
 var path = require('path');
 var getGitRootFolder = require('./repo-root');
+var debug = require('debug')('ggit');
 
 // returns commits in reverse chronological order
 function gitLog(filename, commits, cb, err, rootFolder) {
+	debug('gitLog, err?', err);
+
 	if (err) {
 		throw err;
 	}
-	check.verify.string(filename, 'missing filename');
+	check.maybe.string(filename, 'missing filename');
 	check.verify.positiveNumber(commits, 'invalid number of commits', commits);
 	check.verify.fn(cb, 'callback should be a function');
 
@@ -17,8 +20,10 @@ function gitLog(filename, commits, cb, err, rootFolder) {
 	// oe --since <date>
 	// var args = ['log', '--no-decorate', '-n ' + commits];
 	var args = ['log', '--name-status', '-n ' + commits];
+	debug('gitLog args', args);
 
 	if (filename) {
+		debug('gitLog uses filename', filename);
 		check.verify.string(rootFolder, 'could not find git root folder');
 		rootFolder = rootFolder.trim();
 		rootFolder = rootFolder.replace(/\//g, '\\');
@@ -33,7 +38,7 @@ function gitLog(filename, commits, cb, err, rootFolder) {
 		args.push(relativePath);
 	}
 
-	console.log('git log command', args);
+	debug('git log command', args);
 	var git = spawn('git', args);
 
 	commits = [];
@@ -53,12 +58,16 @@ function gitLog(filename, commits, cb, err, rootFolder) {
 
 	git.stderr.setEncoding('utf-8');
 	git.stderr.on('data', function (data) {
-		throw new Error('Could not get git log for\n' + filename +
-			'\n' + data);
+		if (filename) {
+			throw new Error('Could not get git log for\n' + filename +
+				'\n' + data);
+		} else {
+			throw new Error('Could not get git log\n' + data);
+		}
 	});
 
 	git.on('exit', function () {
-		console.log('returning', commits.length, 'commits');
+		debug('returning', commits.length, 'commits');
 		cb(commits);
 	});
 }
