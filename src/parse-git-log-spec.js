@@ -115,16 +115,20 @@ describe('parse git log', function () {
       la(/dummy version/.test(second.message), 'second message', second);
     });
 
-    it('parses its own full log', function (done) {
-      var getGitLog = require('./git-log').getGitLog;
-      var n = 10;
-      getGitLog(null, n, function (log) {
-        la(is.array(log), 'did not get a log', log);
-        la(n === log.length, 'invalid number of messages in the log',
-          'expected', n, 'got', log.length);
-        done();
+    if (!process.env.CI) {
+      // CI servers usually just checkout the top commit
+      // without having the full Git history
+      it('parses its own full log', function (done) {
+        var getGitLog = require('./git-log').getGitLog;
+        var n = 10;
+        getGitLog(null, n, function (log) {
+          la(is.array(log), 'did not get a log', log);
+          la(n === log.length, 'invalid number of messages in the log',
+            'expected', n, 'got', log.length);
+          done();
+        });
       });
-    });
+    }
   });
 
   describe('parsing one line log', function () {
