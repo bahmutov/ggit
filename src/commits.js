@@ -53,10 +53,10 @@ function byId(commits) {
   return commitInfo;
 }
 
-function afterLastTag() {
+function afterLastTag(vTagsOnly) {
   return commits()
     .then(function (list) {
-      var vTagsOnly = true;
+      vTagsOnly = vTagsOnly !== false ? true: false;
       return getTags(vTagsOnly)
         .then(function (tags) {
           if (check.empty(tags)) {

@@ -41,4 +41,12 @@ describe.only('commits after last tag', () => {
         console.log('commits after last tag', list)
       })
   })
+
+  it('fetches commits after latest tag when including non-v tags', () => {
+    return afterLastTag(false)
+      .then(function (list) {
+        la(is.array(list), 'has array of tags')
+        console.log('commits after last tag', list)
+      })
+  })
 })
