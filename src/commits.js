@@ -7,7 +7,7 @@ la(check.fn(getOneLineLog), 'missing one line log function');
 var fs = require('fs');
 var folders = require('chdir-promise');
 var R = require('ramda');
-var getTags = require('./tags');
+var getBranchTags = require('./tags').getBranchTags;
 
 function getLog() {
   return getOneLineLog({ full: true });
@@ -57,7 +57,7 @@ function afterLastTag(vTagsOnly) {
   return commits()
     .then(function (list) {
       vTagsOnly = vTagsOnly !== false ? true: false;
-      return getTags(vTagsOnly)
+      return getBranchTags(vTagsOnly)
         .then(function (tags) {
           if (check.empty(tags)) {
             return list;
