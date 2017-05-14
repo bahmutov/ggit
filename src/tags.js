@@ -51,6 +51,17 @@ function parseTags(vTagsOnly, text) {
   return lines;
 }
 
+function getBranchTags(vTagsOnly) {
+  // returns each tag on its own line
+  // oldest tags first, latest tags last]
+  // only tags accessible from the current branch are returned
+  var cmd = 'git tag --sort version:refname --merged';
+  var parseSomeTags = parseTags.bind(null, vTagsOnly);
+  return exec(cmd)
+    .then(parseSomeTags)
+    .then(getCommitIds);
+}
+
 function getTags (vTagsOnly) {
   // returns each tag on its own line
   // oldest tags first, latest tags last
@@ -60,5 +71,7 @@ function getTags (vTagsOnly) {
     .then(parseSomeTags)
     .then(getCommitIds);
 }
+
+getTags.getBranchTags = getBranchTags;
 
 module.exports = getTags;

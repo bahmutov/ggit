@@ -21,9 +21,9 @@ commits.all(gitRepoFolder)
 
 Each object has at least 'id', 'message' and (maybe empty) 'body' properties.
 
-You can also return just the commits after the last version tag
-(which usually starts with 'v'). This is useful for semantic release
-code.
+You can also return just the commits starting from the last version tag
+(which usually starts with 'v') on the current branch. This is useful
+for semantic release code.
 
 ```sh
 var commits = require('ggit').commits;

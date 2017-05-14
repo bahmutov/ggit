@@ -21,6 +21,7 @@ var actions = {
 	commitMessage: require('./src/commit-message'),
 	getGitFolder: require('./src/git-folder'),
 	tags: require('./src/tags'),
+	branchTags: require('./src/tags').getBranchTags,
 	fetchTags: require('./src/fetch-tags')
 };
 
