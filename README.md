@@ -384,6 +384,8 @@ Handles Git submodules
 
 ### tags
 
+> Requires `git` >= 2.0
+
 Returns list of tags in the given folder, including commit ids.
 
 ```js
@@ -409,6 +411,8 @@ Oldest tag is returns as first object, latest tag is the
 last object in the list.
 
 ### branchTags
+
+> Requires `git` >= 2.7
 
 Similar to `tags`, `branchTags` returns tags in the given folder,
 but only those tags accessible from the current branch. Any tags
