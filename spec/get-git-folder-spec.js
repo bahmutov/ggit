@@ -1,21 +1,19 @@
-'use strict';
+'use strict'
 
-var la = require('lazy-ass');
-var is = require('check-more-types');
+var la = require('lazy-ass')
+var is = require('check-more-types')
 
+/* global describe, it */
 describe('getGitFolder', function () {
-
-  var getGitFolder = require('..').getGitFolder;
+  var getGitFolder = require('..').getGitFolder
 
   it('is a function', function () {
-    la(is.fn(getGitFolder));
-  });
+    la(is.fn(getGitFolder))
+  })
 
   it('returns folder', function () {
-    return getGitFolder()
-    .then(function (folder) {
-      la(is.unemptyString(folder), 'could not get git folder', folder);
+    return getGitFolder().then(function (folder) {
+      la(is.unemptyString(folder), 'could not get git folder', folder)
     })
-  });
-
-});
+  })
+})

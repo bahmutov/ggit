@@ -30,7 +30,7 @@ function tryDotGit (err) {
   throw err
 }
 
-function isInDotGit() {
+function isInDotGit () {
   return /\.git$/.test(process.cwd())
 }
 
