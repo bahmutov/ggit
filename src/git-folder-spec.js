@@ -44,7 +44,7 @@ describe('git-folder', function () {
 
   // when inside .git folder, the usual command does not work
   // make sure we are returning valid root folder in that case
-  describe.only('from .git folder', function () {
+  describe('from .git folder', function () {
     let rootFolder
 
     beforeEach(function () {
