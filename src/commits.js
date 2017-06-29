@@ -1,16 +1,16 @@
-'use strict';
+'use strict'
 
-var la = require('lazy-ass');
-var check = require('check-more-types');
-var getOneLineLog = require('./get-one-line-log');
-la(check.fn(getOneLineLog), 'missing one line log function');
-var fs = require('fs');
-var folders = require('chdir-promise');
-var R = require('ramda');
-var getTags = require('./tags');
+var la = require('lazy-ass')
+var check = require('check-more-types')
+var getOneLineLog = require('./get-one-line-log')
+la(check.fn(getOneLineLog), 'missing one line log function')
+var fs = require('fs')
+var folders = require('chdir-promise')
+var R = require('ramda')
+var getTags = require('./tags')
 
-function getLog() {
-  return getOneLineLog({ full: true });
+function getLog () {
+  return getOneLineLog({ full: true })
 }
 
 /*
@@ -23,16 +23,14 @@ function getLog() {
     .then(console.table)
     .done();
 */
-function commits(gitRepoRootFolder) {
+function commits (gitRepoRootFolder) {
   if (!gitRepoRootFolder) {
-    gitRepoRootFolder = process.cwd();
+    gitRepoRootFolder = process.cwd()
   }
-  la(check.unemptyString(gitRepoRootFolder), 'missing git repo folder');
-  la(fs.existsSync(gitRepoRootFolder), 'cannot find folder', gitRepoRootFolder);
+  la(check.unemptyString(gitRepoRootFolder), 'missing git repo folder')
+  la(fs.existsSync(gitRepoRootFolder), 'cannot find folder', gitRepoRootFolder)
 
-  return folders.to(gitRepoRootFolder)
-    .then(getLog)
-    .tap(folders.back);
+  return folders.to(gitRepoRootFolder).then(getLog).tap(folders.back)
 }
 
 /*
@@ -46,46 +44,49 @@ function commits(gitRepoRootFolder) {
     .then(console.log)
     .done();
 */
-function byId(commits) {
-  var ids = R.map(R.prop('id'))(commits);
-  var messages = R.map(R.prop('message'))(commits);
-  var commitInfo = R.zipObj(ids, messages);
-  return commitInfo;
+function byId (commits) {
+  var ids = R.map(R.prop('id'))(commits)
+  var messages = R.map(R.prop('message'))(commits)
+  var commitInfo = R.zipObj(ids, messages)
+  return commitInfo
 }
 
-function afterLastTag(vTagsOnly) {
-  return commits()
-    .then(function (list) {
-      vTagsOnly = vTagsOnly !== false ? true: false;
-      return getTags(vTagsOnly)
-        .then(function (tags) {
-          if (check.empty(tags)) {
-            return list;
-          }
-          var lastTag = tags[tags.length - 1];
-          var lastTagCommit = lastTag.commit;
-          la(check.unemptyString(lastTagCommit),
-            'missing commit in the last tag', lastTag);
-          var found;
-          var lastCommits = list.filter(function (commit) {
-            if (found) {
-              return;
-            }
-            if (commit.id === lastTagCommit) {
-              found = true;
-              return;
-            }
-            return true;
-          });
-          return lastCommits;
-        });
-    });
+function afterLastTag (vTagsOnly) {
+  return commits().then(function (list) {
+    vTagsOnly = vTagsOnly !== false
+    return getTags(vTagsOnly).then(function (tags) {
+      if (check.empty(tags)) {
+        return list
+      }
+      var lastTag = tags[tags.length - 1]
+      var lastTagCommit = lastTag.commit
+      la(
+        check.unemptyString(lastTagCommit),
+        'missing commit in the last tag',
+        lastTag
+      )
+      var found
+      var lastCommits = list.filter(function (commit) {
+        if (found) {
+          return
+        }
+        if (commit.id === lastTagCommit) {
+          found = true
+          return
+        }
+        return true
+      })
+      return lastCommits
+    })
+  })
 }
 
 module.exports = {
   all: commits,
-  byId: check.defend(byId,
-    check.array, 'need array of commit info objects to zip'),
+  byId: check.defend(
+    byId,
+    check.array,
+    'need array of commit info objects to zip'
+  ),
   afterLastTag: afterLastTag
-};
-
+}

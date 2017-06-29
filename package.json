@@ -12,7 +12,7 @@
   },
   "config": {
     "pre-git": {
-      "commit-msg": "validate-commit-msg",
+      "commit-msg": "simple-commit-message",
       "pre-commit": [
         "npm test"
       ],
@@ -62,13 +62,16 @@
     "matchdep": "1.0.1",
     "mocha": "3.2.0",
     "pre-git": "1.4.0",
+    "prettier-standard": "6.0.0",
     "qunit-promises": "0.1.5",
     "rocha": "2.3.0",
     "semantic-release": "6.3.6",
+    "simple-commit-message": "3.0.2",
+    "standard": "10.0.2",
     "time-grunt": "1.4.0"
   },
   "engines": {
-    "node": ">= 0.8.0"
+    "node": ">= 4.0.0"
   },
   "files": [
     "bin",
@@ -89,6 +92,9 @@
   "license": "MIT",
   "main": "./index.js",
   "preferGlobal": true,
+  "release": {
+    "analyzeCommits": "simple-commit-message"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/bahmutov/ggit.git"
@@ -101,9 +107,12 @@
     "grunt": "grunt",
     "gt": "gt src/test/*.js --output",
     "issues": "git-issues",
+    "lint": "standard --verbose --fix '*.js' 'src/*.js'",
     "mocha": "npm run mocha:spec && npm run mocha:src",
     "mocha:spec": "mocha spec/*-spec.js",
     "mocha:src": "mocha src/**/*-spec.js",
+    "prelint": "npm run pretty",
+    "pretty": "prettier-standard '*.js' 'src/*.js'",
     "rocha": "node --harmony node_modules/.bin/rocha spec/*-spec.js",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "size": "t=\"$(npm pack .)\"; wc -c \"${t}\"; tar tvf \"${t}\"; rm \"${t}\";",

@@ -1,23 +1,23 @@
-var la = require('lazy-ass');
-var check = require('check-more-types');
-var exec = require('./exec');
+var la = require('lazy-ass')
+var check = require('check-more-types')
+var exec = require('./exec')
 
 // parses date, author, message
-function commitMeta(lines) {
-  la(lines.length > 3, 'expected more lines', lines);
+function commitMeta (lines) {
+  la(lines.length > 3, 'expected more lines', lines)
 
-  var commit = lines[0].split(' ')[1].trim();
-  var author = lines[1].split(':')[1].trim();
+  var commit = lines[0].split(' ')[1].trim()
+  var author = lines[1].split(':')[1].trim()
   // remove Date:
-  var date = lines[2].substr(5).trim();
-  var message = lines[4].trim();
+  var date = lines[2].substr(5).trim()
+  var message = lines[4].trim()
 
   return {
     commit: commit,
     author: author,
     date: date,
     message: message
-  };
+  }
 }
 
 /*
@@ -35,46 +35,45 @@ Date:   Mon Jan 13 19:04:06 2014 -0500
 9       0       complexity.json
 2       1       package.json
 */
-function isValidLine(line) {
-  var rex = /^\s*\d+\s+\d+[\w\W]+$/;
-  return line && rex.test(line);
+function isValidLine (line) {
+  var rex = /^\s*\d+\s+\d+[\w\W]+$/
+  return line && rex.test(line)
 }
-la(isValidLine('1  1 time-method-call.js'));
-la(isValidLine(' 1  0 README.md'));
+la(isValidLine('1  1 time-method-call.js'))
+la(isValidLine(' 1  0 README.md'))
 
-function parseNumstat(stdout) {
-  la(check.unemptyString(stdout), 'missing numstat output', stdout);
-  var lines = stdout.split('\n');
-  la(lines.length > 3, 'expected more lines', stdout);
+function parseNumstat (stdout) {
+  la(check.unemptyString(stdout), 'missing numstat output', stdout)
+  var lines = stdout.split('\n')
+  la(lines.length > 3, 'expected more lines', stdout)
 
-  var info = commitMeta(lines);
+  var info = commitMeta(lines)
 
-  var k = 6;
-  var fileChanges = {};
+  var k = 6
+  var fileChanges = {}
   for (; k < lines.length; k += 1) {
     if (isValidLine(lines[k])) {
-      var parts = lines[k].split('\t');
-      var added = Number(parts[0].trim());
-      var deleted = Number(parts[1].trim());
-      var filename = parts[2].trim();
+      var parts = lines[k].split('\t')
+      var added = Number(parts[0].trim())
+      var deleted = Number(parts[1].trim())
+      var filename = parts[2].trim()
       fileChanges[filename] = {
         filename: filename,
         added: added,
         deleted: deleted
-      };
+      }
     }
   }
 
-  info.changes = fileChanges;
-  return info;
+  info.changes = fileChanges
+  return info
 }
 
-function commitNumstat(hash) {
-  la(check.unemptyString(hash), 'missing commit hash', hash);
+function commitNumstat (hash) {
+  la(check.unemptyString(hash), 'missing commit hash', hash)
 
-  var cmd = 'git show --numstat ' + hash;
-  return exec(cmd)
-    .then(parseNumstat);
+  var cmd = 'git show --numstat ' + hash
+  return exec(cmd).then(parseNumstat)
 }
 
-module.exports = commitNumstat;
+module.exports = commitNumstat
