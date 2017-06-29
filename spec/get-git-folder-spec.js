@@ -12,8 +12,10 @@ describe('getGitFolder', function () {
   });
 
   it('returns folder', function () {
-    var folder = getGitFolder();
-    la(is.unemptyString(folder), 'could not get git folder', folder);
+    return getGitFolder()
+    .then(function (folder) {
+      la(is.unemptyString(folder), 'could not get git folder', folder);
+    })
   });
 
 });
