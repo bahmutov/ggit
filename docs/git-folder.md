@@ -1,7 +1,11 @@
 ## getGitFolder
 
-```javascript
-const folder = require('ggit').getGitFolder();
-```
+Returns the root folder, equivalent to command
+line `git rev-parse --show-toplevel`
 
-Handles Git submodules
+```javascript
+require('ggit').getGitFolder()
+  .then(folder => {
+    ...
+  })
+```
