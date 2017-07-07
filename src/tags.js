@@ -5,6 +5,7 @@ var is = require('check-more-types')
 var exec = require('./exec')
 var Q = require('q')
 var debug = require('debug')('ggit')
+const R = require('ramda')
 
 function toLines (text) {
   return text.split('\n')
@@ -59,12 +60,20 @@ function getBranchTags (vTagsOnly) {
   return exec(cmd).then(parseSomeTags).then(getCommitIds)
 }
 
+function getTagsSortByVersion () {
+  const cmd = 'git tag'
+  return exec(cmd)
+    .then(sortTagsByVersion)
+}
+
 function getTags (vTagsOnly) {
   // returns each tag on its own line
   // oldest tags first, latest tags last
   var cmd = 'git tag --sort version:refname'
   var parseSomeTags = parseTags.bind(null, vTagsOnly)
-  return exec(cmd).then(parseSomeTags).then(getCommitIds)
+  return exec(cmd)
+    .catch(getTagsSortByVersion)
+    .then(parseSomeTags).then(getCommitIds)
 }
 
 getTags.getBranchTags = getBranchTags

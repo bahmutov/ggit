@@ -414,6 +414,10 @@ tags(true).then(function (list) {...})
 Oldest tag is returns as first object, latest tag is the
 last object in the list.
 
+If you have older `git` (like Travis does), it will automatically try to
+grab all the tags and sort them using
+[semantic sort](https://github.com/semver/node-semver#comparison)
+
 ### branchTags
 
 > Requires `git` >= 2.7
