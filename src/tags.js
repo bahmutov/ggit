@@ -64,7 +64,8 @@ function getBranchTags (vTagsOnly) {
 
 function getTagsSortByVersion () {
   const cmd = 'git tag'
-  return exec(cmd).then(sortTagsByVersion)
+  // return single string so other pieces work as expected
+  return exec(cmd).then(sortTagsByVersion).then(tags => tags.join('\n'))
 }
 
 function getTags (vTagsOnly) {
