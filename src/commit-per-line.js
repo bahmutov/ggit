@@ -30,7 +30,7 @@ function commitForEachLine (filenames) {
   console.log('blames for', filenames)
 
   var blamePromises = filenames.map(function (name) {
-    return R.lPartial(gitBlame, name)
+    return R.partial(gitBlame, [name])
   })
 
   var blameInfo = []
@@ -43,7 +43,7 @@ function commitForEachLine (filenames) {
   return blamePromises
     .reduce(keepBlameInfo, q())
     .then(R.always(blameInfo))
-    .then(R.lPartial(zipBlames, filenames))
+    .then(R.partial(zipBlames, [filenames]))
 }
 
 module.exports = check.defend(

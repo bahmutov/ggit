@@ -28,7 +28,7 @@ if (!process.env.TRAVIS) {
     })
   })
 
-  describe.only('commits after last tag', () => {
+  describe('commits after last tag', () => {
     const afterLastTag = require('../index').commits.afterLastTag
 
     it('fetches commits after latest tag', () => {

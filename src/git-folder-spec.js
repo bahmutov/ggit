@@ -1,10 +1,10 @@
-var la = require('lazy-ass')
-var is = require('check-more-types')
+const la = require('lazy-ass')
+const is = require('check-more-types')
 const chdir = require('chdir-promise')
 const fromThisFolder = require('path').join.bind(null, __dirname)
 
 /* global describe, it, beforeEach, afterEach */
-var gitFolder = require('./git-folder')
+const gitFolder = require('./git-folder')
 
 describe('git-folder', function () {
   it('returns git root folder', function () {
@@ -20,6 +20,7 @@ describe('git-folder', function () {
       return gitFolder().then(folder => {
         la(is.unemptyString(folder), 'could not grab git folder', folder)
         rootFolder = folder
+        console.log('test running from folder', rootFolder)
       })
     })
 
