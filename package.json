@@ -14,6 +14,7 @@
     "pre-git": {
       "commit-msg": "simple-commit-message",
       "pre-commit": [
+        "npm run lint",
         "npm test"
       ],
       "pre-push": [
@@ -120,6 +121,7 @@
     "mocha:spec": "mocha spec/*-spec.js",
     "mocha:src": "mocha src/**/*-spec.js",
     "prelint": "npm run pretty",
+    "pretest": "npm run lint",
     "pretty": "prettier-standard '*.js' 'src/*.js' 'spec/*.js'",
     "rocha": "node --harmony node_modules/.bin/rocha spec/*-spec.js",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",

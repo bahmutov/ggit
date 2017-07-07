@@ -46,17 +46,16 @@ function isInDotGit () {
 function searchUpForGitFolder () {
   const GIT = process.env.GIT_DIR || '.git'
   debug('searching for %s up from %s', GIT, process.cwd())
-  return findUp(GIT)
-    .then(gitDirectory => {
-      if (gitDirectory) {
-        if (R.endsWith(GIT, gitDirectory)) {
-          gitDirectory = gitDirectory.replace(GIT, '')
-        }
-        debug('found %s', gitDirectory)
-        return gitDirectory
+  return findUp(GIT).then(gitDirectory => {
+    if (gitDirectory) {
+      if (R.endsWith(GIT, gitDirectory)) {
+        gitDirectory = gitDirectory.replace(GIT, '')
       }
-      throw new Error(`Could not find ${GIT} folder up from ${process.cwd()}`)
-    })
+      debug('found %s', gitDirectory)
+      return gitDirectory
+    }
+    throw new Error(`Could not find ${GIT} folder up from ${process.cwd()}`)
+  })
 }
 
 function stripSeparator (folder) {

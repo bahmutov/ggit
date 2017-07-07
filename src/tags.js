@@ -5,7 +5,9 @@ var is = require('check-more-types')
 var exec = require('./exec')
 var Q = require('q')
 var debug = require('debug')('ggit')
-const R = require('ramda')
+const sortTagsByVersion = require('./sort-tags-by-version')
+
+la(is.fn(sortTagsByVersion), 'missing sort tags by version')
 
 function toLines (text) {
   return text.split('\n')
@@ -62,8 +64,7 @@ function getBranchTags (vTagsOnly) {
 
 function getTagsSortByVersion () {
   const cmd = 'git tag'
-  return exec(cmd)
-    .then(sortTagsByVersion)
+  return exec(cmd).then(sortTagsByVersion)
 }
 
 function getTags (vTagsOnly) {
@@ -73,7 +74,8 @@ function getTags (vTagsOnly) {
   var parseSomeTags = parseTags.bind(null, vTagsOnly)
   return exec(cmd)
     .catch(getTagsSortByVersion)
-    .then(parseSomeTags).then(getCommitIds)
+    .then(parseSomeTags)
+    .then(getCommitIds)
 }
 
 getTags.getBranchTags = getBranchTags
