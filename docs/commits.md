@@ -29,3 +29,11 @@ var commits = require('ggit').commits;
 commits.afterLastTag()
   .then(function (list) { ... })
 ```
+
+You can get commits after certain SHA
+
+```sh
+var commits = require('ggit').commits;
+commits.after('439...')
+  .then(function (list) { ... })
+```

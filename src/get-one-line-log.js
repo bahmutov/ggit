@@ -19,6 +19,8 @@ function getLog (opts) {
   }
   if (opts.remote && opts.branch) {
     cmd += ' ' + opts.remote + '/' + opts.branch + '..' + opts.branch
+  } else if (opts.from) {
+    cmd += ' ' + opts.from + '..'
   }
   debug('using log cmd', cmd)
 

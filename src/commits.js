@@ -13,6 +13,13 @@ function getLog () {
   return getOneLineLog({ full: true })
 }
 
+function getLogAfter (commit) {
+  return getOneLineLog({
+    full: true,
+    from: commit
+  })
+}
+
 /*
   // returns commits from given repo folder
   // latest commits first
@@ -31,6 +38,20 @@ function commits (gitRepoRootFolder) {
   la(fs.existsSync(gitRepoRootFolder), 'cannot find folder', gitRepoRootFolder)
 
   return folders.to(gitRepoRootFolder).then(getLog).tap(folders.back)
+}
+
+// returns list of commits after given commit sha
+function commitsAfter (commit, gitRepoRootFolder) {
+  if (!gitRepoRootFolder) {
+    gitRepoRootFolder = process.cwd()
+  }
+  la(check.unemptyString(gitRepoRootFolder), 'missing git repo folder')
+  la(fs.existsSync(gitRepoRootFolder), 'cannot find folder', gitRepoRootFolder)
+
+  return folders
+    .to(gitRepoRootFolder)
+    .then(() => getLogAfter(commit))
+    .tap(folders.back)
 }
 
 /*
@@ -88,5 +109,6 @@ module.exports = {
     check.array,
     'need array of commit info objects to zip'
   ),
-  afterLastTag: afterLastTag
+  afterLastTag: afterLastTag,
+  after: commitsAfter
 }
