@@ -167,7 +167,7 @@ Each object has at least 'id', 'message' and (maybe empty) 'body' properties.
 You can also return just the commits starting from the last version tag
 (which usually starts with 'v'). This is useful for semantic release code.
 
-```sh
+```js
 var commits = require('ggit').commits;
 commits.afterLastTag()
   .then(function (list) { ... })
@@ -175,7 +175,7 @@ commits.afterLastTag()
 
 You can get commits after certain SHA
 
-```sh
+```js
 var commits = require('ggit').commits;
 commits.after('439...')
   .then(function (list) { ... })
@@ -313,7 +313,7 @@ require('ggit').branchName()
 ```
 
 
-### changed-files
+### changedFiles
 
 Returns list of modified files
 
@@ -347,6 +347,27 @@ This is a wrapper around two commands `git diff --name-status --diff-filter=ACMD
 and `git status --porcelain`
 
 
+
+
+### changedFilesAfter
+
+Returns list of unique files modified / added / deleted after given commit
+
+```javascript
+var changedFilesAfter = require('ggit').changedFilesAfter;
+changedFilesAfter('a12f55f')
+    .then(console.log)
+    .catch(console.error);
+/*
+something like
+[ 'README.md',
+  'docs/commits.md',
+  'src/commits.js',
+  'src/get-one-line-log.js',
+  'package.json',
+  'src/last-commit-id.js' ]
+*/
+```
 
 
 ### fileContents

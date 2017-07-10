@@ -17,6 +17,7 @@ var actions = {
   lastCommitId: require('./src/last-commit-id'),
   branchName: require('./src/branch-name'),
   changedFiles: require('./src/changed-files'),
+  changedFilesAfter: require('./src/changed-files-after'),
   fileContents: require('./src/file-contents'),
   commitMessage: require('./src/commit-message'),
   getGitFolder: require('./src/git-folder'),

@@ -24,7 +24,7 @@ Each object has at least 'id', 'message' and (maybe empty) 'body' properties.
 You can also return just the commits starting from the last version tag
 (which usually starts with 'v'). This is useful for semantic release code.
 
-```sh
+```js
 var commits = require('ggit').commits;
 commits.afterLastTag()
   .then(function (list) { ... })
@@ -32,7 +32,7 @@ commits.afterLastTag()
 
 You can get commits after certain SHA
 
-```sh
+```js
 var commits = require('ggit').commits;
 commits.after('439...')
   .then(function (list) { ... })

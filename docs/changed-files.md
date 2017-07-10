@@ -1,4 +1,4 @@
-## changed-files
+## changedFiles
 
 Returns list of modified files
 
