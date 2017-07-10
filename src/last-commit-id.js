@@ -8,9 +8,19 @@ var exec = require('./exec')
 function saveIntoFile (options, id) {
   if (check.unemptyString(options.file)) {
     var write = require('fs').writeFileSync
-    var contents = JSON.stringify({ id: id }, null, 2) + '\n'
+    var short = id.substr(0, 7)
+    var data = {
+      id: id,
+      short: short
+    }
+    var contents = JSON.stringify(data, null, 2) + '\n'
     write(options.file, contents, 'utf8')
-    console.log('saved last commit %s in file %s', id, options.file)
+    console.log(
+      'saved last commit %s (short %s) in file %s',
+      id,
+      short,
+      options.file
+    )
   }
   console.log('last commit:', id)
 }
