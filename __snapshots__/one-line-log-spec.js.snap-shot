@@ -1,0 +1,11 @@
+exports['parses mock output 1'] = [
+  {
+    "id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "message": "commit B"
+  },
+  {
+    "id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "message": "commit A"
+  }
+]
+

@@ -1,0 +1,21 @@
+exports['grabs last 5 commits schema 1'] = {
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "required": true
+    },
+    "message": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "additionalProperties": false,
+  "list": true,
+  "example": {
+    "id": "ad5820c61bc7a7688eb4003782e0cf82d9c04507",
+    "message": "testing one line log"
+  }
+}
+

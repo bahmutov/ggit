@@ -30,6 +30,5 @@ function getLog (opts) {
 module.exports = getLog
 
 if (!module.parent) {
-  getLog({n: 5})
-  .then(console.log, console.error)
+  getLog({ n: 5 }).then(console.log, console.error)
 }
