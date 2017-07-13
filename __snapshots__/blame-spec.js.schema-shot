@@ -1,0 +1,41 @@
+exports['gets blame for 1 line of this file 1'] = {
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "commit": {
+      "type": "string",
+      "required": true
+    },
+    "author": {
+      "type": "string",
+      "required": true
+    },
+    "committer": {
+      "type": "string",
+      "required": true
+    },
+    "summary": {
+      "type": "string",
+      "required": true
+    },
+    "filename": {
+      "type": "string",
+      "required": true
+    },
+    "line": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "additionalProperties": false,
+  "list": false,
+  "example": {
+    "commit": "adfb30d5888bb1eb9bad1f482248edec2947dab6",
+    "author": "Gleb Bahmutov",
+    "committer": "Gleb Bahmutov",
+    "summary": "move blame test",
+    "filename": "spec/blame-spec.js",
+    "line": "\tconst la = require('lazy-ass');"
+  }
+}
+
