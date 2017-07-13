@@ -1,9 +1,9 @@
-exports['mocks exec and parses output 1'] = {
+exports['can mock blame for non-existent file 1'] = {
   "commit": "adfb30d5888bb1eb9bad1f482248edec2947dab6",
   "author": "Gleb Bahmutov",
   "committer": "Gleb Bahmutov",
   "summary": "mock commit",
   "filename": "spec/blame-spec.js",
-  "line": "this is mock line 10000"
+  "line": "this is mock line 42"
 }
 
