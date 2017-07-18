@@ -13,7 +13,7 @@ function saveIntoFile (options, id) {
     var data = {
       id: id,
       short: short,
-      now: currentTime.toISOString()
+      savedAt: currentTime.toISOString()
     }
     var contents = JSON.stringify(data, null, 2) + '\n'
     write(options.file, contents, 'utf8')
