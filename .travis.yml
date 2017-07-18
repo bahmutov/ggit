@@ -11,7 +11,7 @@ before_script:
   - npm prune
 script:
   - git --version
-  - npm test
+  - DEBUG=snap-shot-core npm test
 after_success:
   - npm run semantic-release
 branches:
