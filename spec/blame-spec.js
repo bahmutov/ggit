@@ -5,7 +5,7 @@ const snapshot = require('snap-shot')
 const { stubExecOnce } = require('stub-spawn-once')
 const { stripIndent } = require('common-tags')
 
-/* global describe, it, beforeEach, afterEach */
+/* global describe, it, beforeEach */
 describe('blame', () => {
   const blame = require('..').blame
 
@@ -74,12 +74,12 @@ describe('blame', () => {
       `
       stubExecOnce(cmd, output)
     })
-    afterEach(() => {
-      fs.existsSync.restore()
-    })
 
     it('can mock blame for non-existent file', () => {
-      return snapshot(blame(file, line))
+      const result = blame(file, line)
+      // restore file system in order for snapshots to load
+      fs.existsSync.restore()
+      return snapshot(result)
     })
   })
 })
