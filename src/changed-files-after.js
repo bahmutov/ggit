@@ -12,11 +12,12 @@ const changes = R.map(R.prop('changes'))
 const justFiles = R.compose(R.uniq, R.flatten, R.map(R.keys))
 
 // returns list of unique changed file after the given commit
-function changedFilesAfter (sha) {
+function changedFilesAfter (sha, branch = 'master') {
   la(is.unemptyString(sha), 'missing from SHA', sha)
   debug('changed files after %s', sha)
+  debug('on branch %s', branch)
   return commits
-    .after(sha)
+    .after(sha, branch)
     .then(ids)
     .then(
       R.tap(list => {

@@ -15,10 +15,11 @@ function getLog () {
   return getOneLineLog({ full: true })
 }
 
-function getLogAfter (commit) {
+function getLogAfter (commit, branchName = 'master') {
   return getOneLineLog({
     full: true,
-    from: commit
+    from: commit,
+    firstParent: branchName
   })
 }
 
@@ -43,7 +44,7 @@ function commits (gitRepoRootFolder) {
 }
 
 // returns list of commits after given commit sha
-function commitsAfter (commit, gitRepoRootFolder) {
+function commitsAfter (commit, branchName, gitRepoRootFolder) {
   if (!gitRepoRootFolder) {
     gitRepoRootFolder = process.cwd()
   }
@@ -52,7 +53,7 @@ function commitsAfter (commit, gitRepoRootFolder) {
 
   return folders
     .to(gitRepoRootFolder)
-    .then(() => getLogAfter(commit))
+    .then(() => getLogAfter(commit, branchName))
     .tap(folders.back)
 }
 

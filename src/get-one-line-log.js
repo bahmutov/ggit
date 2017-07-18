@@ -22,7 +22,10 @@ function getLog (opts) {
   } else if (opts.from) {
     cmd += ' ' + opts.from + '..'
   }
-  debug('using log cmd', cmd)
+  if (opts.firstParent) {
+    cmd += ' --first-parent ' + opts.firstParent
+  }
+  debug('using log cmd "%s"', cmd)
 
   return exec(cmd).then(logParser)
 }

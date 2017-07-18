@@ -1,10 +1,12 @@
 ## changedFilesAfter
 
-Returns list of unique files modified / added / deleted after given commit
+Returns list of unique files modified / added / deleted after given commit.
+The commits are limited to specific branch (usually "master") to avoid mixing
+up multiple branches.
 
 ```javascript
 var changedFilesAfter = require('ggit').changedFilesAfter;
-changedFilesAfter('a12f55f')
+changedFilesAfter('a12f55f', 'master')
     .then(console.log)
     .catch(console.error);
 /*

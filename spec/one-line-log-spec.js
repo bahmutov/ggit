@@ -2,12 +2,17 @@ const schemaShot = require('schema-shot')
 const snapshot = require('snap-shot')
 const la = require('lazy-ass')
 const is = require('check-more-types')
-const { stubSpawnOnce } = require('stub-spawn-once')
+const { stubExecOnce } = require('stub-spawn-once')
 const { stripIndent } = require('common-tags')
 
 /* global describe, it */
-describe('one line log', () => {
+describe.only('one line log', () => {
   const log = require('../index').getOneLineLog
+
+  const output = stripIndent`
+    bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb commit B
+    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa commit A
+  `
 
   it('is a function', () => {
     la(is.fn(log))
@@ -24,11 +29,15 @@ describe('one line log', () => {
   })
 
   it('parses mock output', () => {
-    const output = stripIndent`
-      bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb commit B
-      aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa commit A
-    `
-    stubSpawnOnce('git log --pretty=oneline -n 2', 0, output)
+    stubExecOnce('git log --pretty=oneline -n 2', output)
     return snapshot(log({ n: 2 }))
+  })
+
+  it('parses mock output with branch name', () => {
+    stubExecOnce(
+      'git log --pretty=oneline -n 2 --first-parent a-branch',
+      output
+    )
+    return snapshot(log({ n: 2, firstParent: 'a-branch' }))
   })
 })
