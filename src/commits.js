@@ -1,5 +1,6 @@
 'use strict'
 
+var debug = require('debug')('ggit')
 var la = require('lazy-ass')
 var check = require('check-more-types')
 var getOneLineLog = require('./get-one-line-log')
@@ -8,6 +9,7 @@ var fs = require('fs')
 var folders = require('chdir-promise')
 var R = require('ramda')
 var getTags = require('./tags')
+var pluralize = require('pluralize')
 
 function getLog () {
   return getOneLineLog({ full: true })
@@ -76,6 +78,7 @@ function afterLastTag (vTagsOnly) {
   return commits().then(function (list) {
     vTagsOnly = vTagsOnly !== false
     return getTags(vTagsOnly).then(function (tags) {
+      debug('found %s', pluralize('tag', tags.length, true))
       if (check.empty(tags)) {
         return list
       }
@@ -86,6 +89,7 @@ function afterLastTag (vTagsOnly) {
         'missing commit in the last tag',
         lastTag
       )
+      debug('last tag %s commit %s', lastTag, lastTagCommit)
       var found
       var lastCommits = list.filter(function (commit) {
         if (found) {
