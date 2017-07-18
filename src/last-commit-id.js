@@ -9,9 +9,11 @@ function saveIntoFile (options, id) {
   if (check.unemptyString(options.file)) {
     var write = require('fs').writeFileSync
     var short = id.substr(0, 7)
+    var currentTime = new Date()
     var data = {
       id: id,
-      short: short
+      short: short,
+      now: currentTime.toISOString()
     }
     var contents = JSON.stringify(data, null, 2) + '\n'
     write(options.file, contents, 'utf8')
