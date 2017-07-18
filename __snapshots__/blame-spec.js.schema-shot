@@ -30,12 +30,12 @@ exports['gets blame for 1 line of this file 1'] = {
   "additionalProperties": false,
   "list": false,
   "example": {
-    "commit": "adfb30d5888bb1eb9bad1f482248edec2947dab6",
+    "commit": "b2bf285c40b0c17743d84495b69c51d4c6367089",
     "author": "Gleb Bahmutov",
     "committer": "Gleb Bahmutov",
-    "summary": "move blame test",
+    "summary": "mock test",
     "filename": "spec/blame-spec.js",
-    "line": "\tconst la = require('lazy-ass');"
+    "line": "\tconst la = require('lazy-ass')"
   }
 }
 

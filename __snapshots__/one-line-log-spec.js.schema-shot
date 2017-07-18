@@ -14,8 +14,8 @@ exports['grabs last 5 commits schema 1'] = {
   "additionalProperties": false,
   "list": true,
   "example": {
-    "id": "ad5820c61bc7a7688eb4003782e0cf82d9c04507",
-    "message": "testing one line log"
+    "id": "5c4b9216836a75ec93d7936db2597499a0bee0dc",
+    "message": "fix(debug): debug messages in commits, close #54"
   }
 }
 
