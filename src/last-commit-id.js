@@ -5,24 +5,34 @@ var la = require('lazy-ass')
 var check = require('check-more-types')
 var exec = require('./exec')
 
+function save (filename, data) {
+  var write = require('fs').writeFileSync
+  var contents = JSON.stringify(data, null, 2) + '\n'
+  write(filename, contents, 'utf8')
+}
+
+function saveBuildFile (filename, id) {
+  var exists = require('fs').existsSync
+  var read = require('fs').readFileSync
+
+  var short = id.substr(0, 7)
+  var currentTime = new Date()
+  var data = {
+    id: id,
+    short: short,
+    savedAt: currentTime.toISOString()
+  }
+  if (exists('./package.json')) {
+    var pkg = JSON.parse(read('./package.json', 'utf8'))
+    data.version = pkg.version
+  }
+  save(filename, data)
+  console.log('saved last commit %s (short %s) in file %s', id, short, filename)
+}
+
 function saveIntoFile (options, id) {
   if (check.unemptyString(options.file)) {
-    var write = require('fs').writeFileSync
-    var short = id.substr(0, 7)
-    var currentTime = new Date()
-    var data = {
-      id: id,
-      short: short,
-      savedAt: currentTime.toISOString()
-    }
-    var contents = JSON.stringify(data, null, 2) + '\n'
-    write(options.file, contents, 'utf8')
-    console.log(
-      'saved last commit %s (short %s) in file %s',
-      id,
-      short,
-      options.file
-    )
+    saveBuildFile(options.file, id)
   }
   console.log('last commit:', id)
 }

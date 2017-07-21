@@ -5,7 +5,7 @@ You can install and run this tool as a stand alone CLI application.
     npm install -g ggit
     ggit --help
     # get last commit id in the current folder, save into json file
-    ggit last -f build.json
+    ggit-last -f build.json
 
 # API
 
