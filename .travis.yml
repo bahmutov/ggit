@@ -11,6 +11,7 @@ before_script:
   - npm prune
 script:
   - git --version
+  - ./next-update-travis.sh
   - DEBUG=snap-shot-core npm test
 after_success:
   - npm run semantic-release
