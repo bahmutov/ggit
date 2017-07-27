@@ -45,7 +45,7 @@
     "find-up": "2.1.0",
     "glob": "7.1.2",
     "lazy-ass": "1.6.0",
-    "lodash": "3.10.1",
+    "lodash": "4.17.4",
     "moment": "2.18.1",
     "optimist": "0.6.1",
     "pluralize": "6.0.0",

@@ -31,7 +31,7 @@ function parseOutput (data) {
 
 function ensureUniq (list) {
   la(check.array(list), 'expected list', list)
-  return _.uniq(list, 'name')
+  return _.uniqBy(list, 'name')
 }
 
 function groupByModification (parsedLines) {
