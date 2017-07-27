@@ -4,8 +4,7 @@
   "version": "0.0.0",
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
   "bin": {
-    "ggit": "./bin/ggit.js",
-    "ggit-last": "./bin/ggit-last"
+    "ggit": "./bin/ggit.js"
   },
   "bugs": {
     "url": "https://github.com/bahmutov/ggit/issues"
