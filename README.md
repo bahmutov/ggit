@@ -5,21 +5,18 @@
 [![NPM][ggit-icon] ][ggit-url]
 
 [![Build status][ggit-ci-image] ][ggit-ci-url]
-[![dependencies][ggit-dependencies-image] ][ggit-dependencies-url]
-[![devdependencies][ggit-devdependencies-image] ][ggit-devdependencies-url]
 [![semantic-release][semantic-image] ][semantic-url]
 [![manpm](https://img.shields.io/badge/manpm-%E2%9C%93-3399ff.svg)](https://github.com/bahmutov/manpm)
+[![next-update-travis badge][nut-badge] ][nut-readme]
 
 [ggit-icon]: https://nodei.co/npm/ggit.svg?downloads=true
 [ggit-url]: https://npmjs.org/package/ggit
 [ggit-ci-image]: https://travis-ci.org/bahmutov/ggit.svg?branch=master
 [ggit-ci-url]: https://travis-ci.org/bahmutov/ggit
-[ggit-dependencies-image]: https://david-dm.org/bahmutov/ggit.svg
-[ggit-dependencies-url]: https://david-dm.org/bahmutov/ggit
-[ggit-devdependencies-image]: https://david-dm.org/bahmutov/ggit/dev-status.svg
-[ggit-devdependencies-url]: https://david-dm.org/bahmutov/ggit#info=devDependencies
 [semantic-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
 [semantic-url]: https://github.com/semantic-release/semantic-release
+[nut-badge]: https://img.shields.io/badge/next--update--travis-ok-green.svg
+[nut-readme]: https://github.com/bahmutov/next-update-travis#readme
 
 
 

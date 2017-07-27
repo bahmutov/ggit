@@ -6,7 +6,7 @@ const { stubExecOnce } = require('stub-spawn-once')
 const { stripIndent } = require('common-tags')
 
 /* global describe, it */
-describe.only('one line log', () => {
+describe('one line log', () => {
   const log = require('../index').getOneLineLog
 
   const output = stripIndent`
