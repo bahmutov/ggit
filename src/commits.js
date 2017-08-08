@@ -15,7 +15,10 @@ function getLog () {
   return getOneLineLog({ full: true })
 }
 
-function getLogAfter (commit, branchName = 'master') {
+function getLogAfter (commit, branchName) {
+  if (!branchName) {
+    branchName = 'master'
+  }
   return getOneLineLog({
     full: true,
     from: commit,
