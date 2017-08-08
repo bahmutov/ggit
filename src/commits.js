@@ -22,7 +22,7 @@ function getLogAfter (commit, branchName) {
   return getOneLineLog({
     full: true,
     from: commit,
-    firstParent: branchName
+    firstParent: typeof branchName === 'undefined' ? 'master' : branchName
   })
 }
 
