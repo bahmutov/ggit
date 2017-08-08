@@ -14,7 +14,7 @@ script:
   - git --version
   - node .
   - $(npm bin)/if-node-version ">=6" ./next-update-travis.sh
-  - TRAVIS_JOB_NUMBER=WORKAROUND.1 $(npm bin)/if-node-version ">=6" DEBUG=snap-shot-core $(npm bin)/if-node-version ">=6" npm test
+  - TRAVIS_JOB_NUMBER=WORKAROUND.1 DEBUG=snap-shot-core $(npm bin)/if-node-version ">=6" $(npm bin)/if-node-version ">=6" npm test
 after_success:
   - npm run semantic-release
 branches:
