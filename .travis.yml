@@ -16,9 +16,9 @@ script:
   - git --version
   - node .
   - $(npm bin)/if-node-version ">=6" ./next-update-travis.sh
-  - TRAVIS_JOB_NUMBER=WORKAROUND.1 DEBUG=snap-shot-core $(npm bin)/if-node-version ">=6" $(npm bin)/if-node-version ">=6" npm test
+  - $(npm bin)/if-node-version ">=6" npm test
 after_success:
-  - npm run semantic-release
+  - TRAVIS_JOB_NUMBER=WORKAROUND.1 $(npm bin)/if-node-version ">=6" npm run semantic-release
 branches:
   except:
     - "/^v\\d+\\.\\d+\\.\\d+$/"
