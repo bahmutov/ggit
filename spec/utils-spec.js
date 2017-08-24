@@ -27,5 +27,11 @@ describe('utils', () => {
         la(isGoodBuild(result), 'bad build', result)
       })
     })
+
+    it('has EST timestamp', () => {
+      return buildInfo(options).then(result => {
+        la(is.unemptyString(result.EST), 'is a string', result.EST)
+      })
+    })
   })
 })

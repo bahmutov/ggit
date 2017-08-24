@@ -4,16 +4,18 @@ var Promise = require('bluebird')
 var la = require('lazy-ass')
 var check = require('check-more-types')
 var exec = require('./exec')
+var moment = require('moment-timezone')
 
 function addBuildInfo (options, id) {
   la(check.unemptyString(id), 'missing commit id', id)
 
   var short = id.substr(0, 7)
-  var currentTime = new Date()
+  var currentTime = moment()
   var data = {
     id: id,
     short: short,
-    savedAt: currentTime.toISOString()
+    savedAt: currentTime.toISOString(),
+    EST: currentTime.tz('America/New_York').format()
   }
 
   if (options.version) {
