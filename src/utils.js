@@ -5,9 +5,19 @@ var la = require('lazy-ass')
 var check = require('check-more-types')
 var exec = require('./exec')
 var moment = require('moment-timezone')
+var numstat = require('./commit-numstat')
+var R = require('ramda')
 
-function addBuildInfo (options, id) {
+function cropString (n, s) {
+  if (s.length < n) {
+    return s
+  }
+  return s.substr(0, n) + '...'
+}
+
+function addBuildInfo (options, id, message) {
   la(check.unemptyString(id), 'missing commit id', id)
+  la(check.maybe.string(message), 'invalid message', message)
 
   var short = id.substr(0, 7)
   var currentTime = moment()
@@ -16,6 +26,9 @@ function addBuildInfo (options, id) {
     short: short,
     savedAt: currentTime.toISOString(),
     EST: currentTime.tz('America/New_York').format()
+  }
+  if (message) {
+    data.message = cropString(15, message)
   }
 
   if (options.version) {
@@ -66,10 +79,25 @@ function cleanOutput (str) {
 
 function buildInfo (options) {
   options = options || {}
-  function add (id) {
-    return addBuildInfo(options, id)
+
+  function getMessage (id) {
+    return options.message
+      ? numstat(id).then(R.prop('message'))
+      : Promise.resolve()
   }
-  return findCommit().then(cleanOutput).then(add)
+
+  var commitId
+  return findCommit()
+    .then(cleanOutput)
+    .then(
+      R.tap(function (id) {
+        commitId = id
+      })
+    )
+    .then(getMessage)
+    .then(function (message) {
+      return addBuildInfo(options, commitId, message)
+    })
 }
 
 module.exports = {

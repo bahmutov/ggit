@@ -33,5 +33,18 @@ describe('utils', () => {
         la(is.unemptyString(result.EST), 'is a string', result.EST)
       })
     })
+
+    it('has abbreviated commit message if .message is true', () => {
+      const opts = R.merge(options, { message: true })
+      return buildInfo(opts).then(result => {
+        la(is.unemptyString(result.message), 'is a string', result.message)
+      })
+    })
+
+    it('has no abbreviated commit message by default', () => {
+      return buildInfo(options).then(result => {
+        la(!result.message, 'message is present', result.message)
+      })
+    })
   })
 })
