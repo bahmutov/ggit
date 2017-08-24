@@ -4,6 +4,8 @@ var Promise = require('bluebird')
 var la = require('lazy-ass')
 var check = require('check-more-types')
 var exec = require('./exec')
+var R = require('ramda')
+var buildInfo = require('./utils').buildInfo
 
 function save (filename, data) {
   var write = require('fs').writeFileSync
@@ -11,30 +13,20 @@ function save (filename, data) {
   write(filename, contents, 'utf8')
 }
 
-function saveBuildFile (filename, id) {
-  var exists = require('fs').existsSync
-  var read = require('fs').readFileSync
-
-  var short = id.substr(0, 7)
-  var currentTime = new Date()
-  var data = {
-    id: id,
-    short: short,
-    savedAt: currentTime.toISOString()
-  }
-  if (exists('./package.json')) {
-    var pkg = JSON.parse(read('./package.json', 'utf8'))
-    data.version = pkg.version
-  }
+function saveBuildFile (filename, data) {
   save(filename, data)
-  console.log('saved last commit %s (short %s) in file %s', id, short, filename)
+  console.log(
+    'saved last commit %s (short %s) in file %s',
+    data.id,
+    data.short,
+    filename
+  )
 }
 
-function saveIntoFile (options, id) {
-  if (check.unemptyString(options.file)) {
-    saveBuildFile(options.file, id)
+function saveIntoFile (filename, build) {
+  if (check.unemptyString(filename)) {
+    saveBuildFile(filename, build)
   }
-  console.log('last commit:', id)
 }
 
 var env = process.env
@@ -74,11 +66,26 @@ function cleanOutput (str) {
 */
 function lastCommitId (options) {
   options = options || {}
-  function saveWithOptions (id) {
-    saveIntoFile(options, id)
-    return id
+  var resultId
+  function addBuildInfo (id) {
+    resultId = id
+    return buildInfo(options, id)
   }
-  return findCommit().then(cleanOutput).then(saveWithOptions)
+  return findCommit()
+    .then(cleanOutput)
+    .then(
+      R.tap(function (id) {
+        console.log('last commit:', id)
+        resultId = id
+      })
+    )
+    .then(addBuildInfo)
+    .then(function (build) {
+      return saveIntoFile(options.file, build)
+    })
+    .then(function () {
+      return resultId
+    })
 }
 
 module.exports = lastCommitId
