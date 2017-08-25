@@ -7,6 +7,7 @@ var exec = require('./exec')
 var moment = require('moment-timezone')
 var numstat = require('./commit-numstat')
 var R = require('ramda')
+var debug = require('debug')('ggit')
 
 function cropString (n, s) {
   if (s.length < n) {
@@ -18,6 +19,7 @@ function cropString (n, s) {
 function addBuildInfo (options, id, message) {
   la(check.unemptyString(id), 'missing commit id', id)
   la(check.maybe.string(message), 'invalid message', message)
+  debug('build info for commit', id)
 
   var short = id.substr(0, 7)
   var currentTime = moment()
@@ -28,16 +30,22 @@ function addBuildInfo (options, id, message) {
     EST: currentTime.tz('America/New_York').format()
   }
   if (message) {
+    debug('adding commit message to build data')
     data.message = cropString(15, message)
   }
 
   if (options.version) {
+    debug('adding version %s from options', options.version)
+    la(check.unemptyString(options.version),
+      'invalid options.version', options)
     data.version = options.version
   } else {
+    debug('reading version from package.json?')
     var exists = require('fs').existsSync
     var read = require('fs').readFileSync
     if (exists('./package.json')) {
       var pkg = JSON.parse(read('./package.json', 'utf8'))
+      debug('loaded package.json version %s', pkg.version)
       data.version = pkg.version
     }
   }
