@@ -6,6 +6,7 @@ var check = require('check-more-types')
 var exec = require('./exec')
 var moment = require('moment-timezone')
 var numstat = require('./commit-numstat')
+var branchName = require('./branch-name')
 var R = require('ramda')
 var debug = require('debug')('ggit')
 
@@ -16,9 +17,10 @@ function cropString (n, s) {
   return s.substr(0, n) + '...'
 }
 
-function addBuildInfo (options, id, message) {
+function addBuildInfo (options, id, message, branch) {
   la(check.unemptyString(id), 'missing commit id', id)
   la(check.maybe.string(message), 'invalid message', message)
+  la(check.maybe.string(branch), 'invalid branch name', branch)
   debug('build info for commit', id)
 
   var short = id.substr(0, 7)
@@ -33,11 +35,14 @@ function addBuildInfo (options, id, message) {
     debug('adding commit message to build data')
     data.message = cropString(15, message)
   }
+  if (branch) {
+    debug('adding branch name', branch)
+    data.branch = branch
+  }
 
   if (options.version) {
     debug('adding version %s from options', options.version)
-    la(check.unemptyString(options.version),
-      'invalid options.version', options)
+    la(check.unemptyString(options.version), 'invalid options.version', options)
     data.version = options.version
   } else {
     debug('reading version from package.json?')
@@ -104,7 +109,9 @@ function buildInfo (options) {
     )
     .then(getMessage)
     .then(function (message) {
-      return addBuildInfo(options, commitId, message)
+      return branchName().then(function (name) {
+        return addBuildInfo(options, commitId, message, name)
+      })
     })
 }
 

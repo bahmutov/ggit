@@ -308,7 +308,8 @@ something like this
     "short": "d3d9f16",
     "savedAt": "2017-08-24T18:58:27.210Z",
     "EST": "2017-08-24T14:58:27-04:00",
-    "version": "1.2.3" 
+    "version": "1.2.3" ,
+    "branch": "master"
 }
 ```
 

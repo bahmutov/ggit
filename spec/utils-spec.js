@@ -3,7 +3,7 @@ const is = require('check-more-types')
 const R = require('ramda')
 
 /* eslint-env mocha */
-describe('utils', () => {
+describe.only('utils', () => {
   describe('buildInfo', () => {
     const buildInfo = require('../src/utils').buildInfo
     const options = {
@@ -44,6 +44,12 @@ describe('utils', () => {
     it('has no abbreviated commit message by default', () => {
       return buildInfo(options).then(result => {
         la(!result.message, 'message is present', result.message)
+      })
+    })
+
+    it('has branch name', () => {
+      return buildInfo(options).then(result => {
+        la(is.unemptyString(result.branch), 'missing branch name', result)
       })
     })
   })
