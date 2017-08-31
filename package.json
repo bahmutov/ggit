@@ -40,7 +40,7 @@
     "colors": "1.1.2",
     "commander": "2.11.0",
     "d3-helpers": "0.3.0",
-    "debug": "3.0.0",
+    "debug": "3.0.1",
     "find-up": "2.1.0",
     "glob": "7.1.2",
     "lazy-ass": "1.6.0",
