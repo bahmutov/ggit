@@ -36,7 +36,10 @@ function currentCommitMessage () {
 */
 function parseCommitMessage (output) {
   la(is.unemptyString(output), 'expected "git show" command output')
-  const lines = output.split('\n').map(s => s.trim()).filter(is.unemptyString)
+  const lines = output
+    .split('\n')
+    .map(s => s.trim())
+    .filter(is.unemptyString)
   la(
     lines.length >= 2,
     'commit message should at least have email and subject',

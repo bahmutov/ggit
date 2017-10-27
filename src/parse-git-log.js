@@ -84,7 +84,10 @@ function parseCommitLog (data) {
   // commit [SHA]
   var commits = data.split(/\n(?=commit [0-9a-f]{40})\n?/g)
 
-  return commits.filter(is.unemptyString).map(parseCommit).map(trim)
+  return commits
+    .filter(is.unemptyString)
+    .map(parseCommit)
+    .map(trim)
 }
 
 module.exports = {

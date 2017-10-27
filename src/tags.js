@@ -59,13 +59,17 @@ function getBranchTags (vTagsOnly) {
   // only tags accessible from the current branch are returned
   var cmd = 'git tag --sort version:refname --merged'
   var parseSomeTags = parseTags.bind(null, vTagsOnly)
-  return exec(cmd).then(parseSomeTags).then(getCommitIds)
+  return exec(cmd)
+    .then(parseSomeTags)
+    .then(getCommitIds)
 }
 
 function getTagsSortByVersion () {
   const cmd = 'git tag'
   // return single string so other pieces work as expected
-  return exec(cmd).then(sortTagsByVersion).then(tags => tags.join('\n'))
+  return exec(cmd)
+    .then(sortTagsByVersion)
+    .then(tags => tags.join('\n'))
 }
 
 function getTags (vTagsOnly) {

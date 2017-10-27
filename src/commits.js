@@ -43,7 +43,10 @@ function commits (gitRepoRootFolder) {
   la(check.unemptyString(gitRepoRootFolder), 'missing git repo folder')
   la(fs.existsSync(gitRepoRootFolder), 'cannot find folder', gitRepoRootFolder)
 
-  return folders.to(gitRepoRootFolder).then(getLog).tap(folders.back)
+  return folders
+    .to(gitRepoRootFolder)
+    .then(getLog)
+    .tap(folders.back)
 }
 
 // returns list of commits after given commit sha

@@ -35,7 +35,9 @@ function changedFilesAfter (sha, branch) {
 }
 
 if (!module.parent) {
-  changedFilesAfter('a12f55f').then(console.log).catch(console.error)
+  changedFilesAfter('a12f55f')
+    .then(console.log)
+    .catch(console.error)
 }
 
 module.exports = changedFilesAfter

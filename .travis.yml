@@ -6,19 +6,17 @@ cache:
 notifications:
   email: true
 node_js:
-  - '4'
   - '6'
-before_install:
-  - npm install -g npm@3
+  - '8'
 before_script:
   - npm prune
 script:
   - git --version
   - node .
-  - $(npm bin)/if-node-version ">=6" ./next-update-travis.sh
-  - $(npm bin)/if-node-version ">=6" npm test
+  - $(npm bin)/if-node-version ">=8" ./next-update-travis.sh
+  - $(npm bin)/if-node-version ">=8" npm test
 after_success:
-  - TRAVIS_JOB_NUMBER=WORKAROUND.1 $(npm bin)/if-node-version ">=6" npm run semantic-release
+  - TRAVIS_JOB_NUMBER=WORKAROUND.1 $(npm bin)/if-node-version ">=8" npm run semantic-release
 branches:
   except:
     - "/^v\\d+\\.\\d+\\.\\d+$/"

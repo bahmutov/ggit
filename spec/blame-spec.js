@@ -56,7 +56,10 @@ describe('blame', () => {
     const fullFilename = path.resolve(file)
 
     beforeEach(() => {
-      sinon.stub(fs, 'existsSync').withArgs(file).returns(true)
+      sinon
+        .stub(fs, 'existsSync')
+        .withArgs(file)
+        .returns(true)
       const cmd = `git blame --porcelain -L ${line},${line} ${fullFilename}`
       const output = stripIndent`
         adfb30d5888bb1eb9bad1f482248edec2947dab6 ${line} ${line} 1

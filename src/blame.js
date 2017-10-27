@@ -81,8 +81,8 @@ function hasBoundaryLine (lines) {
 
 function linesPerCommit (lines) {
   return isUncommittedLine(lines[0]) ||
-  hasPreviousCommitId(lines) ||
-  hasBoundaryLine(lines)
+    hasPreviousCommitId(lines) ||
+    hasBoundaryLine(lines)
     ? 13
     : 12
 }

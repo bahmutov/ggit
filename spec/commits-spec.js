@@ -51,13 +51,17 @@ describe('commits', () => {
 
     it('returns an object by commit id', () => {
       const last5 = R.take(5)
-      return commits.all(root).then(last5).then(commits.byId).then(result => {
-        la(is.object(result), 'result is an object')
-        const ids = R.keys(result)
-        ids.forEach(id => {
-          la(is.commitId(id), 'key', id, 'should be a sha in', result)
+      return commits
+        .all(root)
+        .then(last5)
+        .then(commits.byId)
+        .then(result => {
+          la(is.object(result), 'result is an object')
+          const ids = R.keys(result)
+          ids.forEach(id => {
+            la(is.commitId(id), 'key', id, 'should be a sha in', result)
+          })
         })
-      })
     })
   })
 })
