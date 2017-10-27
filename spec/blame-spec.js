@@ -1,7 +1,7 @@
 const la = require('lazy-ass')
 const is = require('check-more-types')
 const schemaShot = require('schema-shot')
-const snapshot = require('snap-shot')
+const snapshot = require('snap-shot-it')
 const { stubExecOnce } = require('stub-spawn-once')
 const { stripIndent } = require('common-tags')
 

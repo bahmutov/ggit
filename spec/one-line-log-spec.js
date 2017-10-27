@@ -1,5 +1,5 @@
 const schemaShot = require('schema-shot')
-const snapshot = require('snap-shot')
+const snapshot = require('snap-shot-it')
 const la = require('lazy-ass')
 const is = require('check-more-types')
 const { stubExecOnce } = require('stub-spawn-once')
@@ -30,7 +30,7 @@ describe('one line log', () => {
 
   it('parses mock output', () => {
     stubExecOnce('git log --pretty=oneline -n 2', output)
-    return snapshot(log({ n: 2 }))
+    return log({ n: 2 }).then(snapshot)
   })
 
   it('parses mock output with branch name', () => {
@@ -38,6 +38,6 @@ describe('one line log', () => {
       'git log --pretty=oneline -n 2 --first-parent a-branch',
       output
     )
-    return snapshot(log({ n: 2, firstParent: 'a-branch' }))
+    return log({ n: 2, firstParent: 'a-branch' }).then(snapshot)
   })
 })

@@ -3,8 +3,14 @@ var exists = require('fs').existsSync
 var read = require('fs').readFileSync
 const join = require('path').join
 var gitFolder = require('./git-folder')
+var exec = require('./exec')
+var la = require('lazy-ass')
+var is = require('check-more-types')
+var debug = require('debug')('ggit')
 
-function commitMessage () {
+function currentCommitMessage () {
+  debug('getting current commit message')
+
   return gitFolder()
     .then(root => join(root, '.git', 'COMMIT_EDITMSG'))
     .then(filename => {
@@ -18,4 +24,41 @@ function commitMessage () {
     })
 }
 
-module.exports = commitMessage
+/*
+  output of command
+    git show --format="%ae%n%s%n%b" --no-patch <sha>
+  is something like
+    email
+    subject
+    body (optional)
+
+  this method returns object with these fields
+*/
+function parseCommitMessage (output) {
+  la(is.unemptyString(output), 'expected "git show" command output')
+  return {
+    email: '',
+    subject: '',
+    body: null
+  }
+}
+
+function commitMessageFor (sha) {
+  la(is.unemptyString(sha), 'expected commit sha', sha)
+  debug('getting commit message for', sha)
+  const cmd = 'git show --format="%ae%n%s%n%b" --no-patch ' + sha
+  return exec(cmd).then(parseCommitMessage)
+}
+
+function commitMessage (sha) {
+  if (sha) {
+    return commitMessageFor(sha)
+  }
+  return currentCommitMessage()
+}
+
+module.exports = {
+  commitMessage: commitMessage,
+  commitMessageFor: commitMessageFor,
+  parseCommitMessage: parseCommitMessage
+}

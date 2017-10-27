@@ -1,4 +1,4 @@
-const snapshot = require('snap-shot')
+const snapshot = require('snap-shot-it')
 const sort = require('./sort-tags-by-version')
 
 /* global describe, it */

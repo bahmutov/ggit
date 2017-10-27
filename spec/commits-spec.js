@@ -6,7 +6,7 @@ const path = require('path')
 const root = path.join(__dirname, '..')
 const { stubSpawnOnce } = require('stub-spawn-once')
 const { stripIndent } = require('common-tags')
-const snapshot = require('snap-shot')
+const snapshot = require('snap-shot-it')
 
 /* global describe, it */
 describe('commits', () => {

@@ -2,9 +2,9 @@ var la = require('lazy-ass')
 var check = require('check-more-types')
 
 /* global describe, it */
-var commitMessage = require('./commit-message')
 
-describe('commit message', function () {
+describe('current commit message', function () {
+  var commitMessage = require('./commit-message').commitMessage
   it('grabs commit message', function () {
     return commitMessage().then(
       function (str) {

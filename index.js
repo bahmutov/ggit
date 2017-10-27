@@ -19,7 +19,7 @@ var actions = {
   changedFiles: require('./src/changed-files'),
   changedFilesAfter: require('./src/changed-files-after'),
   fileContents: require('./src/file-contents'),
-  commitMessage: require('./src/commit-message'),
+  commitMessage: require('./src/commit-message').commitMessage,
   getGitFolder: require('./src/git-folder'),
   tags: require('./src/tags'),
   branchTags: require('./src/tags').getBranchTags,
