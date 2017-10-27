@@ -36,10 +36,17 @@ function currentCommitMessage () {
 */
 function parseCommitMessage (output) {
   la(is.unemptyString(output), 'expected "git show" command output')
+  const lines = output.split('\n').map(s => s.trim()).filter(is.unemptyString)
+  la(
+    lines.length >= 2,
+    'commit message should at least have email and subject',
+    output
+  )
+  const body = lines.length > 2 ? lines.slice(2).join('\n') : null
   return {
-    email: '',
-    subject: '',
-    body: null
+    email: lines[0],
+    subject: lines[1],
+    body: body
   }
 }
 
@@ -61,4 +68,10 @@ module.exports = {
   commitMessage: commitMessage,
   commitMessageFor: commitMessageFor,
   parseCommitMessage: parseCommitMessage
+}
+
+if (!module.parent) {
+  const sha = process.argv[2]
+  console.log('demo for commit', sha)
+  commitMessage(sha).then(console.log, console.error)
 }

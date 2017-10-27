@@ -430,6 +430,21 @@ require('ggit').commitMessage()
     });
 ```
 
+If you pass SHA, it will grab that commit's email, subject and body (if exists)
+and return as an object
+
+```js
+require('ggit').commitMessage('4df4...')
+    .then(console.log)
+/*
+{
+    "email": "foo@email.com",
+    "subject": "something something",
+    "body": "more details about the commit\nanother line"
+}
+*/
+```
+
 
 ### getGitFolder
 
