@@ -132,8 +132,8 @@ commit(fullMessage).then(...);
 Push commits to the remote
 
 ```javascript
-var psuh = require('ggit').psuh;
-psuh().then(function () {
+var push = require('ggit').push;
+push().then(function () {
     // after the push
 });
 ```
