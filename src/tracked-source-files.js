@@ -18,10 +18,16 @@ function isGitFile (filename) {
   return filename === '.git' || /^\.git\//.test(filename)
 }
 
+const isNotGitFile = (filename) =>
+  !isGitFile(filename)
+
+const isNot3rdPartyFile = (filename) =>
+  !is3rdParty(filename)
+
 function findFiles (pattern, options) {
   pattern = pattern || '**/*.js'
   var allFiles = glob.sync(pattern, options)
-  var appFiles = allFiles.filter(R.not(isGitFile)).filter(R.not(is3rdParty))
+  var appFiles = allFiles.filter(isNotGitFile).filter(isNot3rdPartyFile)
   log('found files\n' + appFiles.join('\n'))
   return q(appFiles)
 }
@@ -31,7 +37,7 @@ function leaveTracked (filenames) {
   return q
     .all(filenames.map(isTracked))
     .then(R.zipObj(filenames))
-    .then(R.pickBy(R.eq(true)))
+    .then(R.pickBy(R.equals(true)))
     .then(R.keys)
 }
 
