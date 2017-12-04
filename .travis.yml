@@ -17,7 +17,7 @@ script:
   - $(npm bin)/if-node-version ">=8" ./next-update-travis.sh
   - $(npm bin)/if-node-version ">=8" npm test
 after_success:
-  - TRAVIS_JOB_NUMBER=WORKAROUND.1 $(npm bin)/if-node-version ">=8" npm run semantic-release
+  - $(npm bin)/if-node-version ">=8" npm run semantic-release
 branches:
   except:
     - "/^v\\d+\\.\\d+\\.\\d+$/"
