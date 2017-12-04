@@ -59,5 +59,8 @@ module.exports = check.defend(
 if (!module.parent) {
   sourceFiles('.', '**', { dot: true })
     .then(console.log.bind(console))
-    .catch(console.error.bind(console))
+    .catch(e => {
+      console.error(e)
+      process.exit(1)
+    })
 }

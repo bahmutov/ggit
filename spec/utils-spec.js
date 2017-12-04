@@ -35,9 +35,16 @@ describe.only('utils', () => {
     })
 
     it('has abbreviated commit message if .message is true', () => {
+      // hmm, fails if last commit was a merge commit
       const opts = R.merge(options, { message: true })
       return buildInfo(opts).then(result => {
-        la(is.unemptyString(result.message), 'is a string', result.message)
+        la(
+          is.unemptyString(result.message),
+          'is a string',
+          result.message,
+          'in',
+          result
+        )
       })
     })
 
