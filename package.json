@@ -45,7 +45,7 @@
     "glob": "7.1.2",
     "lazy-ass": "1.6.0",
     "lodash": "4.17.4",
-    "moment": "2.19.4",
+    "moment": "2.20.1",
     "moment-timezone": "0.5.14",
     "optimist": "0.6.1",
     "pluralize": "7.0.0",
