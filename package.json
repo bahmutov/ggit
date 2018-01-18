@@ -52,7 +52,7 @@
     "q": "2.0.3",
     "quote": "0.4.0",
     "ramda": "0.25.0",
-    "semver": "5.4.1"
+    "semver": "5.5.0"
   },
   "devDependencies": {
     "common-tags": "1.7.2",
@@ -81,7 +81,7 @@
     "schema-shot": "1.9.0",
     "semantic-release": "8.2.3",
     "simple-commit-message": "3.3.2",
-    "sinon": "4.1.4",
+    "sinon": "4.1.6",
     "snap-shot-it": "4.0.1",
     "standard": "10.0.3",
     "stub-spawn-once": "2.3.0",
