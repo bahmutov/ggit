@@ -72,7 +72,7 @@
     "jshint-summary": "0.4.0",
     "matchdep": "2.0.0",
     "mocha": "4.1.0",
-    "pre-git": "3.17.0",
+    "pre-git": "3.17.1",
     "prettier-standard": "7.0.3",
     "qunit-promises": "0.2.0",
     "rocha": "2.5.0",
