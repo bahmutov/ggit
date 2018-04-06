@@ -18,11 +18,9 @@ function isGitFile (filename) {
   return filename === '.git' || /^\.git\//.test(filename)
 }
 
-const isNotGitFile = (filename) =>
-  !isGitFile(filename)
+const isNotGitFile = filename => !isGitFile(filename)
 
-const isNot3rdPartyFile = (filename) =>
-  !is3rdParty(filename)
+const isNot3rdPartyFile = filename => !is3rdParty(filename)
 
 function findFiles (pattern, options) {
   pattern = pattern || '**/*.js'
