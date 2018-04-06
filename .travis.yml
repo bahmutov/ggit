@@ -2,6 +2,7 @@ sudo: false
 language: node_js
 cache:
   directories:
+    - ~/.npm
     - node_modules
 notifications:
   email: true
@@ -14,7 +15,6 @@ script:
   - git --version
   - node .
   - node src/tracked-source-files.js
-  - $(npm bin)/if-node-version ">=8" ./next-update-travis.sh
   - $(npm bin)/if-node-version ">=8" npm test
 after_success:
   - $(npm bin)/if-node-version ">=8" npm run semantic-release
