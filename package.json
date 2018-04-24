@@ -44,7 +44,7 @@
     "find-up": "2.1.0",
     "glob": "7.1.2",
     "lazy-ass": "1.6.0",
-    "lodash": "4.17.5",
+    "lodash": "4.17.10",
     "moment": "2.20.1",
     "moment-timezone": "0.5.14",
     "optimist": "0.6.1",
