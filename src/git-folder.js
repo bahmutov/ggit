@@ -67,13 +67,22 @@ function stripSeparator (folder) {
 
 function getGitFolder () {
   const cmd = 'git rev-parse --show-toplevel'
-  const verbose = /ggit/.test(process.env.DEBUG)
-  return exec(cmd, verbose)
-    .then(checkFolder, tryDotGit)
-    .catch(searchUpForGitFolder)
-    .then(folder => folder.trim())
-    .then(folder => path.normalize(folder))
-    .then(stripSeparator)
+  return executeFlow(cmd)
 }
 
-module.exports = getGitFolder
+function getGitInternalFolder () {
+  const cmd = 'git rev-parse --git-dir'
+  return executeFlow(cmd)
+}
+
+function executeFlow (cmd) {
+  const verbose = /ggit/.test(process.env.DEBUG)
+  return exec(cmd, verbose)
+  .then(checkFolder, tryDotGit)
+  .catch(searchUpForGitFolder)
+  .then(folder => folder.trim())
+  .then(folder => path.normalize(folder))
+  .then(stripSeparator)
+}
+
+module.exports = {getGitFolder, getGitInternalFolder}
