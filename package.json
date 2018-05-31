@@ -80,7 +80,7 @@
     "semantic-release": "8.2.3",
     "simple-commit-message": "3.3.2",
     "sinon": "4.4.2",
-    "snap-shot-it": "4.0.1",
+    "snap-shot-it": "5.0.1",
     "standard": "10.0.3",
     "stub-spawn-once": "2.3.0",
     "time-grunt": "1.4.0"
