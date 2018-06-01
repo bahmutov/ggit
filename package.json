@@ -75,7 +75,7 @@
     "pre-git": "3.17.0",
     "prettier-standard": "7.0.3",
     "qunit-promises": "0.2.0",
-    "rocha": "2.5.0",
+    "rocha": "2.5.10",
     "schema-shot": "1.9.0",
     "semantic-release": "8.2.3",
     "simple-commit-message": "3.3.2",
