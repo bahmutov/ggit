@@ -41,7 +41,7 @@
     "commander": "2.14.1",
     "d3-helpers": "0.3.0",
     "debug": "3.1.0",
-    "find-up": "2.1.0",
+    "find-up": "3.0.0",
     "glob": "7.1.2",
     "lazy-ass": "1.6.0",
     "lodash": "4.17.5",
