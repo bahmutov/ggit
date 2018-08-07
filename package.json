@@ -38,7 +38,7 @@
     "check-more-types": "2.24.0",
     "cli-table": "0.3.1",
     "colors": "1.1.2",
-    "commander": "2.14.1",
+    "commander": "2.17.1",
     "d3-helpers": "0.3.0",
     "debug": "3.1.0",
     "find-up": "2.1.0",
