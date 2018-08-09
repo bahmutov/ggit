@@ -79,7 +79,7 @@
     "schema-shot": "1.9.0",
     "semantic-release": "8.2.3",
     "simple-commit-message": "3.3.2",
-    "sinon": "4.4.2",
+    "sinon": "6.1.5",
     "snap-shot-it": "4.0.1",
     "standard": "10.0.3",
     "stub-spawn-once": "2.3.0",
