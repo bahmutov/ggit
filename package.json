@@ -67,7 +67,6 @@
     "grunt-jsonlint": "1.1.0",
     "grunt-nice-package": "0.10.4",
     "grunt-readme": "0.4.5",
-    "gt": "0.10.0",
     "if-node-version": "1.1.1",
     "jshint-stylish": "2.2.1",
     "jshint-summary": "0.4.0",
@@ -75,7 +74,6 @@
     "mocha": "4.1.0",
     "pre-git": "3.17.0",
     "prettier-standard": "7.0.3",
-    "qunit-promises": "0.2.0",
     "rocha": "2.5.0",
     "schema-shot": "1.9.0",
     "semantic-release": "8.2.3",
@@ -127,10 +125,8 @@
   "scripts": {
     "build": "grunt && npm test",
     "commit": "git-issues && commit-wizard",
-    "e2e": "gt test/*.js --output",
     "file-status": "node src/file-status.js",
     "grunt": "grunt",
-    "gt": "gt src/test/*.js --output",
     "issues": "git-issues",
     "lint": "standard --verbose --fix '*.js' 'src/*.js' 'spec/*.js'",
     "mocha": "npm run mocha:spec && npm run mocha:src",
@@ -144,7 +140,7 @@
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "size": "t=\"$(npm pack .)\"; wc -c \"${t}\"; tar tvf \"${t}\"; rm \"${t}\";",
     "stop-only": "stop-only -f src",
-    "test": "npm run grunt && npm run gt && npm run mocha",
+    "test": "npm run grunt && npm run mocha",
     "warn-only": "stop-only -f src --warn"
   }
 }
