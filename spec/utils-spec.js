@@ -34,19 +34,27 @@ describe.only('utils', () => {
       })
     })
 
-    it('has abbreviated commit message if .message is true', () => {
-      // hmm, fails if last commit was a merge commit
-      const opts = R.merge(options, { message: true })
-      return buildInfo(opts).then(result => {
-        la(
-          is.unemptyString(result.message),
-          'is a string',
-          result.message,
-          'in',
-          result
-        )
+    // on Travis pull requests do not have commit message
+    const isTravisPR =
+      process.env.TRAVIS && process.env.TRAVIS_PULL_REQUEST !== 'false'
+
+    if (!isTravisPR) {
+      it('has abbreviated commit message if .message is true', () => {
+        // hmm, fails if last commit was a merge commit
+        const opts = R.merge(options, { message: true })
+        return buildInfo(opts).then(result => {
+          la(
+            is.unemptyString(result.message),
+            'is a string',
+            result.message,
+            'in',
+            result
+          )
+        })
       })
-    })
+    } else {
+      console.log('skipping test with message because Travis PR')
+    }
 
     it('has no abbreviated commit message by default', () => {
       return buildInfo(options).then(result => {
