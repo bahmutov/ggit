@@ -3,14 +3,10 @@ language: node_js
 cache:
   directories:
     - ~/.npm
-    - node_modules
 notifications:
   email: true
 node_js:
-  - '6'
-  - '8'
-before_script:
-  - npm prune
+  - '10'
 script:
   - git --version
   - node .
