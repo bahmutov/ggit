@@ -11,6 +11,7 @@ script:
   - git --version
   - node .
   - node src/tracked-source-files.js
+  - npm run stop-only
   - $(npm bin)/if-node-version ">=8" npm test
 after_success:
   - $(npm bin)/if-node-version ">=8" npm run semantic-release

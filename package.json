@@ -17,6 +17,7 @@
         "npm test"
       ],
       "pre-push": [
+        "npm run stop-only",
         "npm run file-status",
         "npm run size"
       ],
@@ -82,6 +83,7 @@
     "sinon": "4.4.2",
     "snap-shot-it": "4.0.1",
     "standard": "10.0.3",
+    "stop-only": "2.2.1",
     "stub-spawn-once": "2.3.0",
     "time-grunt": "1.4.0"
   },
@@ -134,12 +136,15 @@
     "mocha": "npm run mocha:spec && npm run mocha:src",
     "mocha:spec": "mocha spec/*-spec.js",
     "mocha:src": "mocha src/**/*-spec.js",
+    "posttest": "npm run warn-only",
     "prelint": "npm run pretty",
     "pretest": "npm run lint",
     "pretty": "prettier-standard '*.js' 'src/*.js' 'spec/*.js'",
     "rocha": "node --harmony node_modules/.bin/rocha spec/*-spec.js",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "size": "t=\"$(npm pack .)\"; wc -c \"${t}\"; tar tvf \"${t}\"; rm \"${t}\";",
-    "test": "npm run grunt && npm run gt && npm run mocha"
+    "stop-only": "stop-only -f src",
+    "test": "npm run grunt && npm run gt && npm run mocha",
+    "warn-only": "stop-only -f src --warn"
   }
 }
