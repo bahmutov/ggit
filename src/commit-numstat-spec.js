@@ -1,8 +1,8 @@
-// require('qunit-promises');
 var numstat = require('./commit-numstat')
 const la = require('lazy-ass')
 const is = require('check-more-types')
 
+/* eslint-env mocha */
 describe('commit numstat', () => {
   it('a commit info', function () {
     // should use pretty recent commit id or HEAD - Travis and
