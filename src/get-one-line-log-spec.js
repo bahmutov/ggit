@@ -23,13 +23,21 @@ describe('getOneLineLog', () => {
     })
   })
 
-  it('unpushed commits (if any)', function () {
-    return getLog({
-      remote: 'origin',
-      branch: 'master'
-    }).then(function (commits) {
-      la(is.array(commits), 'returns array', commits)
-      la(commits.length >= 0, 'might have commits', commits)
+  const isTravisPR =
+    process.env.TRAVIS && process.env.TRAVIS_PULL_REQUEST !== 'false'
+
+  if (!isTravisPR) {
+    // on Travis pull requests, we have trouble determining remote branch
+    it('unpushed commits (if any)', function () {
+      return getLog({
+        remote: 'origin',
+        branch: 'master'
+      }).then(function (commits) {
+        la(is.array(commits), 'returns array', commits)
+        la(commits.length >= 0, 'might have commits', commits)
+      })
     })
-  })
+  } else {
+    console.log('skipping unpushed commits test on Travis PR')
+  }
 })
