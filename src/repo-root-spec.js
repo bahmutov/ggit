@@ -27,6 +27,5 @@ describe('repo root', () => {
     }).finally(function () {
       process.chdir(cwd)
     })
-    // .finally(gt.start);
   })
 })
