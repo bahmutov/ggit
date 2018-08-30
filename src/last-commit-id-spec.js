@@ -15,7 +15,7 @@ describe('last-commit-id', () => {
       sandbox = sinon.createSandbox()
       sandbox
         .stub(utils, 'addBuildInfo')
-        .rejects(new Error('Cannot get git info on Heroku'))
+        .throws(new Error('Cannot get git info on Heroku'))
       restore = mockedEnv(
         {
           SOURCE_VERSION: commit
@@ -45,7 +45,7 @@ describe('last-commit-id', () => {
       sandbox = sinon.createSandbox()
       sandbox
         .stub(utils, 'addBuildInfo')
-        .rejects(new Error('Cannot get git info on Circle'))
+        .throws(new Error('Cannot get git info on Circle'))
       restore = mockedEnv(
         {
           CIRCLE_SHA1: commit

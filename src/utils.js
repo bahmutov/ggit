@@ -40,14 +40,7 @@ function addBuildInfo (options, id, message, branch) {
   debug('build info for commit', id)
 
   const data = defaultBuildInfo(id)
-  // var short = id.substr(0, 7)
-  // var currentTime = moment()
-  // var data = {
-  //   id: id,
-  //   short: short,
-  //   savedAt: currentTime.toISOString(),
-  //   EST: currentTime.tz('America/New_York').format()
-  // }
+
   if (message) {
     debug('adding commit message to build data')
     data.message = cropString(15, message)

@@ -59,11 +59,14 @@ function lastCommitId (options) {
   var resultId
   function addBuildInfo (id) {
     resultId = id
-    return utils.addBuildInfo(options, id).catch(e => {
+
+    try {
+      return utils.addBuildInfo(options, id)
+    } catch (e) {
       console.error('Problem adding build information to commit SHA')
       console.error(e.message)
       return utils.defaultBuildInfo(id)
-    })
+    }
   }
 
   return findCommit()
