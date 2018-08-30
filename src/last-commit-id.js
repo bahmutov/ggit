@@ -1,11 +1,12 @@
 'use strict'
 
-var Promise = require('bluebird')
-var la = require('lazy-ass')
-var check = require('check-more-types')
-var exec = require('./exec')
-var R = require('ramda')
-var buildInfo = require('./utils').buildInfo
+const Promise = require('bluebird')
+const la = require('lazy-ass')
+const check = require('check-more-types')
+const exec = require('./exec')
+const R = require('ramda')
+const utils = require('./utils')
+const debug = require('debug')('ggit')
 
 function save (filename, data) {
   var write = require('fs').writeFileSync
@@ -26,20 +27,9 @@ function saveBuildFile (filename, data) {
 function saveIntoFile (filename, build) {
   if (check.unemptyString(filename)) {
     saveBuildFile(filename, build)
-  }
-}
-
-var env = process.env
-
-function getHerokuCommit () {
-  if (env.SOURCE_VERSION && check.unemptyString(env.SOURCE_VERSION)) {
-    return env.SOURCE_VERSION
-  }
-}
-
-function getCircleCiCommit () {
-  if (env.CIRCLE_SHA1 && check.unemptyString(env.CIRCLE_SHA1)) {
-    return env.CIRCLE_SHA1
+  } else {
+    debug('there is no filename, not saving build info')
+    debug(build)
   }
 }
 
@@ -49,7 +39,7 @@ function getGitCommit () {
 }
 
 function findCommit () {
-  var ciSha = getHerokuCommit() || getCircleCiCommit()
+  var ciSha = utils.getHerokuCommit() || utils.getCircleCiCommit()
   if (ciSha) {
     return Promise.resolve(ciSha)
   }
@@ -69,8 +59,13 @@ function lastCommitId (options) {
   var resultId
   function addBuildInfo (id) {
     resultId = id
-    return buildInfo(options, id)
+    return utils.addBuildInfo(options, id).catch(e => {
+      console.error('Problem adding build information to commit SHA')
+      console.error(e.message)
+      return utils.defaultBuildInfo(id)
+    })
   }
+
   return findCommit()
     .then(cleanOutput)
     .then(

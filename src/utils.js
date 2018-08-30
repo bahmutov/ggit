@@ -17,20 +17,37 @@ function cropString (n, s) {
   return s.substr(0, n) + '...'
 }
 
-function addBuildInfo (options, id, message, branch) {
-  la(check.unemptyString(id), 'missing commit id', id)
-  la(check.maybe.string(message), 'invalid message', message)
-  la(check.maybe.string(branch), 'invalid branch name', branch)
-  debug('build info for commit', id)
-
+/**
+ * Returns object with commit and default build information
+ */
+function defaultBuildInfo (id) {
   var short = id.substr(0, 7)
   var currentTime = moment()
   var data = {
     id: id,
     short: short,
     savedAt: currentTime.toISOString(),
+    // TODO pass timezone?
     EST: currentTime.tz('America/New_York').format()
   }
+  return data
+}
+
+function addBuildInfo (options, id, message, branch) {
+  la(check.unemptyString(id), 'missing commit id', id)
+  la(check.maybe.string(message), 'invalid message', message)
+  la(check.maybe.string(branch), 'invalid branch name', branch)
+  debug('build info for commit', id)
+
+  const data = defaultBuildInfo(id)
+  // var short = id.substr(0, 7)
+  // var currentTime = moment()
+  // var data = {
+  //   id: id,
+  //   short: short,
+  //   savedAt: currentTime.toISOString(),
+  //   EST: currentTime.tz('America/New_York').format()
+  // }
   if (message) {
     debug('adding commit message to build data')
     data.message = cropString(15, message)
@@ -58,15 +75,15 @@ function addBuildInfo (options, id, message, branch) {
   return data
 }
 
-var env = process.env
-
 function getHerokuCommit () {
+  const env = process.env
   if (env.SOURCE_VERSION && check.unemptyString(env.SOURCE_VERSION)) {
     return env.SOURCE_VERSION
   }
 }
 
 function getCircleCiCommit () {
+  const env = process.env
   if (env.CIRCLE_SHA1 && check.unemptyString(env.CIRCLE_SHA1)) {
     return env.CIRCLE_SHA1
   }
@@ -116,5 +133,9 @@ function buildInfo (options) {
 }
 
 module.exports = {
-  buildInfo: buildInfo
+  buildInfo,
+  addBuildInfo,
+  getHerokuCommit,
+  getCircleCiCommit,
+  defaultBuildInfo
 }
