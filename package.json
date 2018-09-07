@@ -77,7 +77,7 @@
     "prettier-standard": "8.0.1",
     "rocha": "2.5.10",
     "schema-shot": "1.9.0",
-    "semantic-release": "8.2.3",
+    "semantic-release": "15.9.14",
     "simple-commit-message": "4.0.3",
     "sinon": "6.1.5",
     "snap-shot-it": "6.1.0",
