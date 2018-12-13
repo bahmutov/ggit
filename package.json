@@ -47,7 +47,7 @@
     "lazy-ass": "1.6.0",
     "lodash": "4.17.10",
     "moment": "2.23.0",
-    "moment-timezone": "0.5.21",
+    "moment-timezone": "0.5.23",
     "optimist": "0.6.1",
     "pluralize": "7.0.0",
     "q": "2.0.3",
