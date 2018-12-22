@@ -53,7 +53,7 @@
     "q": "2.0.3",
     "quote": "0.4.0",
     "ramda": "0.26.1",
-    "semver": "5.5.1"
+    "semver": "5.6.0"
   },
   "devDependencies": {
     "common-tags": "1.8.0",
