@@ -72,7 +72,7 @@
     "jshint-summary": "0.4.0",
     "matchdep": "2.0.0",
     "mocha": "5.2.0",
-    "mocked-env": "1.2.0",
+    "mocked-env": "1.2.4",
     "pre-git": "3.17.1",
     "prettier-standard": "8.0.1",
     "rocha": "2.5.10",
