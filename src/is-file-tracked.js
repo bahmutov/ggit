@@ -8,7 +8,7 @@ function isFileTracked (filename) {
   la(check.unemptyString(filename), 'missing filename')
   var fullPath = path.resolve(filename)
   var cmd = 'git ls-files --error-unmatch ' + fullPath
-  return exec(cmd).then(d3h.yes, d3h.no)
+  return exec.exec(cmd).then(d3h.yes, d3h.no)
 }
 
 module.exports = check.defend(

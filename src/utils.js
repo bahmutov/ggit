@@ -84,7 +84,7 @@ function getCircleCiCommit () {
 
 function getGitCommit () {
   var cmd = 'git log --format="%H" -n 1'
-  return exec(cmd)
+  return exec.exec(cmd)
 }
 
 function findCommit () {
@@ -104,9 +104,13 @@ function buildInfo (options) {
   options = options || {}
 
   function getMessage (id) {
-    return options.message
-      ? numstat(id).then(R.prop('message'))
-      : Promise.resolve()
+    if (!options.message) {
+      debug('no need to get commit message for %s', id)
+      return Promise.resolve()
+    }
+
+    debug('getMessage for commit %s', id)
+    return numstat(id).then(R.prop('message'))
   }
 
   var commitId

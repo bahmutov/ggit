@@ -17,7 +17,7 @@ function commit (msg, longMessage) {
   }
 
   var cmd = 'git commit -am ' + quote(text)
-  return exec(cmd)
+  return exec.exec(cmd)
 }
 
 module.exports = commit

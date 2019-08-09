@@ -8,7 +8,7 @@ function hasChanges () {
   var cmd = 'git diff --exit-code HEAD'
   // returns exit code 1 if there are changes
   // thus we reverse the true / false order
-  return exec(cmd).then(d3h.no, d3h.yes)
+  return exec.exec(cmd).then(d3h.no, d3h.yes)
 }
 
 module.exports = hasChanges

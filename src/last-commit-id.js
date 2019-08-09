@@ -35,7 +35,7 @@ function saveIntoFile (filename, build) {
 
 function getGitCommit () {
   var cmd = 'git log --format="%H" -n 1'
-  return exec(cmd)
+  return exec.exec(cmd)
 }
 
 function findCommit () {

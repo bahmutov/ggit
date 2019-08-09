@@ -28,4 +28,4 @@ function execPromise (cmd, verbose) {
   return deferred.promise
 }
 
-module.exports = execPromise
+module.exports = { exec: execPromise }

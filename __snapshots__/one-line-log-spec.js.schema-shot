@@ -1,0 +1,21 @@
+exports['grabs last 5 commits schema 1'] = {
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "required": true
+    },
+    "message": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "additionalProperties": false,
+  "list": true,
+  "example": {
+    "id": "f2d8d7f2b2de0df9cfc14845d284521eb2513c0c",
+    "message": "fix: update lodash"
+  }
+}
+

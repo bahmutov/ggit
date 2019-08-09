@@ -11,7 +11,7 @@ function cleanList (list) {
 
 function untrackedFiles () {
   var cmd = 'git ls-files --others --exclude-standard'
-  return exec(cmd).then(cleanList)
+  return exec.exec(cmd).then(cleanList)
 }
 
 module.exports = untrackedFiles

@@ -1,0 +1,4 @@
+This is a file to test getting blame for entire file or individual lines
+line 1
+line 2
+line 3

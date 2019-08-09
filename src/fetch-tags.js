@@ -7,7 +7,7 @@ function fetchTags (branch) {
   branch = branch || 'master'
   debug('fetching remote tags for branch', branch)
   var cmd = 'git pull origin ' + branch + ' --tags'
-  return exec(cmd)
+  return exec.exec(cmd)
 }
 
 module.exports = fetchTags

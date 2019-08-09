@@ -40,7 +40,7 @@ describe('commits', () => {
             second commit
         `
       )
-      return snapshot(commits.all())
+      return commits.all().then(snapshot)
     })
   })
 

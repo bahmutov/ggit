@@ -10,7 +10,7 @@ function cloneRepo (opts) {
     throw new Error('Destination folder ' + opts.folder + ' already exists')
   }
   var cmd = 'git clone --depth 1 ' + opts.url + ' ' + opts.folder
-  return exec(cmd)
+  return exec.exec(cmd)
 }
 
 module.exports = cloneRepo

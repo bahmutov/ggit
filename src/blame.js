@@ -152,7 +152,7 @@ function blameOneLine (filename, lineNumber) {
     lineNumber +
     ' ' +
     fullFilename
-  return exec(cmd).then(toBlameInfo)
+  return exec.exec(cmd).then(toBlameInfo)
 }
 
 function blame (filename, lineNumber) {
@@ -174,7 +174,7 @@ function blame (filename, lineNumber) {
   console.log('who to blame for', fullFilename)
   // http://git-scm.com/docs/git-blame
   var cmd = 'git blame --porcelain --line-porcelain ' + fullFilename
-  return exec(cmd).then(toBlameInfoFile)
+  return exec.exec(cmd).then(toBlameInfoFile)
 }
 
 module.exports = blame

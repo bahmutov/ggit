@@ -3,7 +3,7 @@ const is = require('check-more-types')
 const R = require('ramda')
 
 /* eslint-env mocha */
-describe.only('utils', () => {
+describe('utils', () => {
   describe('buildInfo', () => {
     const buildInfo = require('../src/utils').buildInfo
     const options = {

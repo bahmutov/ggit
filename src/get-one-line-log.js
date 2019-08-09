@@ -27,7 +27,7 @@ function getLog (opts) {
   }
   debug('using log cmd "%s"', cmd)
 
-  return exec(cmd).then(logParser)
+  return exec.exec(cmd).then(logParser)
 }
 
 module.exports = getLog

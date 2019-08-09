@@ -5,7 +5,8 @@ var R = require('ramda')
 var cmd = 'git status --porcelain'
 
 function fileStatus () {
-  return exec(cmd)
+  return exec
+    .exec(cmd)
     .then(R.tap(log))
     .then(stdoutToGroup)
     .then(R.tap(log))

@@ -57,7 +57,7 @@ function commitMessageFor (sha) {
   la(is.unemptyString(sha), 'expected commit sha', sha)
   debug('getting commit message for', sha)
   const cmd = 'git show --format="%ae%n%s%n%b" --no-patch ' + sha
-  return exec(cmd).then(parseCommitMessage)
+  return exec.exec(cmd).then(parseCommitMessage)
 }
 
 function commitMessage (sha) {

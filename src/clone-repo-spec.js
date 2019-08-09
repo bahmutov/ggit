@@ -11,7 +11,7 @@ describe('clone-repo', () => {
   function removeTempFolder () {
     if (fs.existsSync(destFolder)) {
       console.log('removing folder', destFolder)
-      return exec('rm -rf ' + destFolder)
+      return exec.exec('rm -rf ' + destFolder)
     }
   }
 

@@ -31,7 +31,7 @@ function getTagCommit (tag) {
   debug('getting commit for tag "%s"', tag)
   debug('using command "%s"', cmd)
 
-  return exec(cmd).then(function (commit) {
+  return exec.exec(cmd).then(function (commit) {
     return {
       commit: commit.trim(),
       tag: tag
@@ -59,7 +59,8 @@ function getBranchTags (vTagsOnly) {
   // only tags accessible from the current branch are returned
   var cmd = 'git tag --sort version:refname --merged'
   var parseSomeTags = parseTags.bind(null, vTagsOnly)
-  return exec(cmd)
+  return exec
+    .exec(cmd)
     .then(parseSomeTags)
     .then(getCommitIds)
 }
@@ -67,7 +68,8 @@ function getBranchTags (vTagsOnly) {
 function getTagsSortByVersion () {
   const cmd = 'git tag'
   // return single string so other pieces work as expected
-  return exec(cmd)
+  return exec
+    .exec(cmd)
     .then(sortTagsByVersion)
     .then(tags => tags.join('\n'))
 }
@@ -77,7 +79,8 @@ function getTags (vTagsOnly) {
   // oldest tags first, latest tags last
   var cmd = 'git tag --sort version:refname'
   var parseSomeTags = parseTags.bind(null, vTagsOnly)
-  return exec(cmd)
+  return exec
+    .exec(cmd)
     .catch(getTagsSortByVersion)
     .then(parseSomeTags)
     .then(getCommitIds)

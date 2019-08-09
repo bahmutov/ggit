@@ -110,7 +110,7 @@ function changedFiles (needContents) {
   // another command that gives status especially for added files
   var secondCommand = 'git status --porcelain'
 
-  return Q.all([exec(cmd), exec(secondCommand)])
+  return Q.all([exec.exec(cmd), exec.exec(secondCommand)])
     .spread(function (firstOutput, secondOutput) {
       log('first output')
       log(firstOutput)

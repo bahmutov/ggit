@@ -7,7 +7,7 @@ var exec = require('./exec')
 */
 function branchName () {
   var cmd = 'git rev-parse --abbrev-ref HEAD'
-  return exec(cmd).then(function cleanOutput (str) {
+  return exec.exec(cmd).then(function cleanOutput (str) {
     la(check.unemptyString(str), 'expected branch name string', str)
     return str.trim()
   })

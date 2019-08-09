@@ -4,10 +4,12 @@ const schemaShot = require('schema-shot')
 const snapshot = require('snap-shot-it')
 const { stubExecOnce } = require('stub-spawn-once')
 const { stripIndent } = require('common-tags')
+const path = require('path')
 
 /* global describe, it, beforeEach */
 describe('blame', () => {
   const blame = require('..').blame
+  const testFilename = path.join(__dirname, 'test-file.txt')
 
   it('is a function', () => {
     la(is.fn(blame))
@@ -15,13 +17,13 @@ describe('blame', () => {
 
   it('gets blame for 1 line of this file', () => {
     const line = 1
-    return schemaShot(blame(__filename, line))
+    return schemaShot(blame(testFilename, line))
   })
 
   it('mocks exec and parses output', () => {
     // line 10000 does NOT exist in this file!
     const line = 10000
-    const cmd = `git blame --porcelain -L ${line},${line} ${__filename}`
+    const cmd = `git blame --porcelain -L ${line},${line} ${testFilename}`
     const output = stripIndent`
       adfb30d5888bb1eb9bad1f482248edec2947dab6 ${line} ${line} 1
       author Gleb Bahmutov
@@ -39,11 +41,11 @@ describe('blame', () => {
     stubExecOnce(cmd, output)
     // can use exact snapshot here, because the output will always be
     // the same! See __snapshots__/blame-spec.js.snap-shot
-    return snapshot(blame(__filename, line))
+    return blame(testFilename, line).then(snapshot)
   })
 
   it('can grab blame for entire file', () => {
-    return schemaShot(blame(__filename))
+    return blame(testFilename).then(snapshot)
   })
 
   describe('non-existent file', () => {
@@ -82,7 +84,7 @@ describe('blame', () => {
       const result = blame(file, line)
       // restore file system in order for snapshots to load
       fs.existsSync.restore()
-      return snapshot(result)
+      return result.then(snapshot)
     })
   })
 })

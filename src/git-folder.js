@@ -68,7 +68,8 @@ function stripSeparator (folder) {
 function getGitFolder () {
   const cmd = 'git rev-parse --show-toplevel'
   const verbose = /ggit/.test(process.env.DEBUG)
-  return exec(cmd, verbose)
+  return exec
+    .exec(cmd, verbose)
     .then(checkFolder, tryDotGit)
     .catch(searchUpForGitFolder)
     .then(folder => folder.trim())

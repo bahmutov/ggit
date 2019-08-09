@@ -13,7 +13,7 @@ function fileContents (filename, at) {
   })
   log('file contents command', cmd)
 
-  return exec(cmd).then(function (data) {
+  return exec.exec(cmd).then(function (data) {
     return data.trim()
   })
 }
