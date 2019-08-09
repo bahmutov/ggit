@@ -2,7 +2,7 @@ var Q = require('q')
 var exists = require('fs').existsSync
 var read = require('fs').readFileSync
 const join = require('path').join
-var gitFolder = require('./git-folder')
+var getGitInternalFolder = require('./git-folder').getGitInternalFolder
 var exec = require('./exec')
 var la = require('lazy-ass')
 var is = require('check-more-types')
@@ -11,8 +11,8 @@ var debug = require('debug')('ggit')
 function currentCommitMessage () {
   debug('getting current commit message')
 
-  return gitFolder()
-    .then(root => join(root, '.git', 'COMMIT_EDITMSG'))
+  return getGitInternalFolder()
+    .then(root => join(root, 'COMMIT_EDITMSG'))
     .then(filename => {
       if (!exists(filename)) {
         return Q.reject(new Error('Cannot find file ' + filename))
