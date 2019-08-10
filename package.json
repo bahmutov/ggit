@@ -49,7 +49,7 @@
     "moment": "2.23.0",
     "moment-timezone": "0.5.23",
     "optimist": "0.6.1",
-    "pluralize": "7.0.0",
+    "pluralize": "8.0.0",
     "q": "2.0.3",
     "quote": "0.4.0",
     "ramda": "0.26.1",
