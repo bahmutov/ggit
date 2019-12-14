@@ -34,7 +34,7 @@
   "contributors": [],
   "dependencies": {
     "always-error": "1.0.0",
-    "bluebird": "3.5.1",
+    "bluebird": "3.7.2",
     "chdir-promise": "0.6.2",
     "check-more-types": "2.24.0",
     "cli-table": "0.3.1",
