@@ -80,7 +80,7 @@
     "semantic-release": "8.2.3",
     "simple-commit-message": "4.0.3",
     "sinon": "6.3.5",
-    "snap-shot-it": "7.8.0",
+    "snap-shot-it": "7.9.6",
     "standard": "11.0.1",
     "stop-only": "2.2.1",
     "stub-spawn-once": "2.3.0",
